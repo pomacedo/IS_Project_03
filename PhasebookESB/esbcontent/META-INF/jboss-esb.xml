@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<jbossesb parameterReloadSecs="5"
+ xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd">
+ <providers>
+  <jms-provider connection-factory="ConnectionFactory" name="JMS">
+   <jms-bus busid="Go">
+    <jms-message-filter dest-name="queue/request_esb" dest-type="QUEUE"/>
+   </jms-bus>
+  </jms-provider>
+ </providers>
+ <services>
+  <service category="Authentication"
+   description="Authentication Login Description" 
+   name="test">
+   <listeners>
+    <jms-listener busidref="Go" name="ESB-Listener"/>
+   </listeners>
+   <actions>
+    <action name="passo1" class="action.teste01" process="visit" />
+
+
+	<action name="soapui-client-action"  
+    class="org.jboss.soa.esb.actions.soap.SOAPClient">  
+    <property name="wsdl"  
+     value="http://127.0.0.1:8080/PhasebookWS/teste?wsdl" /> <!-- Mudar ao criar o WS--!> 
+    <property name="SOAPAction" value="login"/>
+    <property name="responseAsOgnlMap" value="true" />      
+   </action>   
+   
+   
+   </actions>
+  </service>
+  
+ </services>
+</jbossesb>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition 
+  xmlns="urn:jbpm.org:jpdl-3.2"
+  name="simple">
+   <start-state name="start">
+		<transition to="doLogin"></transition>
+	</start-state>
+   
+
+	<node name="doLogin">
+		<action class="org.jboss.soa.esb.services.jbpm.actionhandlers.EsbActionHandler">		
+			<esbCategoryName>
+			Authentication
+			</esbCategoryName>
+			<esbServiceName>Login2</esbServiceName>
+			<bpmToEsbVars>
+				<mapping bpm="result" esb="result" default="result"/>				
+			</bpmToEsbVars>
+			
+		</action>
+		
+	   
+	<transition to="result"/>	 
+	</node>
+	<node name="result">
+		<action name="action" class="com.sample.action.doLoginAction" />
+		<transition to="end"/>
+	</node>
+   <end-state name="end">
+   </end-state>
+</process-definition>

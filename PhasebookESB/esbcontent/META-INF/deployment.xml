@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<jbossesb-deployment>
+ <jmsQueue>request_esb</jmsQueue>
+ <jmsQueue>request_esb_reply</jmsQueue> 
+</jbossesb-deployment>

@@ -16,19 +16,13 @@
    <listeners>
     <jms-listener busidref="Go" name="ESB-Listener"/>
    </listeners>
-   <actions>
-    <action name="passo1" class="action.teste01" process="visit" />
-
-
-	<action name="soapui-client-action"  
-    class="org.jboss.soa.esb.actions.soap.SOAPClient">  
+   <actions>	
+	<action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">  
     <property name="wsdl"  
-     value="http://127.0.0.1:8080/PhasebookWS/teste?wsdl" /> <!-- Mudar ao criar o WS--!> 
-    <property name="SOAPAction" value="login"/>
+     value="http://localhost:8080/PhasebookWSs/testeWS?wsdl" />  
+    <property name="SOAPAction" value="algoMais"/>
     <property name="responseAsOgnlMap" value="true" />      
    </action>   
-   
-   
    </actions>
   </service>
   

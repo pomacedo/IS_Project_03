@@ -45,7 +45,7 @@ public class teste01 extends AbstractActionLifecycle
   System.out.println("---------------------------------- VISIT ESB ACTION----------------------------------");
   String who = (String) message.getBody().get();
   
-  message.getBody().add(" Hello " + who + ". You WERE IN THE ESB");
+  message.getBody().add("Hello_" + who + "._You_WERE_IN_THE_ESB");
 //  LogicalEPR lepr = new LogicalEPR(message.getHeader().getCall().getReplyTo());
 //  ServiceInvoker si = lepr.getServiceInvoker();
 //  si.deliverAsync(message);  

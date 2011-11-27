@@ -19,22 +19,26 @@ public class PhasebookMainWS {
 
 	
 	@WebMethod
-	public String test(String something)
+	public String test(String email,String password)
 	{
 		System.out.println("TOU NO MAIN WS");
 		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
 
 		Message esbMessage = MessageFactory.getInstance().getMessage();
-
-		esbMessage.getBody().add(something);
+		HashMap requestMap = new HashMap();
+		requestMap.put("loginUser.email",email);
+		requestMap.put("loginUser.password",password);
+		esbMessage.getBody().add(requestMap);
+		
 		Message retMessage = null;
 
 		ServiceInvoker si;
 		try {
 			si = new ServiceInvoker("Authentication", "test");
 			retMessage = si.deliverSync(esbMessage, 10000L);
-			//Map responseMsg = (Map) retMessage.getBody().get(Body.DEFAULT_LOCATION);
-			return (String) retMessage.getBody().get();
+			System.out.println("Pedido no WS enviado\n");
+			HashMap responseMsg = (HashMap) retMessage.getBody().get(Body.DEFAULT_LOCATION);			
+			return (String)responseMsg.get("algoMaisResponse.return");
 		} catch (MessageDeliverException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

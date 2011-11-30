@@ -44,11 +44,9 @@ public class RegisterServlet extends HttpServlet {
 		PhasebookMainWSService mainWS = new PhasebookMainWSService();
 		PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
 		if(ws.addClient(name, password, gender, email)==1){
-			System.out.println("SUCESSSS!");
 			session.setAttribute("errorreg", "Register Sucess!");
 			response.sendRedirect("index.jsp");
 		}else{
-			System.out.println("NO SUCESSSS!");
 			session.setAttribute("errorreg", "Register Failed!");
 			response.sendRedirect("index.jsp");
 		}

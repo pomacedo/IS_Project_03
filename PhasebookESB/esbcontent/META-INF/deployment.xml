@@ -4,4 +4,10 @@
  <jmsQueue>request_esb_reply</jmsQueue> 
  <jmsQueue>createUser_request</jmsQueue>
  <jmsQueue>createUser_request_reply</jmsQueue>
+ <jmsQueue>getSearch_request</jmsQueue>
+ <jmsQueue>getSearch_request_reply</jmsQueue>
+ <jmsQueue>getClientInfo_request</jmsQueue>
+ <jmsQueue>getClientInfo_request_reply</jmsQueue>
+ <jmsQueue>editProfile_request</jmsQueue>
+ <jmsQueue>editProfile_request_reply</jmsQueue>
 </jbossesb-deployment>

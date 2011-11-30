@@ -39,8 +39,8 @@ public class RegisterServlet extends HttpServlet {
 		String name=request.getParameter("name");
 		String password=request.getParameter("pass");
 		String email=request.getParameter("email");
-		char gender=request.getParameter("gender").charAt(0);
-		System.out.println("VOU INVOCAR");
+		String gender=((String)request.getParameter("gender"));
+	    
 		PhasebookMainWSService mainWS = new PhasebookMainWSService();
 		PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
 		if(ws.addClient(name, password, gender, email)==1){

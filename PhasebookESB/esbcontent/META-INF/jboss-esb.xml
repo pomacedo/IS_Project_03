@@ -28,8 +28,8 @@
     </action> 
    </actions>
   </service> 
-  <service name="Client" description="Create a new client on phasebook"
-   category="createUser">
+  <service category="Client" description="Create a new client on phasebook"
+   name="createUser">
    <listeners>
     <jms-listener busidref="createuserRequest" name="ESB-Listener"/>
    </listeners>

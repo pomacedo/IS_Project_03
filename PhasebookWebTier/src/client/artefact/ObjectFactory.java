@@ -37,22 +37,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CheckLogInResponse }
-     * 
-     */
-    public CheckLogInResponse createCheckLogInResponse() {
-        return new CheckLogInResponse();
-    }
-
-    /**
-     * Create an instance of {@link AddClientResponse }
-     * 
-     */
-    public AddClientResponse createAddClientResponse() {
-        return new AddClientResponse();
-    }
-
-    /**
      * Create an instance of {@link AddClient }
      * 
      */
@@ -74,6 +58,22 @@ public class ObjectFactory {
      */
     public ClientInfo createClientInfo() {
         return new ClientInfo();
+    }
+
+    /**
+     * Create an instance of {@link CheckLogInResponse }
+     * 
+     */
+    public CheckLogInResponse createCheckLogInResponse() {
+        return new CheckLogInResponse();
+    }
+
+    /**
+     * Create an instance of {@link AddClientResponse }
+     * 
+     */
+    public AddClientResponse createAddClientResponse() {
+        return new AddClientResponse();
     }
 
     /**

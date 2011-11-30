@@ -6,8 +6,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import client.artifact.PhasebookMainWS;
-import client.artifact.PhasebookMainWSService;
+
+import java.util.HashMap;
+import client.artefact2.PhasebookMainWS;
+import client.artefact2.PhasebookMainWSService;
+import eai.ClientInfo;
 
 /**
  * Servlet implementation class test
@@ -34,14 +37,16 @@ public class test extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String login = request.getParameter("email");
 		
+		String login = request.getParameter("email");
+		String pass = request.getParameter("password");
 		PhasebookMainWSService mainWS = new PhasebookMainWSService();
 		PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
 		
-		String resp = ws.test(login);
-		response.sendRedirect("index.jsp?resp="+resp);
+		
+		 client.artefact2.ClientInfo resp = ws.test(login,pass);
+		
+		response.sendRedirect("index.jsp?resp="+resp.getName());
 	}
 
 }

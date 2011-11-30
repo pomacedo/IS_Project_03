@@ -16,4 +16,5 @@ public interface ClientSessionBeanRemote {
 	public ClientInfo checkLogIn(String email,String password);
 	public boolean editProfile(int id,String password,String name,String email,String newPassword,char gender, float money);
 	public boolean betWon(int id);
+	public String sayHello(String email,String password);
 }

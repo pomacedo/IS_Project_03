@@ -124,4 +124,35 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
 		}
 		return true;
 	}
+
+	@Override
+	public String sayHello(String email, String password) {
+		
+		System.out.println("\nHELOOOOOOOOOO SOU UM EJB\n");
+		System.out.println("\nEmail:"+email);
+		System.out.println("\nPassword:"+password);
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManager em = emf.createEntityManager();
+		List<Client> list=(List<Client>)em.createQuery("SELECT c FROM Client c WHERE c.email LIKE ?1 and c.password like ?2").setParameter(1, email).setParameter(2,password).getResultList();
+		
+		if(list.size()==0)
+			{
+			System.out.println("\nnao ta ninguem");
+			return "NINGUEM";
+			}
+		else{
+			if(list.get(0).getPhoto()==null)
+			{
+				System.out.println("\n sem photo");
+				return ""+list.get(0).getId();
+			}
+			else
+			{
+				System.out.println("\n com photo");
+				return ""+list.get(0).getId();
+			}
+		}
+		
+		
+	}
 }

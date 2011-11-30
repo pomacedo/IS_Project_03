@@ -10,21 +10,21 @@
   </jms-provider>
  </providers>
  <services>
-  <service category="Authentication"
+  <service category="Client"
    description="Authentication Login Description" 
-   name="test">
+   name="checkLogIn">
    <listeners>
     <jms-listener busidref="Go" name="ESB-Listener"/>
    </listeners>
-   <actions>	
-	<action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">  
-    <property name="wsdl"  
-     value="http://localhost:8080/PhasebookWSs/testeWS?wsdl" />  
-    <property name="SOAPAction" value="algoMais"/>
-    <property name="responseAsOgnlMap" value="true" />      
-   </action>   
+   <actions>
+    <action name="myInitializer" class="action.myInitializer" process="checkLogIn"/>	
+	<action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">	 
+	    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl" />  
+	    <property name="SOAPAction" value="checkLogIn"/>
+	    <property name="responseAsOgnlMap" value="true" />      
+    </action>   
+
    </actions>
-  </service>
-  
+  </service>  
  </services>
 </jbossesb>

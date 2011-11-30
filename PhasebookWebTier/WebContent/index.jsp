@@ -22,9 +22,9 @@
 						<td><input name="pass" type="password" class="inputtext"/></td>
 						<td><input name="login" type="submit" value="Log In"/></td>
 					</tr>
-					<%if(request.getAttribute("error")!=null){ %>
+					<%if(session.getAttribute("error")!=null){ %>
 					<tr>
-						<td><label class="labelerror"><%=request.getAttribute("error") %></label></td>
+						<td><label class="labelerror"><%=session.getAttribute("error") %></label></td>
 					</tr>
 					<%} %>
 				</table>
@@ -35,10 +35,10 @@
 	<div class="register">
 		<form method="post" action="RegisterServlet">
 			<table>
-				<%if(request.getAttribute("errorreg")!=null){ %>
+				<%if(session.getAttribute("errorreg")!=null){ %>
 				<tr>
 					<td></td>
-					<td><label class="label2"><%=request.getAttribute("errorreg") %></label></td>
+					<td><label class="label2"><%=session.getAttribute("errorreg") %></label></td>
 				</tr>
 				<%} %>
 				<tr>

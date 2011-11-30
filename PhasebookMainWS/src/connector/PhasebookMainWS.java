@@ -44,10 +44,10 @@ public class PhasebookMainWS {
 			retMessage = si.deliverSync(esbMessage, 10000L);
 			
 			System.out.println("Pedido no WS enviado\n");
-			
 			Map responseMsg = (Map) retMessage.getBody().get(Body.DEFAULT_LOCATION);
 			System.out.println("\n ::::::::: "+responseMsg.toString());
-			
+			if(responseMsg.size()==0)
+				return null;
 			 Iterator i = responseMsg.keySet().iterator();
 			 email =(String) responseMsg.get(i.next());
 			 int id = Integer.parseInt((String) responseMsg.get(i.next()));

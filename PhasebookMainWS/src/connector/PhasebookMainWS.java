@@ -23,7 +23,7 @@ public class PhasebookMainWS {
 
 	
 	@WebMethod
-	public ClientInfo test(String email,String password)
+	public ClientInfo checkLogIn(String email,String password)
 	{
 		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
 
@@ -64,27 +64,6 @@ public class PhasebookMainWS {
 			 temp.setPhotoPath(photo);
 			 System.out.println("\nGGGGGG "+temp.getEmail()+",,"+temp.getName()+",,"+id+",,"+password+",,"+photo);
 			 
-//			Iterator i = responseMsg.keySet().iterator();
-//			while(i.hasNext())
-//			{
-//				String s = i.next().toString();
-//				System.out.println(s+" >>>> "+responseMsg.get(s)+" FIZ POUIS");
-//			}
-//				System.out.println("tessting: "+responseMsg.containsKey(s));
-//				System.out.println("validatin "+requestMap.get(s).toString());
-//				ArrayList<ClientInfo> res =(ArrayList<ClientInfo>) responseMsg.get("algoMaisResponse.ArrayList");
-//				System.out.println("depos do get WS");
-//				//System.out.println("&&&&&&&&"+res.get(0).getName());
-//			}
-			
-			
-			//System.out.println( "\n\n@@@@@@@@"+responseMsg.keySet().size());
-			
-			//System.out.println(responseMsg.get("algoMaisResponse.return.email"));
-			//ClientInfo retfinal = (ClientInfo) responseMsg.get("algoMaisResponse.return");
-			//String res = (String) responseMsg.get("algoMaisResponse.return");
-			//System.out.println(retfinal.getName());
-			//System.out.println("vamos sair="+res);
 			
 			return temp;
 		} catch (MessageDeliverException e) {
@@ -98,6 +77,57 @@ public class PhasebookMainWS {
 			e.printStackTrace();
 		}
 		return null;		
+		
+	}
+	
+	
+	@WebMethod
+	public int addClient(String name,String password,char gender,String email){
+		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
+
+		Message esbMessage = MessageFactory.getInstance().getMessage();
+		
+		HashMap requestMap = new HashMap();
+		requestMap.put("name",name);
+		requestMap.put("password",password);
+		requestMap.put("gender",gender);
+		requestMap.put("email",email);
+		
+		esbMessage.getBody().add(requestMap);
+		
+		Message retMessage = null;
+
+		ServiceInvoker si;
+		try {
+			
+			si = new ServiceInvoker("Client", "createUser");
+			retMessage = si.deliverSync(esbMessage, 10000L);
+			
+			System.out.println("Pedido no WS enviado\n");
+			
+			Map responseMsg = (Map) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+			System.out.println("\n ::::::::: "+responseMsg.toString());
+			
+			 Iterator i = responseMsg.keySet().iterator();
+			 int response = Integer.parseInt((String) responseMsg.get(i.next()));
+			 		 
+			 
+			 
+			 System.out.println("\ncreateUser response is: "+response);
+			 
+			
+			return response;
+		} catch (MessageDeliverException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FaultMessageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RegistryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;		
 		
 	}
 	

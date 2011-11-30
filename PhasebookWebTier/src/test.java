@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import java.util.HashMap;
-import client.artefact2.PhasebookMainWS;
-import client.artefact2.PhasebookMainWSService;
+//import client.artefact2.PhasebookMainWS;
+//import client.artefact2.PhasebookMainWSService;
 import eai.ClientInfo;
 
 /**
@@ -38,15 +38,15 @@ public class test extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String login = request.getParameter("email");
-		String pass = request.getParameter("password");
-		PhasebookMainWSService mainWS = new PhasebookMainWSService();
-		PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
-		
-		
-		 client.artefact2.ClientInfo resp = ws.test(login,pass);
-		
-		response.sendRedirect("index.jsp?resp="+resp.getName());
+//		String login = request.getParameter("email");
+//		String pass = request.getParameter("password");
+//		PhasebookMainWSService mainWS = new PhasebookMainWSService();
+//		PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
+//		
+//		
+//		 client.artefact2.ClientInfo resp = ws.test(login,pass);
+//		
+//		response.sendRedirect("index.jsp?resp="+resp.getName());
 	}
 
 }

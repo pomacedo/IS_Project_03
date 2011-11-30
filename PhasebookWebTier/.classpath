@@ -13,6 +13,6 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/PhasebookServer"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/PhasebookServer"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

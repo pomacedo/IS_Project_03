@@ -2,4 +2,6 @@
 <jbossesb-deployment>
  <jmsQueue>request_esb</jmsQueue>
  <jmsQueue>request_esb_reply</jmsQueue> 
+ <jmsQueue>createUser_request</jmsQueue>
+ <jmsQueue>createUser_request_reply</jmsQueue>
 </jbossesb-deployment>

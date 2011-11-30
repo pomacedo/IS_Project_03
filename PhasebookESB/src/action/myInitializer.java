@@ -62,7 +62,25 @@ public class myInitializer extends AbstractActionLifecycle
 	     
 		return message;
 	}
-
+   
+	public Message createUser(Message message) throws MessageDeliverException
+	{
+		 
+		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
+	     String email = (String)requestMsg.get("email");
+	     String password = (String)requestMsg.get("password");
+	     String name = (String)requestMsg.get("name");
+	     char gender = ((String) requestMsg.get("gender")).charAt(0);
+	    	     
+	     Map send = new HashMap();
+	     send.put("checkLogIn.email", email);
+	     send.put("checkLogIn.password", password);
+	     send.put("checkLogIn.name", name);
+	     send.put("checkLogIn.gender", gender);
+	     message.getBody().add(send);
+	     
+		return message;
+	}
 // public Message visit(Message message) throws MessageDeliverException {
 //  System.out.println("\nCUCUCU");
 //  Map responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);  

@@ -12,4 +12,4 @@
   <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer
   </depends>
  </mbean> 
- </server>
+ </server> 

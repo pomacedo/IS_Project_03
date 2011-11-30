@@ -9,7 +9,7 @@
    </jms-bus>
   </jms-provider>
  </providers>
- <services>
+ <services> 
   <service category="Client"
    description="Authentication Login Description" 
    name="checkLogIn">

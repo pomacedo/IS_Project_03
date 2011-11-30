@@ -11,7 +11,7 @@ import data.Relation;
 
 import eai.RelationBeanRemote;
 
-@WebService(name = "crelationws", targetNamespace = "http://PhasebookWSs/relationWS")
+@WebService(name = "relationws", targetNamespace = "http://PhasebookWSs/relationWS")
 public class relationWS {
 	@EJB(mappedName = "RelationBeanRemote/remote")
 	RelationBeanRemote relBeanRem;

@@ -82,11 +82,12 @@ public class PhasebookMainWS {
 	
 	
 	@WebMethod
-	public int addClient(String name,String password,char gender,String email){
+	public int addClient(String name,String password,String gender,String email){
 		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
 
 		Message esbMessage = MessageFactory.getInstance().getMessage();
-		
+		System.out.println("TOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
 		HashMap requestMap = new HashMap();
 		requestMap.put("name",name);
 		requestMap.put("password",password);

@@ -67,16 +67,17 @@ public class myInitializer extends AbstractActionLifecycle
 	{
 		 
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
+		 
 	     String email = (String)requestMsg.get("email");
 	     String password = (String)requestMsg.get("password");
 	     String name = (String)requestMsg.get("name");
-	     char gender = ((String) requestMsg.get("gender")).charAt(0);
-	    	     
+	     String gender =  (String) requestMsg.get("gender");
+	     
 	     Map send = new HashMap();
-	     send.put("checkLogIn.email", email);
-	     send.put("checkLogIn.password", password);
-	     send.put("checkLogIn.name", name);
-	     send.put("checkLogIn.gender", gender);
+	     send.put("createUser.email", email);
+	     send.put("createUser.password", password);
+	     send.put("createUser.name", name);
+	     send.put("createUser.gender", gender);
 	     message.getBody().add(send);
 	     
 		return message;

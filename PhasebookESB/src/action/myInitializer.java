@@ -82,6 +82,64 @@ public class myInitializer extends AbstractActionLifecycle
 	     
 		return message;
 	}
+	
+	public Message getSearch(Message message) throws MessageDeliverException
+	{
+		 
+		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
+		 
+	     String searchFor = (String)requestMsg.get("searchfor");	     
+	     
+	     Map send = new HashMap();
+	     send.put("getSearch.searchfor", searchFor);
+	     
+	     message.getBody().add(send);
+	     
+		return message;
+	}
+	
+	public Message getClientInfo(Message message) throws MessageDeliverException
+	{
+		 
+		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
+		 
+	     int id = Integer.parseInt((String)requestMsg.get("id"));	     
+	     
+	     Map send = new HashMap();
+	     send.put("getClientInfo.id", id);
+	     
+	     message.getBody().add(send);
+	     
+		return message;
+	}
+	
+	
+	public Message editProfile(Message message) throws MessageDeliverException
+	{
+		
+		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
+		 
+	     String email = (String)requestMsg.get("email");
+	     String password = (String)requestMsg.get("password");
+	     String name = (String)requestMsg.get("name");
+	     String gender =  (String) requestMsg.get("gender");
+	     String newPassword=(String) requestMsg.get("newPassword");
+	     int id = Integer.parseInt((String) requestMsg.get("id"));
+	     float money = Float.parseFloat((String)requestMsg.get("money"));
+	     
+	     Map send = new HashMap();
+	     send.put("editProfile.email", email);
+	     send.put("editProfile.password", password);
+	     send.put("editProfile.name", name);
+	     send.put("editProfile.gender", gender);
+	     send.put("editProfile.id", id);
+	     send.put("editProfile.newPassword", newPassword);
+	     send.put("editProfile.money",money);
+	     message.getBody().add(send);
+	     
+		return message;
+	}
+	
 // public Message visit(Message message) throws MessageDeliverException {
 //  System.out.println("\nCUCUCU");
 //  Map responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);  

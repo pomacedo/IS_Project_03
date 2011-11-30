@@ -10,6 +10,15 @@
    <jms-bus busid="createuserRequest">
     <jms-message-filter dest-name="queue/createUser_request" dest-type="QUEUE"/>
    </jms-bus>
+   <jms-bus busid="getSearchRequest">
+    <jms-message-filter dest-name="queue/getSearch_request" dest-type="QUEUE"/>
+   </jms-bus>
+   <jms-bus busid="getClientInfoRequest">
+    <jms-message-filter dest-name="queue/getClientInfo_request" dest-type="QUEUE"/>
+   </jms-bus>
+   <jms-bus busid="editProfileRequest">
+    <jms-message-filter dest-name="queue/editProfile_request" dest-type="QUEUE"/>
+   </jms-bus>
   </jms-provider>
  </providers>
  <services> 
@@ -20,7 +29,7 @@
     <jms-listener busidref="logingRequest" name="ESB-Listener"/>
    </listeners>
    <actions>
-    <action name="myInitializer" class="action.myInitializer" process="checkLogIn"/>	
+    <action name="Init_checkLogIn" class="action.myInitializer" process="checkLogIn"/>	
 	<action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">	 
 	    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl" />  
 	    <property name="SOAPAction" value="checkLogIn"/>
@@ -34,7 +43,7 @@
     <jms-listener busidref="createuserRequest" name="ESB-Listener"/>
    </listeners>
    <actions>
-    <action name="myInitializer" class="action.myInitializer" process="createUser"/>	
+    <action name="Init_createUser" class="action.myInitializer" process="createUser"/>	
 	<action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">	 
 	    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl" />  
 	    <property name="SOAPAction" value="createUser"/>
@@ -42,5 +51,47 @@
     </action> 
     </actions>
    </service> 
+   <service category="Client" description="search users" 
+   name="getSearch">
+	 <listeners>
+	    <jms-listener busidref="getSearchRequest" name="ESB-Listener"/>
+	 </listeners>
+	 <actions>
+	   <action name = "init_getSearch" class="action.myInitializer" process="getSearch"/>
+	   <action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">	 
+		    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl" />  
+		    <property name="SOAPAction" value="getSearch"/>
+		    <property name="responseAsOgnlMap" value="true" />      
+    	</action> 
+	 </actions>
+   </service>
+   <service category="Client" description="get information of an client" 
+   name="getClientInfo">
+	 <listeners>
+	    <jms-listener busidref="getClientInfoRequest" name="ESB-Listener"/>
+	 </listeners>
+	 <actions>
+	   <action name = "init_getSearch" class="action.myInitializer" process="getClientInfo"/>
+	   <action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">	 
+		    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl" />  
+		    <property name="SOAPAction" value="getClientInfo"/>
+		    <property name="responseAsOgnlMap" value="true" />      
+    	</action> 
+	 </actions>
+   </service>
+   <service category="Client" description="edit the profile of the user" 
+   name="editProfile">
+	 <listeners>
+	    <jms-listener busidref="editProfileRequest" name="ESB-Listener"/>
+	 </listeners>
+	 <actions>
+	   <action name = "init_getSearch" class="action.myInitializer" process="editProfile"/>
+	   <action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">	 
+		    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl" />  
+		    <property name="SOAPAction" value="editProfile"/>
+		    <property name="responseAsOgnlMap" value="true" />      
+    	</action> 
+	 </actions>
+   </service>
  </services>
 </jbossesb>

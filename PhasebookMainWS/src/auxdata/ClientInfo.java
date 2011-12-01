@@ -1,4 +1,4 @@
-package eai;
+package auxdata;
 
 import java.io.Serializable;
 
@@ -12,8 +12,8 @@ public class ClientInfo implements Serializable{
 	private int id;
 	private String password;
 	private String name;
-	private String photoPath;
-
+	//private String photoPath;
+	int idPhoto;
     /**
      * Default constructor. 
      */
@@ -21,13 +21,13 @@ public class ClientInfo implements Serializable{
         // TODO Auto-generated constructor stub
     }
 
-	public ClientInfo(String email, int id, String password, String name,String path) {
+	public ClientInfo(String email, int id, String password, String name,int idPhoto) {
 		super();
 		this.email = email;
 		this.id = id;
 		this.password = password;
 		this.name = name;
-		this.photoPath=path;
+		this.idPhoto=idPhoto;
 	}
 	
 	public ClientInfo(String email, int id, String password, String name) {
@@ -39,15 +39,12 @@ public class ClientInfo implements Serializable{
 	}
 	
 	
-
-
-
-	public String getPhotoPath() {
-		return photoPath;
+	public int getIdPhoto() {
+		return idPhoto;
 	}
 
-	public void setPhotoPath(String photoPath) {
-		this.photoPath = photoPath;
+	public void setPhotoPath(int idPhoto) {
+		this.idPhoto = idPhoto;
 	}
 
 	public String getEmail() {

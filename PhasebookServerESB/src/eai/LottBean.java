@@ -29,7 +29,7 @@ public class LottBean implements LottBeanRemote {
 	@Override
 	public Lottery getCurrentLottery() {
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx=em.getTransaction();
 		List<Lottery> list=(List<Lottery>)em.createQuery("select l from Lottery l where l.result=-1").getResultList();
@@ -46,7 +46,7 @@ public class LottBean implements LottBeanRemote {
 	@Override
 	public int updateResult(int number) {
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx=em.getTransaction();
 		List<Lottery> list=(List<Lottery>)em.createQuery("select l from Lottery l where l.result=-1").getResultList();
@@ -67,11 +67,12 @@ public class LottBean implements LottBeanRemote {
 
 	@Override
 	public void checkWinners(int idL) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Lottery l = em.find(Lottery.class, idL);
 		List<Bet> betList=(List<Bet>)em.createQuery("SELECT b FROM Bet b WHERE b.id_lottery LIKE ?1").setParameter(1,idL).getResultList();
 		ClientSessionBean cb = new ClientSessionBean();
+		
 		for(Bet b: betList)
 		{
 			if(b.getNumber()==l.getResult())
@@ -85,7 +86,7 @@ public class LottBean implements LottBeanRemote {
 
 	@Override
 	public boolean createNextLottery(Date nextDraw) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Lottery newL=new Lottery(nextDraw);
 		EntityTransaction tx=em.getTransaction();

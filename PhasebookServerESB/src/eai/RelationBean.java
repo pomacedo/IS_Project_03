@@ -32,7 +32,7 @@ public class RelationBean implements RelationBeanRemote {
      */
 	@Override
 	public List<Relation> checkMyFriends(int id, String password) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Client c1 = em.find(Client.class, id);
 		if(!c1.getPassword().equals(password))
@@ -50,7 +50,7 @@ public class RelationBean implements RelationBeanRemote {
 	@Override
 	public boolean addFriend(int idFrom,String password, int idTo) {
 		// TODO Auto-generated method stub
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 //		Client c1 = em.find(Client.class, idFrom);
 //		if(!c1.getPassword().equals(password))
@@ -71,7 +71,8 @@ public class RelationBean implements RelationBeanRemote {
 	}
 	
 	@Override
-	public boolean checkIfIsFriend(int id, String password,List<Relation> relList, int idFriend) {
+	public boolean checkIfIsFriend(int id, String password,List<Relation> relList, int idFriend) 
+	{
 		boolean isFriend=false; 
 		if(relList!=null)
 		{			
@@ -104,7 +105,7 @@ public class RelationBean implements RelationBeanRemote {
 
 	@Override
 	public int numberOfFriends(int id) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Client c1 = em.find(Client.class, id);
 		List<Relation> list=(List<Relation>)em.createQuery("SELECT r FROM Relation r WHERE (r.id_client_from LIKE ?1 or r.id_client_to LIKE ?2) and (r.status like 'A')").setParameter(1, id).setParameter(2, id).getResultList();
@@ -122,7 +123,7 @@ public class RelationBean implements RelationBeanRemote {
 	
 	@Override
 	public List<Relation> getNewRequests(int id, String password) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		List<Relation> list=(List<Relation>)em.createQuery("SELECT r FROM Relation r WHERE (r.id_client_from LIKE ?1 or r.id_client_to LIKE ?2) and (r.status like 'P')").setParameter(1, id).setParameter(2, id).getResultList();
 //		Client c1 = em.find(Client.class, id);
@@ -142,7 +143,7 @@ public class RelationBean implements RelationBeanRemote {
 	
 	@Override
 	public void acceptFriend(int id, String password, int idRel) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Client c1 = em.find(Client.class, id);
 		if(!c1.getPassword().equals(password))
@@ -164,7 +165,7 @@ public class RelationBean implements RelationBeanRemote {
 
 	@Override
 	public void declineFriend(int id, String password, int idRel) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Client c1 = em.find(Client.class, id);
 		if(!c1.getPassword().equals(password))
@@ -182,7 +183,8 @@ public class RelationBean implements RelationBeanRemote {
 	}
 	
 	@Override
-	public Relation getRelation(List<Relation> relList, int idFriend) {
+	public Relation getRelation(List<Relation> relList, int idFriend) 
+	{
 		
 		if(relList!=null)
 		{			
@@ -221,7 +223,7 @@ public class RelationBean implements RelationBeanRemote {
 	        
 	        
 	        //TODO TIRAR A LEITURA DO CLIENT
-	        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+	        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 			EntityManager em = emf.createEntityManager();
 	        Client paraTirar=em.find(Client.class,cTo);
 	        em.close();
@@ -243,7 +245,7 @@ public class RelationBean implements RelationBeanRemote {
 	@Override
 	public void removeFriend(int id, String password, int idFriend) {
 		// TODO Auto-generated method stub
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Client c1 = em.find(Client.class, id);
 		if(!c1.getPassword().equals(password))
@@ -269,7 +271,7 @@ public class RelationBean implements RelationBeanRemote {
 		
 		
 		//TODO esta tambem precisa de reevisao
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		
 //		Client c1 = em.find(Client.class,id);

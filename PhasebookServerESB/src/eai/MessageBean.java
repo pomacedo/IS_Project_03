@@ -39,7 +39,7 @@ public class MessageBean implements MessageBeanRemote {
 
     
     public boolean sendMsg(int idFrom,String password,String message,int idTo,boolean isPrivate) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
     	EntityManager em = emf.createEntityManager();
 		EntityTransaction tx=em.getTransaction();
 		Client c1 = em.find(Client.class,idFrom);
@@ -64,7 +64,7 @@ public class MessageBean implements MessageBeanRemote {
 	}
 	
 	public boolean sendMsg(int idFrom,String password,String message,int idTo,boolean isPrivate,String photoPath) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
     	EntityManager em = emf.createEntityManager();
 		EntityTransaction tx=em.getTransaction();
 		
@@ -108,7 +108,7 @@ public class MessageBean implements MessageBeanRemote {
 	@Override
 	public List<Message> getPosts(int idViewer,String password){
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Client c1=em.find(Client.class, idViewer);
 		EntityTransaction tx=em.getTransaction();
@@ -145,7 +145,7 @@ public class MessageBean implements MessageBeanRemote {
 	public List<Message> getPosts(int idViewer,String password, int idTo){
 		
 		//TODO É preciso filtrar o return deste metodo para verificar as relacoes de amizade
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Client c1=em.find(Client.class, idViewer);
 		if(!c1.getPassword().equals(password)){
@@ -187,7 +187,7 @@ public class MessageBean implements MessageBeanRemote {
 	{
 		
 		//TODO É preciso apagar as fotos (atencao ao facto que pode ser foto de perfil) (no caso de existirem) antes de apagar as mensagens
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx=em.getTransaction();
 		Client c1 = em.find(Client.class, id);
@@ -210,7 +210,7 @@ public class MessageBean implements MessageBeanRemote {
 	@Override
 	public void sendEmailNotification(int id) {
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Client c1 = em.find(Client.class, id);
 		List<Message> list=(List<Message>)em.createQuery("SELECT m FROM Message m WHERE m.id_client_to LIKE ?1").setParameter(1, c1.getId()).getResultList();
@@ -273,7 +273,7 @@ public class MessageBean implements MessageBeanRemote {
 	
 	@Override
  	public int privNumberOfPhotos(int id){
- 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+ 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
  		EntityManager em = emf.createEntityManager();
  		List<Message> list=(List<Message>)em.createQuery("SELECT m FROM Message m WHERE m.id_client_to LIKE ?1").setParameter(1, id).getResultList();
  		int count=0;
@@ -288,7 +288,7 @@ public class MessageBean implements MessageBeanRemote {
 	// Devolve o numero de fotos publicas
  	@Override
  	public int pubNumberOfPhotos(int id){
- 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+ 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
  		EntityManager em = emf.createEntityManager();
  		List<Message> list=(List<Message>)em.createQuery("SELECT m FROM Message m WHERE m.id_client_to LIKE ?1").setParameter(1, id).getResultList();
  		int count=0;

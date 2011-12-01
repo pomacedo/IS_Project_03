@@ -19,7 +19,7 @@ public interface RelationBeanRemote {
 	public void acceptFriend(int id, String password, int idRel);
 	public void declineFriend(int id, String password, int idRel);
 	public void removeFriend(int id, String password, int idFriend);
-	public Relation getRelation(List<Relation> relList, int idFriend);
+	public Relation getRelation(List<Relation> relList, int idFriend); 
 	public void sendNewFriendRequestMail(int c1, int c2);
 	public List<Client> getFriends(int id);
 }

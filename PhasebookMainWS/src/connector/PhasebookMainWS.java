@@ -1,4 +1,5 @@
 package connector;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -16,7 +17,7 @@ import org.jboss.soa.esb.message.Message;
 import org.jboss.soa.esb.message.format.MessageFactory;
 import org.jboss.soa.esb.services.registry.RegistryException;
 
-import eai.ClientInfo;
+import auxdata.ClientInfo;
 
 @WebService
 public class PhasebookMainWS {
@@ -61,7 +62,7 @@ public class PhasebookMainWS {
 			 temp.setId(id);
 			 temp.setName(name);
 			 temp.setPassword(password);
-			 temp.setPhotoPath(photo);
+			 temp.setPhotoPath(Integer.parseInt(photo));
 			 System.out.println("\nGGGGGG "+temp.getEmail()+",,"+temp.getName()+",,"+id+",,"+password+",,"+photo);
 			 
 			

@@ -53,7 +53,7 @@ public class responseHandler extends AbstractActionLifecycle
 	 public Message getSearch(Message message) throws MessageDeliverException
 	 {
 		 Map responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
-		 System.out.println(responseMsg.toString());
+		 System.out.println("ResponseHandler "+responseMsg.toString());
 		 
 		 Iterator i = responseMsg.keySet().iterator();
 		 while (i.hasNext())

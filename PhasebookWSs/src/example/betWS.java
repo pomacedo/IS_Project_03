@@ -14,22 +14,22 @@ public class betWS {
 		@EJB(mappedName = "BetBeanRemote/remote")
 		BetBeanRemote betBeanRem;
 		
-		
-		@WebMethod
-		public boolean makeNewBet(int id, String password, int idBet, int number)
-		{
-			return betBeanRem.makeNewBet( id,  password,  idBet,  number);
-		}
-		@WebMethod
-		public List<Bet> getMyCurrentBets(int id, String password, Lottery curLot)
-		{
-			return betBeanRem.getMyCurrentBets(id,password,curLot);
-		}
-		@WebMethod
-		public List<Bet> getMyOldBets(int id,String password,Lottery curLot){
-			return betBeanRem.getMyOldBets(id,password,curLot);
-		}
-	
+//		
+//		@WebMethod
+//		public boolean makeNewBet(int id, String password, int idBet, int number)
+//		{
+//			return betBeanRem.makeNewBet( id,  password,  idBet,  number);
+//		}
+//		@WebMethod
+//		public List<Bet> getMyCurrentBets(int id, String password, Lottery curLot)
+//		{
+//			return betBeanRem.getMyCurrentBets(id,password,curLot);
+//		}
+//		@WebMethod
+//		public List<Bet> getMyOldBets(int id,String password,Lottery curLot){
+//			return betBeanRem.getMyOldBets(id,password,curLot);
+//		}
+//	
 	
 
 }

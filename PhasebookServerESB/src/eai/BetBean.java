@@ -29,7 +29,7 @@ public class BetBean implements BetBeanRemote {
 
 	@Override
 	public boolean makeNewBet(int id, String password, int idBet, int number) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Client c1 = em.find(Client.class, id);
 		if(!c1.getPassword().equals(password)){
@@ -82,7 +82,7 @@ public class BetBean implements BetBeanRemote {
 
 	@Override
 	public List<Bet> getMyCurrentBets(int id, String password, Lottery curLot) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Client c1 = em.find(Client.class, id);
 		if(!c1.getPassword().equals(password)){
@@ -105,7 +105,7 @@ public class BetBean implements BetBeanRemote {
 
 	@Override
 	public List<Bet> getMyOldBets(int id, String password,Lottery curLot) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Client c1 = em.find(Client.class, id);
 		if(!c1.getPassword().equals(password)){

@@ -29,7 +29,7 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
     }
 
     public int addClient(String name, String password, char gender,String email) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();             
 
 		
@@ -48,7 +48,7 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
 	}
 
 	public ClientInfo checkLogIn(String email, String password) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		List<Client> list=(List<Client>)em.createQuery("SELECT c FROM Client c WHERE c.email LIKE ?1 and c.password like ?2").setParameter(1, email).setParameter(2,password).getResultList();
 		
@@ -56,21 +56,22 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
 			em.close();
 			return null;
 		}else{
-			if(list.get(0).getId_photo()==-1){
-				ClientInfo c=new ClientInfo(list.get(0).getEmail(), list.get(0).getId(), list.get(0).getPassword(), list.get(0).getName());
-				em.close();
-				return c;
-			}else{
-				ClientInfo c=new ClientInfo(list.get(0).getEmail(), list.get(0).getId(), list.get(0).getPassword(), list.get(0).getName(),list.get(0).getId_photo());
-				em.close();
-				return c;
-			}
+//			if(list.get(0).getId_photo()==-1){
+//				ClientInfo c=new ClientInfo(list.get(0).getEmail(), list.get(0).getId(), list.get(0).getPassword(), list.get(0).getName());
+//				em.close();
+//				return c;
+//			}else{
+			ClientInfo c=new ClientInfo(list.get(0).getEmail(), list.get(0).getId(), list.get(0).getPassword(), list.get(0).getName(),list.get(0).getId_photo());
+			System.out.println("CLient ----> photo:"+c.getIdPhoto());
+			em.close();
+			return c;
+//			}
 		}
 	}
 
 	@Override
 	public Client getClientInfo(int id) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Client client = em.find(Client.class, id);
 		em.close();
@@ -79,7 +80,7 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
 
 	@Override
 	public List<Client> getSearch(String searchfor) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		List<Client> list=(List<Client>)em.createQuery("SELECT c FROM Client c where c.name LIKE '"+"%"+searchfor+"%'").getResultList();
 		if(list.size()==0){
@@ -92,7 +93,7 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
 
 	@Override
 	public boolean editProfile(int id, String password, String name, String email, String newPassword, char gender, float money) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Client c1 = em.find(Client.class, id);
 		if(!c1.getPassword().equals(password)){
@@ -122,7 +123,7 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
 
 	@Override
 	public boolean betWon(int id) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		Client c1 = em.find(Client.class, id);
 		if(c1==null){
@@ -147,7 +148,7 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
 	// muda o id da foto de perfil para idPhoto do cliente com id =id
  	@Override
  	public boolean setProfilePhoto(int id, String password, int idPhoto) {
- 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+ 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
  		EntityManager em = emf.createEntityManager();
  		Client c1 = em.find(Client.class, id);
  		if(!c1.getPassword().equals(password))

@@ -2,15 +2,11 @@ package example;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
+import java.util.Map; 
 import javax.ejb.EJB;
 import javax.jws.*;
 
-import org.hibernate.tuple.component.PojoComponentTuplizer;
-
 import data.Client;
-
 import eai.*;
 
 @WebService(name = "clientws", targetNamespace = "http://PhasebookWSs/clientWS")
@@ -18,11 +14,15 @@ public class clientWS {
 	
 	@EJB(mappedName = "ClientSessionBean/remote")
 	ClientSessionBeanRemote user;
-	 
+		 
 	@WebMethod	
 	public ClientInfo checkLogIn(@WebParam(name = "email") String email, @WebParam(name = "password") String password)
 	{
-		return user.checkLogIn(email,password);		
+		System.out.println("WEB SERVICE : CHECK LOG IN");
+		ClientInfo c =user.checkLogIn(email,password);
+		System.out.println("WEB SERVICE LOGIN PHOTO "+c.getIdPhoto());
+		c.setPhotoPath(6);
+		return c;
 	}
 	@WebMethod	
 	public int createUser(@WebParam(name = "name") String name,@WebParam(name = "password") String password,@WebParam(name = "gender") String gender,@WebParam(name = "email") String email)

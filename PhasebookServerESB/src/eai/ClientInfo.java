@@ -14,7 +14,6 @@ public class ClientInfo implements Serializable{
 	private String name;
 	//private String photoPath;
 	int idPhoto;
-
     /**
      * Default constructor. 
      */
@@ -40,9 +39,6 @@ public class ClientInfo implements Serializable{
 	}
 	
 	
-
-
-
 	public int getIdPhoto() {
 		return idPhoto;
 	}

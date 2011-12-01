@@ -33,7 +33,7 @@ public class PhotoBean implements PhotoBeanRemote {
  	public List<Photo> getPhotos(int id, boolean isFriend) {
  		
  		//TODO este metodo precisa receber as msgs para poder ir buscar as fotos
- 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+ 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
  		EntityManager em = emf.createEntityManager();
  		List<Message> msgs=(List<Message>)em.createQuery("SELECT m FROM Message m WHERE m.id_client_to LIKE ?1").setParameter(1, id).getResultList();
  		ArrayList<Photo> photos= new ArrayList<Photo>();
@@ -50,7 +50,7 @@ public class PhotoBean implements PhotoBeanRemote {
 
  	@Override
  	public String getPhotoById(int idPhoto) {
- 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
+ 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
  		EntityManager em = emf.createEntityManager();
  		Photo p=em.find(Photo.class, idPhoto);
  		if(p!=null)

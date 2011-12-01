@@ -65,7 +65,7 @@ public class myInitializer extends AbstractActionLifecycle
    
 	public Message createUser(Message message) throws MessageDeliverException
 	{
-		 
+		 System.out.println("ESB - CREATE USER\n");
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
 		 
 	     String email = (String)requestMsg.get("email");

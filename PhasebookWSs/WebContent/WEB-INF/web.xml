@@ -9,6 +9,38 @@
   	<servlet-name>clientWS</servlet-name>
   	<url-pattern>/clientWS</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>betWS</servlet-name>
+  	<servlet-class>example.betWS</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>betWS</servlet-name>
+  	<url-pattern>/betWS</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>messageWS</servlet-name>
+  	<servlet-class>example.messageWS</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>messageWS</servlet-name>
+  	<url-pattern>/messageWS</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>relationWS</servlet-name>
+  	<servlet-class>example.relationWS</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>relationWS</servlet-name>
+  	<url-pattern>/relationWS</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>photoWS</servlet-name>
+  	<servlet-class>example.photoWS</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>photoWS</servlet-name>
+  	<url-pattern>/photoWS</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

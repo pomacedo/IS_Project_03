@@ -1,10 +1,8 @@
 package connector;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -17,7 +15,7 @@ import org.jboss.soa.esb.message.Message;
 import org.jboss.soa.esb.message.format.MessageFactory;
 import org.jboss.soa.esb.services.registry.RegistryException;
 
-import auxdata.ClientInfo;
+import eai.ClientInfo;
 
 @WebService
 public class PhasebookMainWS {

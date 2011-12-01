@@ -13,7 +13,7 @@ public class ClientInfo implements Serializable{
 	private String password;
 	private String name;
 	//private String photoPath;
-	int idPhoto;
+	private int idPhoto;
     /**
      * Default constructor. 
      */

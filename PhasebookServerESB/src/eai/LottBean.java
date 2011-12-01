@@ -70,7 +70,7 @@ public class LottBean implements LottBeanRemote {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServer");
 		EntityManager em = emf.createEntityManager();
 		Lottery l = em.find(Lottery.class, idL);
-		List<Bet> betList = (List<Bet>) l.getThisBets();
+		List<Bet> betList=(List<Bet>)em.createQuery("SELECT b FROM Bet b WHERE b.id_lottery LIKE ?1").setParameter(1,idL).getResultList();
 		ClientSessionBean cb = new ClientSessionBean();
 		for(Bet b: betList)
 		{

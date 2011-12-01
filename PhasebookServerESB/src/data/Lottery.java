@@ -24,9 +24,9 @@ public class Lottery implements Serializable{
 	
 	private int result;
 	
-	@OneToMany(mappedBy="lottery")
-	@OrderBy("id DESC")
-	private Collection<Bet> thisBets;
+//	@OneToMany(mappedBy="lottery")
+//	@OrderBy("id DESC")
+//	private Collection<Bet> thisBets;
 	
 	public Lottery(){
 		super();
@@ -38,13 +38,13 @@ public class Lottery implements Serializable{
 		this.result=-1;
 	}
 
-	public Collection<Bet> getThisBets() {
-		return thisBets;
-	}
-
-	public void setThisBets(Collection<Bet> thisBets) {
-		this.thisBets = thisBets;
-	}
+//	public Collection<Bet> getThisBets() {
+//		return thisBets;
+//	}
+//
+//	public void setThisBets(Collection<Bet> thisBets) {
+//		this.thisBets = thisBets;
+//	}
 
 	public int getId() {
 		return id;

@@ -19,7 +19,7 @@ InitialContext ctx= new InitialContext();
 ClientSessionBeanRemote cb=(ClientSessionBeanRemote)ctx.lookup("ClientSessionBean/remote");
 RelationBeanRemote rb=(RelationBeanRemote)ctx.lookup("RelationBean/remote");
 PhotoBeanRemote pb=(PhotoBeanRemote)ctx.lookup("PhotoBean/remote");
-
+MessageBeanRemote mb = (MessageBeanRemote)ctx.lookup("MessageBean/remote");
 int newRelId=0;
 if(request.getParameter("id")!=null){
 	c=cb.getClientInfo(Integer.parseInt(request.getParameter("id")));
@@ -57,26 +57,27 @@ else
 	</div>
 	<div class="leftCol">
 	<label class="label5"><%=c==null?user.getName():c.getName() %></label>
-		<% String photoPath="http://www.tutoresnarede.com.br/img/facebook-no-image.gif";
-		   if(request.getParameter("id")!=null && c!=null){
-			   if(c.getPhoto()!=null){
-			   		photoPath=c.getPhoto().getPath();
-			   }
-		   }
-		   else{
-			   photoPath=user.getPhotoPath();
-		   }
-		%>
+		<% String photoPath="http://www.tutoresnarede.com.br/img/facebook-no-image.gif";%>
+<!--		   if(request.getParameter("id")!=null && c!=null){-->
+<!--			   if(c.getPhoto()!=null){-->
+<!--			   		photoPath=c.getPhoto().getPath();-->
+<!--			   }-->
+<!--		   }-->
+<!--		   else{-->
+<!--			   photoPath=user.getPhotoPath();-->
+<!--		   }-->
+		
 		<img src="<%=photoPath%>" width="180px" >
 		<br>
 		<div class="leftcolitem" onmouseover="this.style.backgroundColor='#D8DFEA';this.style.cursor='pointer';" onmouseout="this.style.backgroundColor='White';this.style.cursor='default';" onclick="getProfile(<%=request.getParameter("id")%>)"><label class="label2">Info</label></div>
 		<div class="leftcolitem" onmouseover="this.style.backgroundColor='#D8DFEA';this.style.cursor='pointer';" onmouseout="this.style.backgroundColor='White';this.style.cursor='default';" onclick="getMessages(<%=request.getParameter("id")%>)"><label class="label2">Messages</label></div>
 		<div class="leftcolitem" onmouseover="this.style.backgroundColor='#D8DFEA';this.style.cursor='pointer';" onmouseout="this.style.backgroundColor='White';this.style.cursor='default';"onclick="getFriends(<%=request.getParameter("id")%>)"><label class="label2">Friends (<%=rb.numberOfFriends(id) %>)</label></div>
-		<% if(c==null ||(c!=null && rb.checkIfIsApprovedFriend(user.getId(),user.getPassword(),allreadyFriends,c.getId()))){%>
-			<div class="leftcolitem" onmouseover="this.style.backgroundColor='#D8DFEA';this.style.cursor='pointer';" onmouseout="this.style.backgroundColor='White';this.style.cursor='default';"onclick="getGallery(<%=request.getParameter("id")%>)"><label class="label2">Photo Gallery (<%=pb.privNumberOfPhotos(id) %>)</label></div>
+		<% 
+		if(c==null ||(c!=null && rb.checkIfIsApprovedFriend(user.getId(),user.getPassword(),allreadyFriends,c.getId()))){%>
+			<div class="leftcolitem" onmouseover="this.style.backgroundColor='#D8DFEA';this.style.cursor='pointer';" onmouseout="this.style.backgroundColor='White';this.style.cursor='default';"onclick="getGallery(<%=request.getParameter("id")%>)"><label class="label2">Photo Gallery (<%=mb.privNumberOfPhotos(id) %>)</label></div>
 		<%}
 		  else{%>
-			  <div class="leftcolitem" onmouseover="this.style.backgroundColor='#D8DFEA';this.style.cursor='pointer';" onmouseout="this.style.backgroundColor='White';this.style.cursor='default';"onclick="getGallery(<%=request.getParameter("id")%>)"><label class="label2">Photo Gallery (<%=pb.pubNumberOfPhotos(id) %>)</label></div>
+			  <div class="leftcolitem" onmouseover="this.style.backgroundColor='#D8DFEA';this.style.cursor='pointer';" onmouseout="this.style.backgroundColor='White';this.style.cursor='default';"onclick="getGallery(<%=request.getParameter("id")%>)"><label class="label2">Photo Gallery (<%=mb.pubNumberOfPhotos(id) %>)</label></div>
 		  <%}
 		if(c!=null && newRelId==0 && !rb.checkIfIsFriend(user.getId(),user.getPassword(),allreadyFriends,c.getId())){%>
 			<div class="leftcolitem" onmouseover="this.style.backgroundColor='#D8DFEA';this.style.cursor='pointer';" onmouseout="this.style.backgroundColor='White';this.style.cursor='default';"onclick="addFriend(<%=request.getParameter("id")%>)"><label class="label3">Add as Friend</label></div> 

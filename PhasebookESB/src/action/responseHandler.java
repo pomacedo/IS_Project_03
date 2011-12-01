@@ -42,7 +42,7 @@ public class responseHandler extends AbstractActionLifecycle
 		 temp.setId(id);
 		 temp.setName(name);
 		 temp.setPassword(password);
-		 temp.setPhotoPath(photo);
+		 temp.setPhotoPath(Integer.parseInt((photo)));
 		 System.out.println("\nGGGGGG "+temp.getEmail()+",,"+temp.getName()+",,"+id+",,"+password+",,"+photo);
 		 message.getBody().add(temp);
 		 

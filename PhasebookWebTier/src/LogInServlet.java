@@ -60,7 +60,7 @@ public class LogInServlet extends HttpServlet {
 				personal.setEmail(resp.getEmail());
 				personal.setPassword(resp.getPassword());
 				personal.setId(resp.getId());
-				personal.setPhotoPath(resp.getPhotoPath());
+				personal.setIdPhoto(Integer.parseInt(resp.getPhotoPath()));
 				session.setAttribute("user", personal);
 				response.sendRedirect("primary.jsp");
 			} catch (NamingException e) {

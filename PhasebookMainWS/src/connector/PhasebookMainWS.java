@@ -42,29 +42,32 @@ public class PhasebookMainWS {
 			si = new ServiceInvoker("Client", "checkLogIn");
 			retMessage = si.deliverSync(esbMessage, 10000L);
 			
-			System.out.println("Pedido no WS enviado\n");
-			Map responseMsg = (Map) retMessage.getBody().get(Body.DEFAULT_LOCATION);
-			System.out.println("\n ::::::::: "+responseMsg.toString());
-			if(responseMsg.size()==0)
-				return null;
-			 Iterator i = responseMsg.keySet().iterator();
-			 email =(String) responseMsg.get(i.next());
-			 int id = Integer.parseInt((String) responseMsg.get(i.next()));
-			 String name = (String) responseMsg.get(i.next());
-			 password = (String) responseMsg.get(i.next());
-			 String photo = (String) responseMsg.get(i.next());
-			 		 
+			System.out.println("MAIN WS DE NOVO!!!!!!!\n");
+			ClientInfo ret = (ClientInfo) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+			//Map responseMsg = (Map) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+			//System.out.println("\n ::::::::: "+responseMsg.toString());
+//			if(responseMsg.size()==0)
+//				return null;
+//			 Iterator i = responseMsg.keySet().iterator();
+//			 email =(String) responseMsg.get(i.next());
+//			 int id = Integer.parseInt((String) responseMsg.get(i.next()));
+//			 String name = (String) responseMsg.get(i.next());
+//			 password = (String) responseMsg.get(i.next());
+//			 //String photo = (String) responseMsg.get(i.next());
+//			 		 
+//			 
+//			 ClientInfo temp = new ClientInfo();
+//			 temp.setEmail(email);
+//			 temp.setId(id);
+//			 temp.setName(name);
+//			 temp.setPassword(password);
+			 //temp.setPhotoPath(Integer.parseInt(photo));
+			 //temp.setPhotoPath(-1);
 			 
-			 ClientInfo temp = new ClientInfo();
-			 temp.setEmail(email);
-			 temp.setId(id);
-			 temp.setName(name);
-			 temp.setPassword(password);
-			 temp.setPhotoPath(Integer.parseInt(photo));
-			 System.out.println("\nGGGGGG "+temp.getEmail()+",,"+temp.getName()+",,"+id+",,"+password+",,"+photo);
+			 System.out.println("\nMain WebService data received: "+ret.getEmail()+",,"+ret.getName()+",,"+ret.getId()+",,"+ret.getPassword()+",,"+ret.getIdPhoto());
 			 
 			
-			return temp;
+			return ret;
 		} catch (MessageDeliverException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

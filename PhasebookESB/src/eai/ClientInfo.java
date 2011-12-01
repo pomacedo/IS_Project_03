@@ -12,6 +12,7 @@ public class ClientInfo implements Serializable{
 	private int id;
 	private String password;
 	private String name;
+	//private String photoPath;
 	private int idPhoto;
     /**
      * Default constructor. 

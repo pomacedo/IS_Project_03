@@ -18,9 +18,9 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="idPhoto" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="photoPath" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,17 +33,17 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "clientInfo", propOrder = {
     "email",
     "id",
+    "idPhoto",
     "name",
-    "password",
-    "photoPath"
+    "password"
 })
 public class ClientInfo {
 
     protected String email;
     protected int id;
+    protected int idPhoto;
     protected String name;
     protected String password;
-    protected String photoPath;
 
     /**
      * Gets the value of the email property.
@@ -83,6 +83,22 @@ public class ClientInfo {
      */
     public void setId(int value) {
         this.id = value;
+    }
+
+    /**
+     * Gets the value of the idPhoto property.
+     * 
+     */
+    public int getIdPhoto() {
+        return idPhoto;
+    }
+
+    /**
+     * Sets the value of the idPhoto property.
+     * 
+     */
+    public void setIdPhoto(int value) {
+        this.idPhoto = value;
     }
 
     /**
@@ -131,30 +147,6 @@ public class ClientInfo {
      */
     public void setPassword(String value) {
         this.password = value;
-    }
-
-    /**
-     * Gets the value of the photoPath property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPhotoPath() {
-        return photoPath;
-    }
-
-    /**
-     * Sets the value of the photoPath property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPhotoPath(String value) {
-        this.photoPath = value;
     }
 
 }

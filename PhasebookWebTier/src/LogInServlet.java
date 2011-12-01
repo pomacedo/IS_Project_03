@@ -47,20 +47,23 @@ public class LogInServlet extends HttpServlet {
 		PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();		
 		HttpSession session = request.getSession();
 		
-		 ClientInfo resp = ws.checkLogIn(email,password);
-		 
+		 client.artefact.ClientInfo resp = ws.checkLogIn(email,password);
+		 System.out.println("WEB TIER DATA: "+resp.getEmail()+" "+resp.getId()+" "+resp.getName()+" photo "+resp.getIdPhoto());
 		if(resp==null){
 			session.setAttribute("error", "Login Failed");
 			response.sendRedirect("index.jsp");
 		}else{
 			try {
 				InitialContext ctx = new InitialContext();
-				ManageBeanRemote personal=(ManageBeanRemote)ctx.lookup("ManageBean/remote");
+				
+				ManageBeanRemote personal = (ManageBeanRemote)ctx.lookup("ManageBean/remote");
+				personal.setIdPhoto(resp.getIdPhoto());
 				personal.setName(resp.getName());
 				personal.setEmail(resp.getEmail());
 				personal.setPassword(resp.getPassword());
 				personal.setId(resp.getId());
-				personal.setIdPhoto(Integer.parseInt(resp.getPhotoPath()));
+				
+				
 				session.setAttribute("user", personal);
 				response.sendRedirect("primary.jsp");
 			} catch (NamingException e) {

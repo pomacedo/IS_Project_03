@@ -50,7 +50,7 @@ public class myInitializer extends AbstractActionLifecycle
  
 	public Message checkLogIn(Message message) throws MessageDeliverException
 	{
-		 
+		 System.out.println("ESB - INIT LOGIN");
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
 	     String email = (String)requestMsg.get("email");
 	     String password = (String)requestMsg.get("password");

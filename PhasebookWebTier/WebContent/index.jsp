@@ -25,6 +25,7 @@
 					<%if(session.getAttribute("error")!=null){ %>
 					<tr>
 						<td><label class="labelerror"><%=session.getAttribute("error") %></label></td>
+						<%session.removeAttribute("error"); %>
 					</tr>
 					<%} %>
 				</table>
@@ -39,6 +40,7 @@
 				<tr>
 					<td></td>
 					<td><label class="label2"><%=session.getAttribute("errorreg") %></label></td>
+					<%session.removeAttribute("errorreg"); %>
 				</tr>
 				<%} %>
 				<tr>

@@ -41,6 +41,7 @@ public class Message implements Serializable{
 		this.id_client_from = id_client_from;
 		this.id_client_to = id_client_to;
 		this.is_private = is_private;
+		this.id_photo=-1;
 		this.text = text;
 		this.is_read = false;
 		this.msg_date = new Date();

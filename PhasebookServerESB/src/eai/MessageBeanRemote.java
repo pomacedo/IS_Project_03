@@ -7,7 +7,7 @@ import data.Message;
 @Remote
 public interface MessageBeanRemote 
 {
-
+ 
 	public List<Message> getPosts(int idViewer,String password);
 	public List<Message> getPosts(int idViewer,String password,int idTo);
 	public boolean sendMsg(int id_from,String password,String message,int id_to,boolean isPrivate);

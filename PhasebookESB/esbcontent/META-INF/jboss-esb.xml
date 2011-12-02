@@ -19,6 +19,9 @@
    <jms-bus busid="editProfileRequest">
     <jms-message-filter dest-name="queue/editProfile_request" dest-type="QUEUE"/>
    </jms-bus>
+   <jms-bus busid="getPostsRequest">
+    <jms-message-filter dest-name="queue/getPosts_request" dest-type="QUEUE"/>
+   </jms-bus>
   </jms-provider>
  </providers>
  <services> 
@@ -49,10 +52,25 @@
 	    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl" />  
 	    <property name="SOAPAction" value="createUser"/>
 	    <property name="responseAsOgnlMap" value="true" />      
-    </action>
-   
+    </action>   
     </actions>
    </service> 
+   
+   <service category="Message" description="get posts" name="getPosts">
+   <listeners>
+    <jms-listener busidref="getPostsRequest" name="ESB-Listener"/>
+   </listeners>
+   <actions>
+    <action name="getPosts" class="action.myInitializer" process="getPosts"/>	
+	<action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">	 
+	    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/messageWS?wsdl" />  
+	    <property name="SOAPAction" value="getPosts"/>
+	    <property name="responseAsOgnlMap" value="true" />      
+    </action>
+   <action name="getPostsHandleresponse" class="action.responseHandler" process="getPosts"/>
+    </actions>
+   
+   </service>
 <!--    <service category="Client" description="search users"  -->
 <!--    name="getSearch"> -->
 <!-- 	 <listeners> -->

@@ -2,6 +2,7 @@ package connector;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.jws.WebMethod;
@@ -16,7 +17,7 @@ import org.jboss.soa.esb.message.format.MessageFactory;
 import org.jboss.soa.esb.services.registry.RegistryException;
 
 import eai.ClientInfo;
-
+import data.*;
 @WebService
 public class PhasebookMainWS {
 
@@ -44,26 +45,7 @@ public class PhasebookMainWS {
 			
 			System.out.println("MAIN WS DE NOVO!!!!!!!\n");
 			ClientInfo ret = (ClientInfo) retMessage.getBody().get(Body.DEFAULT_LOCATION);
-			//Map responseMsg = (Map) retMessage.getBody().get(Body.DEFAULT_LOCATION);
-			//System.out.println("\n ::::::::: "+responseMsg.toString());
-//			if(responseMsg.size()==0)
-//				return null;
-//			 Iterator i = responseMsg.keySet().iterator();
-//			 email =(String) responseMsg.get(i.next());
-//			 int id = Integer.parseInt((String) responseMsg.get(i.next()));
-//			 String name = (String) responseMsg.get(i.next());
-//			 password = (String) responseMsg.get(i.next());
-//			 //String photo = (String) responseMsg.get(i.next());
-//			 		 
-//			 
-//			 ClientInfo temp = new ClientInfo();
-//			 temp.setEmail(email);
-//			 temp.setId(id);
-//			 temp.setName(name);
-//			 temp.setPassword(password);
-			 //temp.setPhotoPath(Integer.parseInt(photo));
-			 //temp.setPhotoPath(-1);
-			 
+				 
 			 System.out.println("\nMain WebService data received: "+ret.getEmail()+",,"+ret.getName()+",,"+ret.getId()+",,"+ret.getPassword()+",,"+ret.getIdPhoto());
 			 
 			
@@ -88,8 +70,8 @@ public class PhasebookMainWS {
 		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
 
 		Message esbMessage = MessageFactory.getInstance().getMessage();
-		System.out.println("TOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
-		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
+//		System.out.println("TOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+//		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
 		HashMap requestMap = new HashMap();
 		requestMap.put("name",name);
 		requestMap.put("password",password);
@@ -134,4 +116,42 @@ public class PhasebookMainWS {
 		
 	}
 	
+	@WebMethod
+	public List<data.Message> getPost(int idViewer,String password, int idTo)
+	{
+		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
+
+		Message esbMessage = MessageFactory.getInstance().getMessage();
+		HashMap requestMap = new HashMap();
+		System.out.println("MAIN WS"+idViewer);
+		requestMap.put("idViewer",idViewer);
+		requestMap.put("password",password);
+		requestMap.put("idTo",idTo);
+		esbMessage.getBody().add(requestMap);
+		
+		Message retMessage = null;
+
+		ServiceInvoker si;
+		try {
+			
+			si = new ServiceInvoker("Message", "getPosts");
+			retMessage = si.deliverSync(esbMessage, 10000L);
+			
+			System.out.println("MAIN WS - RECEBI OS POSTS devolve uma hash e aqui espera uma list");
+			List<data.Message> ret = (List<data.Message>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+			
+			return ret;
+		}catch (MessageDeliverException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FaultMessageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RegistryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }

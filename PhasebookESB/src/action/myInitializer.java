@@ -47,7 +47,24 @@ public class myInitializer extends AbstractActionLifecycle
 	 public myInitializer(ConfigTree config) {
 	  _config = config;
 	 }
- 
+	 
+	 public Message getPosts(Message message) throws MessageDeliverException
+	{
+		 
+		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
+		 
+	     int idViewer = (Integer)requestMsg.get("idViewer");
+	     String password = (String)requestMsg.get("password");
+	     int idTo = (Integer)requestMsg.get("idTo");
+	     
+	     Map send = new HashMap();
+	     send.put("getPosts.idViewer", idViewer);
+	     send.put("getPosts.password", password);
+	     send.put("getPosts.idTo", idTo);
+	     message.getBody().add(send);
+	     
+		 return message;
+	}
 	public Message checkLogIn(Message message) throws MessageDeliverException
 	{
 		 System.out.println("ESB - INIT LOGIN");

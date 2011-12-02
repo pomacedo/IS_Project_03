@@ -17,7 +17,7 @@ import data.*;
 import data.Message;
 
 /**
- * Session Bean implementation class ClientSessionBean
+ * Session Bean implementation class ClientSessionBean 
  */
 @Stateless
 public class ClientSessionBean implements ClientSessionBeanRemote {

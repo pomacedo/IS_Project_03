@@ -11,7 +11,7 @@ import eai.BetBeanRemote;
 
 @WebService(name = "betws", targetNamespace = "http://PhasebookWSs/betWS")
 public class betWS {
-		@EJB(mappedName = "BetBeanRemote/remote")
+		@EJB(mappedName = "BetBean/remote")
 		BetBeanRemote betBeanRem;
 		
 //		

@@ -11,7 +11,6 @@ import eai.*;
 
 @WebService(name = "clientws", targetNamespace = "http://PhasebookWSs/clientWS")
 public class clientWS {
-	
 	@EJB(mappedName = "ClientSessionBean/remote")
 	ClientSessionBeanRemote user;
 		 

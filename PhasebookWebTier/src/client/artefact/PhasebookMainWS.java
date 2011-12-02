@@ -1,6 +1,7 @@
 
 package client.artefact;
 
+import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -58,5 +59,25 @@ public interface PhasebookMainWS {
         String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         String arg1);
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.util.List<client.artefact.Message>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getPost", targetNamespace = "http://connector/", className = "client.artefact.GetPost")
+    @ResponseWrapper(localName = "getPostResponse", targetNamespace = "http://connector/", className = "client.artefact.GetPostResponse")
+    public List<Message> getPost(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        int arg2);
 
 }

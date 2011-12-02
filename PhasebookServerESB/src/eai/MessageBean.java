@@ -27,9 +27,9 @@ import eai.*;
 /**
  * Session Bean implementation class MessageBean
  */
-@Stateless
+@Stateless 
 public class MessageBean implements MessageBeanRemote {
-
+ 
     /**
      * Default constructor. 
      */

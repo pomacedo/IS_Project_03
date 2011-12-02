@@ -13,7 +13,7 @@ import eai.PhotoBeanRemote;
 
 @WebService(name = "photows", targetNamespace = "http://PhasebookWSs/photoWS")
 public class photoWS {
-	@EJB(mappedName = "PhotoBeanRemote/remote")
+	@EJB(mappedName = "PhotoBean/remote")
 	PhotoBeanRemote photoBeanRem;
 	
 //	

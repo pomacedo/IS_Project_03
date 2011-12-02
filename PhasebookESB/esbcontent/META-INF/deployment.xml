@@ -10,4 +10,6 @@
  <jmsQueue>getClientInfo_request_reply</jmsQueue>
  <jmsQueue>editProfile_request</jmsQueue>
  <jmsQueue>editProfile_request_reply</jmsQueue>
+ <jmsQueue>getPosts_request</jmsQueue>
+ <jmsQueue>getPosts_request_reply</jmsQueue>
 </jbossesb-deployment>

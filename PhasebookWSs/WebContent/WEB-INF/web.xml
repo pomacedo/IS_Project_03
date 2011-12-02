@@ -17,7 +17,7 @@
   	<servlet-name>betWS</servlet-name>
   	<url-pattern>/betWS</url-pattern>
   </servlet-mapping>
-  <servlet>
+  <servlet> 
   	<servlet-name>messageWS</servlet-name>
   	<servlet-class>example.messageWS</servlet-class>
   </servlet>

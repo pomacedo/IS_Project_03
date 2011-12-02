@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import data.Photo;
@@ -16,6 +17,12 @@ public class photoWS {
 	@EJB(mappedName = "PhotoBean/remote")
 	PhotoBeanRemote photoBeanRem;
 	
+	@WebMethod
+	public int addPhoto(@WebParam(name = "photoPath") String photoPath)
+	{
+		System.out.println("WS DO ADD PHOTO");
+		return photoBeanRem.addPhoto(photoPath);
+	}
 //	
 //	@WebMethod
 //	public int privNumberOfPhotos(String id){

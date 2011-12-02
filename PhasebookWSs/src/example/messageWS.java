@@ -28,14 +28,15 @@ public class messageWS {
 		
 		return result;
 	}
-//	@WebMethod	
-//	public boolean sendMsg(@WebParam(name = "id_from") String id_from,@WebParam(name = "password") String password,@WebParam(name = "message") String message,@WebParam(name = "id_to") String id_to,@WebParam(name = "isPrivate") String isPrivate){
-//		return msgBeanRem.sendMsg(Integer.parseInt(id_from), password, message, Integer.parseInt(id_to), Boolean.parseBoolean(isPrivate));
-//	}
-//	@WebMethod	
-//	public boolean sendMsg(@WebParam(name = "id_from")String id_from,@WebParam(name = "password")String password,@WebParam(name = "message")String message,@WebParam(name = "id_to")String id_to,@WebParam(name = "isPrivate")String isPrivate,@WebParam(name = "photoPath")String photoPath){
-//		return msgBeanRem.sendMsg(Integer.parseInt(id_from), password, message, Integer.parseInt(id_to), Boolean.parseBoolean(isPrivate), photoPath);
-//	}	
+
+	@WebMethod	
+	public boolean sendMessage(@WebParam(name = "idFrom")int id_from,@WebParam(name = "password")String password,@WebParam(name = "text")String message,@WebParam(name = "idTo")int id_to,@WebParam(name = "isPrivate")boolean isPrivate,@WebParam(name = "idPhoto")int idPhoto){
+		
+		if(idPhoto!=-1)
+			return msgBeanRem.sendMsg(id_from, password, message, id_to, isPrivate, idPhoto);
+		else
+			return msgBeanRem.sendMsg(id_from, password, message, id_to, isPrivate);
+	}	
 //	@WebMethod	
 //	public void deleteMessage(@WebParam(name = "idViewer")String id,@WebParam(name = "password")String password,@WebParam(name = "idMsg")String idMsg){
 //		msgBeanRem.deleteMessage(Integer.parseInt(id),password,Integer.parseInt(idMsg));

@@ -10,17 +10,20 @@
    <jms-bus busid="createuserRequest">
     <jms-message-filter dest-name="queue/createUser_request" dest-type="QUEUE"/>
    </jms-bus>
-   <jms-bus busid="getSearchRequest">
-    <jms-message-filter dest-name="queue/getSearch_request" dest-type="QUEUE"/>
-   </jms-bus>
-   <jms-bus busid="getClientInfoRequest">
-    <jms-message-filter dest-name="queue/getClientInfo_request" dest-type="QUEUE"/>
-   </jms-bus>
-   <jms-bus busid="editProfileRequest">
-    <jms-message-filter dest-name="queue/editProfile_request" dest-type="QUEUE"/>
-   </jms-bus>
+<!--    <jms-bus busid="getSearchRequest"> -->
+<!--     <jms-message-filter dest-name="queue/getSearch_request" dest-type="QUEUE"/> -->
+<!--    </jms-bus> -->
+<!--    <jms-bus busid="getClientInfoRequest"> -->
+<!--     <jms-message-filter dest-name="queue/getClientInfo_request" dest-type="QUEUE"/> -->
+<!--    </jms-bus> -->
+<!--    <jms-bus busid="editProfileRequest"> -->
+<!--     <jms-message-filter dest-name="queue/editProfile_request" dest-type="QUEUE"/> -->
+<!--    </jms-bus> -->
    <jms-bus busid="getPostsRequest">
     <jms-message-filter dest-name="queue/getPosts_request" dest-type="QUEUE"/>
+   </jms-bus>
+   <jms-bus busid="sendMessageRequest">
+    <jms-message-filter dest-name="queue/sendMessage_request" dest-type="QUEUE"/>
    </jms-bus>
   </jms-provider>
  </providers>
@@ -68,8 +71,35 @@
 	    <property name="responseAsOgnlMap" value="true" />      
     </action>
    <action name="getPostsHandleresponse" class="action.responseHandler" process="getPosts"/>
-    </actions>
+    </actions>   
+   </service>
    
+   <service category="Message" description="sendNewMessage" name="sendMessage">
+   <listeners>
+    <jms-listener busidref="sendMessageRequest" name="ESB-Listener"/>
+   </listeners>
+   <actions>
+    <action name="sendMsg" class="action.myInitializer" process="sendMessage"/>	
+	<action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">	 
+	    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/messageWS?wsdl" />  
+	    <property name="SOAPAction" value="sendMessage"/>
+	    <property name="responseAsOgnlMap" value="true" />      
+    </action>
+    </actions>   
+   </service>
+   
+   <service category="Photo" description="add new photo" name="addPhoto">
+   <listeners>
+    <jms-listener busidref="getPostsRequest" name="ESB-Listener"/>
+   </listeners>
+   <actions>
+    <action name="addNewPhoto" class="action.myInitializer" process="addPhoto"/>	
+	<action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">	 
+	    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/photoWS?wsdl" />  
+	    <property name="SOAPAction" value="addPhoto"/>
+	    <property name="responseAsOgnlMap" value="true" />      
+    </action>
+    </actions>   
    </service>
 <!--    <service category="Client" description="search users"  -->
 <!--    name="getSearch"> -->

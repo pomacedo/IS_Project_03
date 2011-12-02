@@ -156,7 +156,44 @@ public class myInitializer extends AbstractActionLifecycle
 	     
 		return message;
 	}
+	public Message sendMessage(Message message) throws MessageDeliverException
+	{
+		
+		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
+		 System.out.println("");System.out.println("INIT SEND MESSAGE\nMAP: "+requestMsg.toString()); 
+		 int idFrom = Integer.parseInt((String) requestMsg.get("idFrom"));
+		 String password = (String)requestMsg.get("password");		 
+	     String text = (String)requestMsg.get("text");
+	     int idTo = Integer.parseInt((String) requestMsg.get("idTo"));
+	     boolean isPrivate= (Boolean.parseBoolean((String)requestMsg.get("isPrivate")));
+	     int idPhoto = Integer.parseInt((String) requestMsg.get("idPhoto"));
+	     
+	     Map send = new HashMap();
+	     send.put("sendMessage.idFrom", idFrom);
+	     send.put("sendMessage.password", password);
+	     send.put("sendMessage.text", text);
+	     send.put("sendMessage.idTo", idTo);
+	     send.put("sendMessage.isPrivate", isPrivate);
+	     send.put("sendMessage.idPhoto", idPhoto);
+	     message.getBody().add(send);	
+	     System.out.println("FIM INIT SEND MESSAGE");
+	     return message;    
+	}
 	
+	public Message addPhoto(Message message) throws MessageDeliverException
+	{
+		 
+		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
+		 
+	     String path = (String)requestMsg.get("path");	     
+	     
+	     Map send = new HashMap();
+	     send.put("addPhoto.photoPath", path);
+	     
+	     message.getBody().add(send);
+	     
+		return message;
+	}
 // public Message visit(Message message) throws MessageDeliverException {
 //  System.out.println("\nCUCUCU");
 //  Map responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);  

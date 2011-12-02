@@ -36,7 +36,6 @@ public class MessageBean implements MessageBeanRemote {
     public MessageBean() {
         // TODO Auto-generated constructor stub
     }
-
     
     public boolean sendMsg(int idFrom,String password,String message,int idTo,boolean isPrivate) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");

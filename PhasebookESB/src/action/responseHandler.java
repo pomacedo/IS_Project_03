@@ -63,43 +63,35 @@ public class responseHandler extends AbstractActionLifecycle
 		 {
 			 data.Message cur = new data.Message();
 			 String s = i.next().toString();
-			 System.out.println(s);
-			 System.out.println("0");
-			 System.out.println(responseMsg.get(s));
+			 
 			 cur.setId(Integer.parseInt((String) responseMsg.get(s)));
-			 System.out.println("1");
+
 			 cur.setId_client_from(Integer.parseInt((String)responseMsg.get(i.next())));
-			 System.out.println("2");
+			 
 			 cur.setId_client_from(Integer.parseInt((String)responseMsg.get(i.next())));
-			 System.out.println("3");
+			 
 			 cur.setId_photo(Integer.parseInt((String)responseMsg.get(i.next())));
-			 System.out.println("4");
+			 
 			 cur.setIs_private(Boolean.parseBoolean((String)responseMsg.get(i.next())));
-			 System.out.println("5");
+			 
 			 cur.setIs_read(Boolean.parseBoolean((String) responseMsg.get(i.next())));
-			 System.out.println("6");
+			 
 			 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 			 
 			Date d;
 			try {
 				s = (String) responseMsg.get(i.next());
-				System.out.println("............"+formatter.parse(s));
 				d = (Date)formatter.parse(s);
 				cur.setMsg_date(d);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				System.out.println("falhou : ");
 				
-			}
-			 
-			 
-			 System.out.println("7");
-			 cur.setText((String) responseMsg.get(i.next()));
-			 System.out.println("8");
+			}			 		 
+			cur.setText((String) responseMsg.get(i.next()));		 
 			 
 			 result.add(cur);
 		 }
-		 System.out.println("--------------ESB WHILE  DONE--------------"+result.size());
 		 message.getBody().add(result);
 		 return message;
 	 }

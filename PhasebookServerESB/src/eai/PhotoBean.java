@@ -57,5 +57,26 @@ public class PhotoBean implements PhotoBeanRemote {
  			return p.getPath();
  		return "";
  	}
+
+	@Override
+	public int addPhoto(String path) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
+		EntityManager em = emf.createEntityManager();             
+
+		
+		Photo p=new Photo(path); 
+		EntityTransaction tx=em.getTransaction();
+		try{   	   
+			tx.begin();
+			em.persist(p);
+			tx.commit();
+		}catch(RollbackException ex){
+			em.close();
+			return -1;
+		}
+		Photo photo=(Photo)em.createQuery("SELECT p FROM Photo p WHERE p.path LIKE ?1").setParameter(1, path).getSingleResult();
+		em.close();
+		return photo.getId();
+	}
  	
 }

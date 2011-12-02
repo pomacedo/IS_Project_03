@@ -12,11 +12,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import client.artefact.PhasebookMainWS;
+import client.artefact.PhasebookMainWSService;
 
 
 
@@ -142,31 +146,36 @@ public class PostServlet extends HttpServlet {
 			log("Error encountered while uploading file",ex);
 		}
 				
-		InitialContext ctx; 
+		//InitialContext ctx; 
 		RequestDispatcher dispatcher;
-		try {
-			ctx = new InitialContext();
-			MessageBeanRemote cb=(MessageBeanRemote)ctx.lookup("MessageBean/remote");
-			if(!fileSaved){
-				if(cb.sendMsg(personal.getId(), personal.getPassword(), message, id_to, isPrivate))
-					dispatcher = request.getRequestDispatcher("/messages.jsp?id="+id_to);
-				else{
-					request.setAttribute("error", "There was an error sending your message, try again..");
-					dispatcher = request.getRequestDispatcher("/messages.jsp?id="+id_to);
-				}
+//		try {
+		//ctx = new InitialContext();
+		//MessageBeanRemote cb=(MessageBeanRemote)ctx.lookup("MessageBean/remote");
+		PhasebookMainWSService mainWS = new PhasebookMainWSService();
+		PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
+		HttpSession session = request.getSession();
+		if(!fileSaved){
+			if(ws.sendMessage(personal.getId(), personal.getPassword(), id_to, message, isPrivate, ""))
+				dispatcher = request.getRequestDispatcher("/messages.jsp?id="+id_to);
+			else{
+				session.setAttribute("error", "There was an error sending your message, try again..");
+//				request.setAttribute("error", "There was an error sending your message, try again..");
+				dispatcher = request.getRequestDispatcher("/messages.jsp?id="+id_to);
+			}
+		}else{
+			if(ws.sendMessage(personal.getId(), personal.getPassword(), id_to, message, isPrivate, filePath)){
+				dispatcher = request.getRequestDispatcher("/messages.jsp?id="+id_to);
 			}else{
-				if(cb.sendMsg(personal.getId(), personal.getPassword(), message, id_to, isPrivate,filePath)){
-					dispatcher = request.getRequestDispatcher("/messages.jsp?id="+id_to);
-				}else{
-					request.setAttribute("error", "There was an error sending your message, try again..");
-					dispatcher = request.getRequestDispatcher("/messages.jsp?id="+id_to);
-				}
-			}				
-		} catch (NamingException e1) {
-			request.setAttribute("error", "There was an error sending your message, try again..");
-			dispatcher = request.getRequestDispatcher("/messages.jsp?id="+id_to);
-			dispatcher.forward(request, response);
-		}	
+//				request.setAttribute("error", "There was an error sending your message, try again..");
+				session.setAttribute("error", "There was an error sending your message, try again..");
+				dispatcher = request.getRequestDispatcher("/messages.jsp?id="+id_to);
+			}
+		}				
+//		} catch (NamingException e1) {
+//			request.setAttribute("error", "There was an error sending your message, try again..");
+//			dispatcher = request.getRequestDispatcher("/messages.jsp?id="+id_to);
+//			dispatcher.forward(request, response);
+//		}	
 		dispatcher.forward(request, response);
 		
 		

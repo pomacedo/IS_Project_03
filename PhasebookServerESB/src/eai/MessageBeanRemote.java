@@ -11,7 +11,7 @@ public interface MessageBeanRemote
 	public List<Message> getPosts(int idViewer,String password);
 	public List<Message> getPosts(int idViewer,String password,int idTo);
 	public boolean sendMsg(int id_from,String password,String message,int id_to,boolean isPrivate);
-	public boolean sendMsg(int id_from,String password,String message,int id_to,boolean isPrivate,String photoPath);
+	public boolean sendMsg(int id_from,String password,String message,int id_to,boolean isPrivate,int idPhoto);
 	public void deleteMessage(int id,String password,int idMsg);
 	public void sendEmailNotification(int id);
 	public int privNumberOfPhotos(int id);

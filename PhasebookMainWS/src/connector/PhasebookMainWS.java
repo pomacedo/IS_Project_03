@@ -154,4 +154,102 @@ public class PhasebookMainWS {
 		
 		return null;
 	}
+	
+	
+	
+	
+	@WebMethod
+	public boolean sendMessage(int idFrom,String password,int idTo,String message,boolean isPrivate,String path){
+		
+		int idPhoto;
+		if(path.equals(""))
+			idPhoto=-1;
+		else{
+			idPhoto=addPhoto(path);
+			if(idPhoto==-1)
+				return false;
+		}
+		
+		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
+		Message esbMessage = MessageFactory.getInstance().getMessage();
+//		System.out.println("TOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+//		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
+		HashMap requestMap = new HashMap();
+		requestMap.put("idFrom",idFrom);
+		requestMap.put("password",password);
+		requestMap.put("idTo",idTo);
+		requestMap.put("message",message);
+		requestMap.put("isPrivate",isPrivate);
+		requestMap.put("idPhoto",idPhoto);
+		
+		esbMessage.getBody().add(requestMap);
+		
+		Message retMessage = null;
+
+		ServiceInvoker si;
+		try {
+			
+			si = new ServiceInvoker("Message", "sendMessage");
+			retMessage = si.deliverSync(esbMessage, 10000L);
+			
+			System.out.println("Pedido no WS enviado\n");
+			
+			Map responseMsg = (Map) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+			System.out.println("\n ::::::::: "+responseMsg.toString());
+			
+			 Iterator i = responseMsg.keySet().iterator();
+			 boolean response = Boolean.parseBoolean((String) responseMsg.get(i.next()));
+			 
+			 System.out.println("\ncreateUser response is: "+response);
+			 
+			return response;
+		} catch (MessageDeliverException e) {
+			e.printStackTrace();
+		} catch (FaultMessageException e) {
+			e.printStackTrace();
+		} catch (RegistryException e) {
+			e.printStackTrace();
+		}
+		return false;		
+	}
+	
+	public int addPhoto(String path){
+		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
+		Message esbMessage = MessageFactory.getInstance().getMessage();
+//		System.out.println("TOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+//		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
+		HashMap requestMap = new HashMap();
+		requestMap.put("path",path);
+		
+		esbMessage.getBody().add(requestMap);
+		
+		Message retMessage = null;
+
+		ServiceInvoker si;
+		try {
+			
+			si = new ServiceInvoker("Photo", "addPhoto");
+			retMessage = si.deliverSync(esbMessage, 10000L);
+			
+			System.out.println("Pedido no WS enviado\n");
+			
+			Map responseMsg = (Map) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+			System.out.println("\n ::::::::: "+responseMsg.toString());
+			
+			 Iterator i = responseMsg.keySet().iterator();
+			 int response = Integer.parseInt((String) responseMsg.get(i.next()));
+			 
+			 System.out.println("\ncreateUser response is: "+response);
+			 
+			return response;
+		} catch (MessageDeliverException e) {
+			e.printStackTrace();
+		} catch (FaultMessageException e) {
+			e.printStackTrace();
+		} catch (RegistryException e) {
+			e.printStackTrace();
+		}
+		return -1;
+		
+	}
 }

@@ -62,7 +62,7 @@ public class MessageBean implements MessageBeanRemote {
 		return true;
 	}
 	
-	public boolean sendMsg(int idFrom,String password,String message,int idTo,boolean isPrivate,String photoPath) {
+	public boolean sendMsg(int idFrom,String password,String message,int idTo,boolean isPrivate,int idPhoto) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
     	EntityManager em = emf.createEntityManager();
 		EntityTransaction tx=em.getTransaction();
@@ -73,22 +73,7 @@ public class MessageBean implements MessageBeanRemote {
 			return false;
 		}
 		
-		Photo p = new Photo(photoPath);
-		try{
-			tx.begin();
-			em.persist(p);
-			tx.commit();
-		}catch(RollbackException ex){
-			em.close();
-			return false;
-		}
-		
-		p=(Photo)em.createQuery("select p from Photo p where p.path=?1").setParameter(1, p.getPath()).getSingleResult();
-		
-	
-		Client c2 = em.find(Client.class,idTo);
-		
-		Message msg = new Message(c1.getId(),c2.getId(),p.getId(),isPrivate,message);
+		Message msg = new Message(idFrom,idTo,idPhoto,isPrivate,message);
 		
 		try{
 			tx.begin();

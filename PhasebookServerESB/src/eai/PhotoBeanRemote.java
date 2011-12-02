@@ -9,4 +9,5 @@ import data.Photo;
 public interface PhotoBeanRemote {
 	public List<Photo> getPhotos(int id,boolean isFriend);
 	public String getPhotoById(int idPhoto);
+	public int addPhoto(String path);
 }

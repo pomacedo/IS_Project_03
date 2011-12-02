@@ -4,6 +4,7 @@ package client.artefact;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -59,6 +60,7 @@ public class Message {
     @XmlElement(name = "is_read")
     protected Boolean isRead;
     @XmlElement(name = "msg_date")
+    @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar msgDate;
     protected String text;
 

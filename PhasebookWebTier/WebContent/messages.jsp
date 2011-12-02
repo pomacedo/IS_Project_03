@@ -16,6 +16,12 @@
 	
 	
 %>
+
+<%if(session.getAttribute("error")!=null){ %>
+	<label class="labelerror"><%=session.getAttribute("error") %></label>
+	<%session.removeAttribute("error"); %>
+<%} %>
+
 <div class="infotitle">New message</div>
 
 	<form method="post" action="PostServlet" enctype="multipart/form-data">

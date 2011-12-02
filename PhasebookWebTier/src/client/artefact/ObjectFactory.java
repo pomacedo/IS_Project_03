@@ -27,7 +27,9 @@ public class ObjectFactory {
     private final static QName _CheckLogInResponse_QNAME = new QName("http://connector/", "checkLogInResponse");
     private final static QName _GetPost_QNAME = new QName("http://connector/", "getPost");
     private final static QName _CheckLogIn_QNAME = new QName("http://connector/", "checkLogIn");
+    private final static QName _SendMessage_QNAME = new QName("http://connector/", "sendMessage");
     private final static QName _AddClient_QNAME = new QName("http://connector/", "addClient");
+    private final static QName _SendMessageResponse_QNAME = new QName("http://connector/", "sendMessageResponse");
     private final static QName _AddClientResponse_QNAME = new QName("http://connector/", "addClientResponse");
     private final static QName _GetPostResponse_QNAME = new QName("http://connector/", "getPostResponse");
 
@@ -39,43 +41,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Message }
-     * 
-     */
-    public Message createMessage() {
-        return new Message();
-    }
-
-    /**
-     * Create an instance of {@link CheckLogInResponse }
-     * 
-     */
-    public CheckLogInResponse createCheckLogInResponse() {
-        return new CheckLogInResponse();
-    }
-
-    /**
      * Create an instance of {@link CheckLogIn }
      * 
      */
     public CheckLogIn createCheckLogIn() {
         return new CheckLogIn();
-    }
-
-    /**
-     * Create an instance of {@link GetPostResponse }
-     * 
-     */
-    public GetPostResponse createGetPostResponse() {
-        return new GetPostResponse();
-    }
-
-    /**
-     * Create an instance of {@link AddClient }
-     * 
-     */
-    public AddClient createAddClient() {
-        return new AddClient();
     }
 
     /**
@@ -87,6 +57,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SendMessage }
+     * 
+     */
+    public SendMessage createSendMessage() {
+        return new SendMessage();
+    }
+
+    /**
      * Create an instance of {@link GetPost }
      * 
      */
@@ -95,11 +73,51 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Message }
+     * 
+     */
+    public Message createMessage() {
+        return new Message();
+    }
+
+    /**
+     * Create an instance of {@link GetPostResponse }
+     * 
+     */
+    public GetPostResponse createGetPostResponse() {
+        return new GetPostResponse();
+    }
+
+    /**
+     * Create an instance of {@link SendMessageResponse }
+     * 
+     */
+    public SendMessageResponse createSendMessageResponse() {
+        return new SendMessageResponse();
+    }
+
+    /**
+     * Create an instance of {@link AddClient }
+     * 
+     */
+    public AddClient createAddClient() {
+        return new AddClient();
+    }
+
+    /**
      * Create an instance of {@link AddClientResponse }
      * 
      */
     public AddClientResponse createAddClientResponse() {
         return new AddClientResponse();
+    }
+
+    /**
+     * Create an instance of {@link CheckLogInResponse }
+     * 
+     */
+    public CheckLogInResponse createCheckLogInResponse() {
+        return new CheckLogInResponse();
     }
 
     /**
@@ -130,12 +148,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendMessage }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "sendMessage")
+    public JAXBElement<SendMessage> createSendMessage(SendMessage value) {
+        return new JAXBElement<SendMessage>(_SendMessage_QNAME, SendMessage.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AddClient }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://connector/", name = "addClient")
     public JAXBElement<AddClient> createAddClient(AddClient value) {
         return new JAXBElement<AddClient>(_AddClient_QNAME, AddClient.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendMessageResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "sendMessageResponse")
+    public JAXBElement<SendMessageResponse> createSendMessageResponse(SendMessageResponse value) {
+        return new JAXBElement<SendMessageResponse>(_SendMessageResponse_QNAME, SendMessageResponse.class, null, value);
     }
 
     /**

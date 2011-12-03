@@ -16,9 +16,9 @@
    <jms-bus busid="getClientInfoRequest">
     <jms-message-filter dest-name="queue/getClientInfo_request" dest-type="QUEUE"/>
    </jms-bus>
-   <jms-bus busid="editProfileRequest">  
-      <jms-message-filter dest-name="queue/editProfile_request" dest-type="QUEUE"/>  
-     </jms-bus>
+   <jms-bus busid="editProfileRequest">
+    <jms-message-filter dest-name="queue/editProfile_request" dest-type="QUEUE"/>
+   </jms-bus>
    <jms-bus busid="getPostsRequest">
     <jms-message-filter dest-name="queue/getPosts_request" dest-type="QUEUE"/>
    </jms-bus>

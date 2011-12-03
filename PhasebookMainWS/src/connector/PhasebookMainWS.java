@@ -43,12 +43,9 @@ public class PhasebookMainWS {
 			si = new ServiceInvoker("Client", "checkLogIn");
 			retMessage = si.deliverSync(esbMessage, 10000L);
 			
-			System.out.println("MAIN WS DE NOVO!!!!!!!\n");
 			ClientInfo ret = (ClientInfo) retMessage.getBody().get(Body.DEFAULT_LOCATION);
-				 
-			 System.out.println("\nMain WebService data received: "+ret.getEmail()+",,"+ret.getName()+",,"+ret.getId()+",,"+ret.getPassword()+",,"+ret.getIdPhoto());
-			 
-			
+						 
+			System.out.println("LOG ING ENDED");
 			return ret;
 		} catch (MessageDeliverException e) {
 			// TODO Auto-generated catch block
@@ -91,14 +88,14 @@ public class PhasebookMainWS {
 			System.out.println("Pedido no WS enviado\n");
 			
 			Map responseMsg = (Map) retMessage.getBody().get(Body.DEFAULT_LOCATION);
-			System.out.println("\n ::::::::: "+responseMsg.toString());
+			
 			
 			 Iterator i = responseMsg.keySet().iterator();
 			 int response = Integer.parseInt((String) responseMsg.get(i.next()));
 			 		 
 			 
 			 
-			 System.out.println("\ncreateUser response is: "+response);
+			 System.out.println("\n ADD CLIENT response is: "+response);
 			 
 			
 			return response;
@@ -123,12 +120,11 @@ public class PhasebookMainWS {
 
 		Message esbMessage = MessageFactory.getInstance().getMessage();
 		HashMap requestMap = new HashMap();
-		System.out.println("MAIN WS"+idViewer);
 		requestMap.put("idViewer",idViewer);
 		requestMap.put("password",password);
 		requestMap.put("idTo",idTo);
 		esbMessage.getBody().add(requestMap);
-		
+		System.out.println("MAIN WS GET POSTS "+idViewer+", "+password+", "+idTo);
 		Message retMessage = null;
 
 		ServiceInvoker si;
@@ -137,9 +133,9 @@ public class PhasebookMainWS {
 			si = new ServiceInvoker("Message", "getPosts");
 			retMessage = si.deliverSync(esbMessage, 10000L);
 			
-			System.out.println("MAIN WS - RECEBI OS POSTS devolve uma hash e aqui espera uma list");
-			List<data.Message> ret = (List<data.Message>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
 			
+			List<data.Message> ret = (List<data.Message>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+			System.out.println("GET POSTS ENDED");
 			return ret;
 		}catch (MessageDeliverException e) {
 			// TODO Auto-generated catch block
@@ -162,9 +158,13 @@ public class PhasebookMainWS {
 	public boolean sendMessage(int idFrom,String password,int idTo,String message,boolean isPrivate,String path){
 		
 		int idPhoto;
+		System.out.println("MAIN WS: PATH");
 		if(path.equals(""))
+		{
 			idPhoto=-1;
+		}
 		else{
+			System.out.println("VOU CHAMAR O ADDPHOTO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
 			idPhoto=addPhoto(path);
 			if(idPhoto==-1)
 				return false;
@@ -172,8 +172,7 @@ public class PhasebookMainWS {
 		
 		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
 		Message esbMessage = MessageFactory.getInstance().getMessage();
-//		System.out.println("TOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
-//		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
+
 		HashMap requestMap = new HashMap();
 		requestMap.put("idFrom",idFrom);
 		requestMap.put("password",password);
@@ -200,8 +199,9 @@ public class PhasebookMainWS {
 			 Iterator i = responseMsg.keySet().iterator();
 			 boolean response = Boolean.parseBoolean((String) responseMsg.get(i.next()));
 			 
-			 System.out.println("\ncreateUser response is: "+response);
+			 System.out.println("\nMessageSend response is: "+response);
 			 
+			 System.out.println("SEND MESSAGE DONE");
 			return response;
 		} catch (MessageDeliverException e) {
 			e.printStackTrace();
@@ -216,7 +216,7 @@ public class PhasebookMainWS {
 	public int addPhoto(String path){
 		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
 		Message esbMessage = MessageFactory.getInstance().getMessage();
-//		System.out.println("TOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+		
 //		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
 		HashMap requestMap = new HashMap();
 		requestMap.put("path",path);
@@ -231,17 +231,11 @@ public class PhasebookMainWS {
 			si = new ServiceInvoker("Photo", "addPhoto");
 			retMessage = si.deliverSync(esbMessage, 10000L);
 			
-			System.out.println("Pedido no WS enviado\n");
-			
-			Map responseMsg = (Map) retMessage.getBody().get(Body.DEFAULT_LOCATION);
-			System.out.println("\n ::::::::: "+responseMsg.toString());
-			
-			 Iterator i = responseMsg.keySet().iterator();
-			 int response = Integer.parseInt((String) responseMsg.get(i.next()));
+			System.out.println("Pedido no WS enviado\n");			
+			int id = (Integer) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+			System.out.println("\n :::::::::id= "+id);			
 			 
-			 System.out.println("\ncreateUser response is: "+response);
-			 
-			return response;
+			return id;
 		} catch (MessageDeliverException e) {
 			e.printStackTrace();
 		} catch (FaultMessageException e) {

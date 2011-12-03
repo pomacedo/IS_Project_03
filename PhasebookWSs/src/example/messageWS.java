@@ -21,7 +21,7 @@ public class messageWS {
 	public List<Message> getPosts(@WebParam(name = "idViewer") int idViewer,@WebParam(name = "password") String password,@WebParam(name = "idTo") int idTo){
 		
 		List<Message> result =null;
-		if(idTo!=-1)
+		if(idTo!=-1 && idTo!=idViewer)
 			result = msgBeanRem.getPosts(idViewer,password,idTo);
 		else
 			result = msgBeanRem.getPosts(idViewer, password);

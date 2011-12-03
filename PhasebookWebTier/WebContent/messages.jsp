@@ -51,7 +51,7 @@ if(session.getAttribute("error")!=null){ %>
 		{%>
 			<div class="message">
 				<div class="avatarMessage" onmouseover="this.style.cursor='pointer';" onmouseout="this.style.cursor='default';" onclick="doForward(<%=m.getIdClientFrom()%>)"> 
-					ir buscar a imagem 					img alt="" src="" width="50px"
+					ir buscar a imagem img alt="" src="" width="50px"
 				</div>
 				&nbsp;&nbsp;&nbsp;<div style="float: left;" onmouseover="this.style.cursor='pointer';" onmouseout="this.style.cursor='default';" onclick="doForward(<%=m.getIdClientFrom()%>)">&nbsp;&nbsp;<label class="label3" onmouseover="this.style.cursor='pointer';" onmouseout="this.style.cursor='default';" onclick="doForward(<%=m.getIdClientFrom()%>)"><%="nome a ir buscar"/*m.getclient_from().getName()*/ %></label></div><label class="label3" style="font-weight: normal;">&nbsp;says:</label>
 				<%if(idTo==-1 || idTo==personal.getId()){ %>

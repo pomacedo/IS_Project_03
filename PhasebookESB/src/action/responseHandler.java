@@ -62,20 +62,13 @@ public class responseHandler extends AbstractActionLifecycle
 		 while(i.hasNext())
 		 {
 			 data.Message cur = new data.Message();
-			 String s = i.next().toString();
-			 
+			 String s = i.next().toString();			 
 			 cur.setId(Integer.parseInt((String) responseMsg.get(s)));
-
-			 cur.setId_client_from(Integer.parseInt((String)responseMsg.get(i.next())));
-			 
-			 cur.setId_client_from(Integer.parseInt((String)responseMsg.get(i.next())));
-			 
-			 cur.setId_photo(Integer.parseInt((String)responseMsg.get(i.next())));
-			 
-			 cur.setIs_private(Boolean.parseBoolean((String)responseMsg.get(i.next())));
-			 
-			 cur.setIs_read(Boolean.parseBoolean((String) responseMsg.get(i.next())));
-			 
+			 cur.setId_client_from(Integer.parseInt((String)responseMsg.get(i.next())));			 
+			 cur.setId_client_from(Integer.parseInt((String)responseMsg.get(i.next())));			 
+			 cur.setId_photo(Integer.parseInt((String)responseMsg.get(i.next())));			 
+			 cur.setIs_private(Boolean.parseBoolean((String)responseMsg.get(i.next())));			 
+			 cur.setIs_read(Boolean.parseBoolean((String) responseMsg.get(i.next())));			 
 			 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 			 
 			Date d;
@@ -95,7 +88,19 @@ public class responseHandler extends AbstractActionLifecycle
 		 message.getBody().add(result);
 		 return message;
 	 }
-	 
+	 public Message addPhoto(Message message) throws MessageDeliverException
+	 {
+		 Map responseMsg = null;
+		 System.out.println("ESB HANDLE addPhoto");
+		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
+		 System.out.println("Map= "+responseMsg.toString());
+		 int id=-1;
+		 Iterator i = responseMsg.keySet().iterator();
+		 id = Integer.parseInt((String) responseMsg.get(i.next()));
+		 message.getBody().add(id);
+		 System.out.println("ACABOU O RESPONSE HANDLE E A PHOTO TEM O ID="+id);
+		 return message;
+	 }
 //	 public Message getSearch(Message message) throws MessageDeliverException
 //	 {
 //		 Map responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);

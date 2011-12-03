@@ -50,7 +50,7 @@ public class myInitializer extends AbstractActionLifecycle
 	 
 	 public Message getPosts(Message message) throws MessageDeliverException
 	{
-		 
+		 System.out.println("ESB - INIT GET POSTS");
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
 		 
 	     int idViewer = (Integer)requestMsg.get("idViewer");
@@ -141,7 +141,7 @@ public class myInitializer extends AbstractActionLifecycle
 	     String name = (String)requestMsg.get("name");
 	     String gender =  (String) requestMsg.get("gender");
 	     String newPassword=(String) requestMsg.get("newPassword");
-	     int id = Integer.parseInt((String) requestMsg.get("id"));
+	     int id = (Integer)requestMsg.get("id");
 	     float money = Float.parseFloat((String)requestMsg.get("money"));
 	     
 	     Map send = new HashMap();
@@ -158,15 +158,16 @@ public class myInitializer extends AbstractActionLifecycle
 	}
 	public Message sendMessage(Message message) throws MessageDeliverException
 	{
-		
+		System.out.println("ESB - INIT SEND MESSAGE");
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
 		 System.out.println("");System.out.println("INIT SEND MESSAGE\nMAP: "+requestMsg.toString()); 
-		 int idFrom = Integer.parseInt((String) requestMsg.get("idFrom"));
-		 String password = (String)requestMsg.get("password");		 
-	     String text = (String)requestMsg.get("text");
-	     int idTo = Integer.parseInt((String) requestMsg.get("idTo"));
-	     boolean isPrivate= (Boolean.parseBoolean((String)requestMsg.get("isPrivate")));
-	     int idPhoto = Integer.parseInt((String) requestMsg.get("idPhoto"));
+		 int idFrom = (Integer)requestMsg.get("idFrom");
+		 
+		 String password = (String) requestMsg.get("password");		 
+	     String text = (String)requestMsg.get("message");	     
+	     int idTo = (Integer)requestMsg.get("idTo");	     
+	     boolean isPrivate= (Boolean)requestMsg.get("isPrivate");	     
+	     int idPhoto = (Integer)requestMsg.get("idPhoto");	     
 	     
 	     Map send = new HashMap();
 	     send.put("sendMessage.idFrom", idFrom);
@@ -182,11 +183,11 @@ public class myInitializer extends AbstractActionLifecycle
 	
 	public Message addPhoto(Message message) throws MessageDeliverException
 	{
-		 
+		 System.out.println("INIT ADD PHOTO");
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
 		 
 	     String path = (String)requestMsg.get("path");	     
-	     
+	     System.out.println("INIT ADD PHOTO photo path: "+path);
 	     Map send = new HashMap();
 	     send.put("addPhoto.photoPath", path);
 	     

@@ -20,7 +20,6 @@ public class clientWS {
 		System.out.println("WEB SERVICE : CHECK LOG IN");
 		ClientInfo c =user.checkLogIn(email,password);
 		
-		System.out.println("WEB SERVICE LOGIN PHOTO "+c.getIdPhoto());
 		return c;
 	}
 	@WebMethod	

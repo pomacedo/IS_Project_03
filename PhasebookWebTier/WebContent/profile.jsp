@@ -13,7 +13,7 @@
 		<%
 		ManageBeanRemote personal=(ManageBeanRemote)session.getAttribute("user");		
 		
-		Client client;
+		client.artefact.Client client;
 		
 		PhasebookMainWSService mainWS = new PhasebookMainWSService();
 		PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
@@ -27,16 +27,16 @@
 				personal.setId(client.getId());
 				personal.setPassword(client.getPassword());
 				personal.setName(client.getName());
-				personal.setIdPhoto(client.getId_photo());
+				personal.setIdPhoto(client.getIdPhoto());		
 			}
-		}
+		}		
 		else{
 			client=ws.getClientInfo(personal.getId());
 			personal.setEmail(client.getEmail());
 			personal.setId(client.getId());
 			personal.setPassword(client.getPassword());
 			personal.setName(client.getName());
-			personal.setIdPhoto(client.getId_photo());
+			personal.setIdPhoto(client.getIdPhoto());
 		}%>
 	<div class="userprofile">
 		<%if(request.getParameter("error")!=null){ %>

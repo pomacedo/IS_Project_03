@@ -120,7 +120,7 @@ public class myInitializer extends AbstractActionLifecycle
 		 System.out.println("ESB - INIT GET CLIENT INFO");
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
 		 
-	     int id = Integer.parseInt((String)requestMsg.get("id"));	     
+	     int id = (Integer) requestMsg.get("id");	     
 	     
 	     Map send = new HashMap();
 	     send.put("getClientInfo.id", id);

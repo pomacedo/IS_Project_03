@@ -31,7 +31,7 @@ public class PhasebookMainWS {
 		
 		HashMap requestMap = new HashMap();
 		requestMap.put("email",email);
-		
+		requestMap.put("password",password);
 		esbMessage.getBody().add(requestMap);
 		
 		Message retMessage = null;

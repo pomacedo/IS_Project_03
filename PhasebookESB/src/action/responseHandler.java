@@ -112,15 +112,18 @@ public class responseHandler extends AbstractActionLifecycle
 		 System.out.println("GET CLIENT INFO RESP: "+responseMsg.toString());
 		 
 		 String email="",name="",password="";
-		 int id=0,photo=-1;
+		 int id=0,idPhoto=-1;
 		 Iterator i = responseMsg.keySet().iterator();
-		 email =(String) responseMsg.get(i.next());
+		 email =(String) responseMsg.get(i.next());		 
+		 char gender = (char) Integer.parseInt((String) responseMsg.get(i.next()));
 		 id = Integer.parseInt((String) responseMsg.get(i.next()));
-		 photo = Integer.parseInt((String) responseMsg.get(i.next()));
+		 idPhoto = Integer.parseInt((String) responseMsg.get(i.next()));
+		 double money = Double.parseDouble((String) responseMsg.get(i.next()));
 		 name = (String) responseMsg.get(i.next());
 		 password = (String) responseMsg.get(i.next());
 		 
-		 Client temp = new Client();
+		 Client temp = new Client(idPhoto, name, password, email, money, gender);
+		 System.out.println("lido: "+email+" ,"+gender+", "+id+" ,"+idPhoto+", "+money);
 		 message.getBody().add(temp);
 		 
 		 return message;

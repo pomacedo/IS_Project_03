@@ -16,6 +16,8 @@ import org.jboss.soa.esb.listeners.message.MessageDeliverException;
 import org.jboss.soa.esb.message.Body;
 import org.jboss.soa.esb.message.Message;
 
+import data.Client;
+
 
 import eai.ClientInfo;
 
@@ -99,6 +101,28 @@ public class responseHandler extends AbstractActionLifecycle
 		 id = Integer.parseInt((String) responseMsg.get(i.next()));
 		 message.getBody().add(id);
 		 System.out.println("ACABOU O RESPONSE HANDLE E A PHOTO TEM O ID="+id);
+		 return message;
+	 }
+	 
+	 public Message getClientInfo(Message message) throws MessageDeliverException
+	 {
+		 System.out.println("ESB - RESPONSEHANDLER GET CLIENT INFO");
+		 Map responseMsg = null;
+		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
+		 System.out.println("GET CLIENT INFO RESP: "+responseMsg.toString());
+		 
+		 String email="",name="",password="";
+		 int id=0,photo=-1;
+		 Iterator i = responseMsg.keySet().iterator();
+		 email =(String) responseMsg.get(i.next());
+		 id = Integer.parseInt((String) responseMsg.get(i.next()));
+		 photo = Integer.parseInt((String) responseMsg.get(i.next()));
+		 name = (String) responseMsg.get(i.next());
+		 password = (String) responseMsg.get(i.next());
+		 
+		 Client temp = new Client();
+		 message.getBody().add(temp);
+		 
 		 return message;
 	 }
 //	 public Message getSearch(Message message) throws MessageDeliverException

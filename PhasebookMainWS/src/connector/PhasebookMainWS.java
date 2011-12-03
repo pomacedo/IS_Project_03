@@ -150,21 +150,16 @@ public class PhasebookMainWS {
 		
 		return null;
 	}
-	
-	
-	
-	
+			
 	@WebMethod
 	public boolean sendMessage(int idFrom,String password,int idTo,String message,boolean isPrivate,String path){
 		
 		int idPhoto;
-		System.out.println("MAIN WS: PATH");
 		if(path.equals(""))
 		{
 			idPhoto=-1;
 		}
 		else{
-			System.out.println("VOU CHAMAR O ADDPHOTO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
 			idPhoto=addPhoto(path);
 			if(idPhoto==-1)
 				return false;
@@ -213,14 +208,14 @@ public class PhasebookMainWS {
 		return false;		
 	}
 	
-	public int addPhoto(String path){
+	public int addPhoto(String path)
+	{
 		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
 		Message esbMessage = MessageFactory.getInstance().getMessage();
 		
 //		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
 		HashMap requestMap = new HashMap();
-		requestMap.put("path",path);
-		
+		requestMap.put("path",path);		
 		esbMessage.getBody().add(requestMap);
 		
 		Message retMessage = null;

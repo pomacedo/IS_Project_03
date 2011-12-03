@@ -6,6 +6,7 @@
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="JBPM/jBMPRuntime"/>
-	<classpathentry kind="lib" path="/PhasebookESB/PhasebookBeansInterfaces.jar"/>
+	<classpathentry kind="con" path="org.jboss.esb.runtime.classpath/server.supplied/jbossesb-server-4.10 Runtime"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/PhasebookServerESB"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

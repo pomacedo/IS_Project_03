@@ -117,7 +117,7 @@ public class myInitializer extends AbstractActionLifecycle
 	
 	public Message getClientInfo(Message message) throws MessageDeliverException
 	{
-		 
+		 System.out.println("ESB - INIT GET CLIENT INFO");
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
 		 
 	     int id = Integer.parseInt((String)requestMsg.get("id"));	     

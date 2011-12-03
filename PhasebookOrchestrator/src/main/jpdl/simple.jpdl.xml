@@ -4,12 +4,12 @@
   xmlns="urn:jbpm.org:jpdl-3.2"
   name="simple">
    <start-state name="start">
-		<transition to="doLogin"></transition>
+		<transition to="g"></transition>
 	</start-state>
    
 
-	<node name="doLogin">
-		<action class="org.jboss.soa.esb.services.jbpm.actionhandlers.EsbActionHandler">		
+	<node name="g">
+		<etPaction class="org.jboss.soa.esb.services.jbpm.actionhandlers.EsbActionHandler">		
 			<esbCategoryName>
 			Authentication
 			</esbCategoryName>

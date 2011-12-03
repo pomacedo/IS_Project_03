@@ -27,6 +27,7 @@
 				personal.setName(client.getName());
 				personal.setIdPhoto(client.getIdPhoto());	
 			}catch(NumberFormatException e){
+				
 				client=ws.getClientInfo(personal.getId());
 				personal.setEmail(client.getEmail());
 				personal.setId(client.getId());
@@ -44,7 +45,7 @@
 			personal.setIdPhoto(client.getIdPhoto());
 		}
 		
-		%><%="cucucu"+client.getId()+","+client.getName() %>
+		%>
 	<div class="userprofile">
 
 		<%if(request.getParameter("error")!=null)

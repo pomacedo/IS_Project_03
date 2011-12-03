@@ -46,8 +46,7 @@ public class clientWS {
 	@WebMethod	
 	public boolean editProfile(@WebParam(name = "id") int id, @WebParam(name = "password")String password,@WebParam(name = "name") String name,@WebParam(name = "email")String email,@WebParam(name = "newPassword")String newPassword,@WebParam(name = "gender") char gender,@WebParam(name = "money") float money)
 	{
-		System.out.println("WEB SERV EDIT "+gender);
-				
+		System.out.println("WEB SERV EDIT "+user.editProfile(id, password, name, email, newPassword, gender, money));
 		return user.editProfile(id,password,name,email,newPassword,gender, money);		
 	}
 	

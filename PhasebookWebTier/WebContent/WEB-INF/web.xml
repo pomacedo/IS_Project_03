@@ -39,7 +39,7 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/RegisterServlet</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <description></description>
     <display-name>PostServlet</display-name>
     <servlet-name>PostServlet</servlet-name>
@@ -48,5 +48,15 @@
   <servlet-mapping>
     <servlet-name>PostServlet</servlet-name>
     <url-pattern>/PostServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditProfileServlet</display-name>
+    <servlet-name>EditProfileServlet</servlet-name>
+    <servlet-class>EditProfileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditProfileServlet</servlet-name>
+    <url-pattern>/EditProfileServlet</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -21,6 +21,11 @@
 		if(request.getParameter("id")!=null){
 			try{
 				client=ws.getClientInfo(Integer.parseInt(request.getParameter("id")));
+				personal.setEmail(client.getEmail());
+				personal.setId(client.getId());
+				personal.setPassword(client.getPassword());
+				personal.setName(client.getName());
+				personal.setIdPhoto(client.getIdPhoto());	
 			}catch(NumberFormatException e){
 				client=ws.getClientInfo(personal.getId());
 				personal.setEmail(client.getEmail());
@@ -37,12 +42,16 @@
 			personal.setPassword(client.getPassword());
 			personal.setName(client.getName());
 			personal.setIdPhoto(client.getIdPhoto());
-		}%>
+		}
+		
+		%><%="cucucu"+client.getId()+","+client.getName() %>
 	<div class="userprofile">
+
 		<%if(request.getParameter("error")!=null)
 		{ %>
 			<label class="labelerror"><%= request.getParameter("error")%></label>
-		<%} %>
+		<%session.removeAttribute("error");
+		}%>
 		<div class="infotitle">
 			Basic Information
 			<% if(request.getParameter("id")==null)

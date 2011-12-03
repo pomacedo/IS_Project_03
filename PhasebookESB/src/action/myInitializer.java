@@ -133,16 +133,22 @@ public class myInitializer extends AbstractActionLifecycle
 	
 	public Message editProfile(Message message) throws MessageDeliverException
 	{
-		
+		System.out.println("init edit profile");
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
 		 
 	     String email = (String)requestMsg.get("email");
 	     String password = (String)requestMsg.get("password");
 	     String name = (String)requestMsg.get("name");
-	     String gender =  (String) requestMsg.get("gender");
+	     char gender =  (Character) requestMsg.get("gender");
+	     System.out.println("GENDER: "+gender);
+	    if(gender=='M')
+	    	System.out.println("SOU CHAR CRL");
 	     String newPassword=(String) requestMsg.get("newPassword");
-	     int id = Integer.parseInt((String)requestMsg.get("id"));
-	     float money = Float.parseFloat((String)requestMsg.get("money"));
+	     System.out.println("1");
+	     int id = (Integer) requestMsg.get("id");
+	     System.out.println("2");
+	     float money = (Float)requestMsg.get("money");
+	     System.out.println("3");
 	     
 	     Map send = new HashMap();
 	     send.put("editProfile.email", email);
@@ -153,7 +159,7 @@ public class myInitializer extends AbstractActionLifecycle
 	     send.put("editProfile.newPassword", newPassword);
 	     send.put("editProfile.money",money);
 	     message.getBody().add(send);
-	     
+	     System.out.println("VOU SAIR DO INIT PESDRIGAAAAAAAAAAAAAAO");
 		return message;
 	}
 	public Message sendMessage(Message message) throws MessageDeliverException

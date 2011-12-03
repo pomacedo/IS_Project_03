@@ -104,7 +104,8 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
 			c1.setPassword(newPassword);
 		if(name.length()>0)
 			c1.setName(name);
-		c1.setGender(gender);
+		
+			c1.setGender(gender);
 		if(money>0.0)
 			c1.setMoney(money);
 		

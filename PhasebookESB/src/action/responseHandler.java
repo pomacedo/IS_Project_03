@@ -123,6 +123,7 @@ public class responseHandler extends AbstractActionLifecycle
 		 password = (String) responseMsg.get(i.next());
 		 
 		 Client temp = new Client(idPhoto, name, password, email, money, gender);
+		 temp.setId(id);
 		 System.out.println("lido: "+email+" ,"+gender+", "+id+" ,"+idPhoto+", "+money);
 		 message.getBody().add(temp);
 		 
@@ -134,9 +135,10 @@ public class responseHandler extends AbstractActionLifecycle
 		 System.out.println("ESB - RESPONSEHANDLER EDIT PROFILE");
 		 Map responseMsg = null;
 		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
-		 System.out.println("EDIT PROFILE RESP: "+responseMsg.toString());
 		 Iterator i = responseMsg.keySet().iterator();
 		 boolean res = Boolean.parseBoolean((String)responseMsg.get(i.next()));
+		 
+		 System.out.println("cenas"+res);
 		 message.getBody().add(res);
 		 return message;
 	 }

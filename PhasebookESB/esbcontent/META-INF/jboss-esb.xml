@@ -57,6 +57,21 @@
     </action>
    </actions>
   </service>
+  
+  <service category="Client" description="edit the profile of the user" name="editProfile">
+   <listeners>
+    <jms-listener busidref="editProfileRequest" name="ESB-Listener"/>
+   </listeners>
+   <actions>
+    <action class="action.myInitializer" name="init_getSearch" process="editProfile"/>
+    <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="soapui-client-action">
+     <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl"/>
+     <property name="SOAPAction" value="editProfile"/>
+     <property name="responseAsOgnlMap" value="true"/>
+    </action>
+    <action class="action.responseHandler" name="handleeditresponse" process="editProfile"/>
+   </actions>
+  </service>
   <service category="Message" description="get posts" name="getPosts">
    <listeners>
     <jms-listener busidref="getPostsRequest" name="ESB-Listener"/>
@@ -127,19 +142,6 @@
      name="handlergetclientinforesponse" process="getClientInfo"/>
    </actions>
   </service>
-  <service category="Client" description="edit the profile of the user" name="editProfile">
-   <listeners>
-    <jms-listener busidref="editProfileRequest" name="ESB-Listener"/>
-   </listeners>
-   <actions>
-    <action class="action.myInitializer" name="init_getSearch" process="editProfile"/>
-    <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="soapui-client-action">
-     <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl"/>
-     <property name="SOAPAction" value="editProfile"/>
-     <property name="responseAsOgnlMap" value="true"/>
-    </action>
-    <action class="action.responseHandler" name="handleeditresponse" process="editProfile"/>
-   </actions>
-  </service>
+  
  </services>
 </jbossesb>

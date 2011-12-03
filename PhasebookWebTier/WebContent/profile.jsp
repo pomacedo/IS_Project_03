@@ -39,9 +39,10 @@
 			personal.setIdPhoto(client.getIdPhoto());
 		}%>
 	<div class="userprofile">
-		<%if(request.getParameter("error")!=null){ %>
+		<%if(session.getParameter("error")!=null){ %>
 			<label class="labelerror"><%= request.getParameter("error")%></label>
-		<%} %>
+		<%session.removeAttribute("error");
+		}%>
 		<div class="infotitle">
 			Basic Information
 			<% if(request.getParameter("id")==null){%> 

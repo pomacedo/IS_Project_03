@@ -273,6 +273,61 @@ public class PhasebookMainWS {
 			e.printStackTrace();
 		}
 		return -1;
+	}
+	
+	@WebMethod
+	public boolean editProfile(int id,String password,String name,String email,String newPassword,char gender,float money){
+		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
+
+		Message esbMessage = MessageFactory.getInstance().getMessage();
+//		System.out.println("TOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+//		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
+		HashMap requestMap = new HashMap();
+		requestMap.put("id",id);
+		requestMap.put("password",password);
+		requestMap.put("name",name);
+		requestMap.put("email",email);
+		requestMap.put("newPassword",newPassword);
+		requestMap.put("gender",gender);
+		requestMap.put("money",money);
+		
+		
+		esbMessage.getBody().add(requestMap);
+		
+		Message retMessage = null;
+
+		ServiceInvoker si;
+		try {
+			
+			si = new ServiceInvoker("Client", "editProfile");
+			retMessage = si.deliverSync(esbMessage, 10000L);
+			
+			System.out.println("Pedido no WS enviado\n");
+			
+			Map responseMsg = (Map) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+			
+			
+			 Iterator i = responseMsg.keySet().iterator();
+			 boolean response = Boolean.parseBoolean((String) responseMsg.get(i.next()));
+			 		 
+			 
+			 
+			 System.out.println("\n editProfile response is: "+response);
+			 
+			
+			return response;
+		} catch (MessageDeliverException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FaultMessageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RegistryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;		
 		
 	}
+	
 }

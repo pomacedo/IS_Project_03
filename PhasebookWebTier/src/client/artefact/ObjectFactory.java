@@ -24,6 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _EditProfileResponse_QNAME = new QName("http://connector/", "editProfileResponse");
     private final static QName _CheckLogInResponse_QNAME = new QName("http://connector/", "checkLogInResponse");
     private final static QName _GetClientInfoResponse_QNAME = new QName("http://connector/", "getClientInfoResponse");
     private final static QName _GetPost_QNAME = new QName("http://connector/", "getPost");
@@ -34,28 +35,13 @@ public class ObjectFactory {
     private final static QName _SendMessageResponse_QNAME = new QName("http://connector/", "sendMessageResponse");
     private final static QName _AddClientResponse_QNAME = new QName("http://connector/", "addClientResponse");
     private final static QName _GetPostResponse_QNAME = new QName("http://connector/", "getPostResponse");
+    private final static QName _EditProfile_QNAME = new QName("http://connector/", "editProfile");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: client.artefact
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link GetPostResponse }
-     * 
-     */
-    public GetPostResponse createGetPostResponse() {
-        return new GetPostResponse();
-    }
-
-    /**
-     * Create an instance of {@link SendMessageResponse }
-     * 
-     */
-    public SendMessageResponse createSendMessageResponse() {
-        return new SendMessageResponse();
     }
 
     /**
@@ -67,14 +53,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Message }
-     * 
-     */
-    public Message createMessage() {
-        return new Message();
-    }
-
-    /**
      * Create an instance of {@link ClientInfo }
      * 
      */
@@ -83,11 +61,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetClientInfo }
+     * Create an instance of {@link SendMessage }
      * 
      */
-    public GetClientInfo createGetClientInfo() {
-        return new GetClientInfo();
+    public SendMessage createSendMessage() {
+        return new SendMessage();
+    }
+
+    /**
+     * Create an instance of {@link EditProfile }
+     * 
+     */
+    public EditProfile createEditProfile() {
+        return new EditProfile();
     }
 
     /**
@@ -96,22 +82,6 @@ public class ObjectFactory {
      */
     public GetPost createGetPost() {
         return new GetPost();
-    }
-
-    /**
-     * Create an instance of {@link CheckLogIn }
-     * 
-     */
-    public CheckLogIn createCheckLogIn() {
-        return new CheckLogIn();
-    }
-
-    /**
-     * Create an instance of {@link SendMessage }
-     * 
-     */
-    public SendMessage createSendMessage() {
-        return new SendMessage();
     }
 
     /**
@@ -131,11 +101,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AddClientResponse }
+     * Create an instance of {@link GetPostResponse }
      * 
      */
-    public AddClientResponse createAddClientResponse() {
-        return new AddClientResponse();
+    public GetPostResponse createGetPostResponse() {
+        return new GetPostResponse();
+    }
+
+    /**
+     * Create an instance of {@link SendMessageResponse }
+     * 
+     */
+    public SendMessageResponse createSendMessageResponse() {
+        return new SendMessageResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetClientInfo }
+     * 
+     */
+    public GetClientInfo createGetClientInfo() {
+        return new GetClientInfo();
+    }
+
+    /**
+     * Create an instance of {@link CheckLogIn }
+     * 
+     */
+    public CheckLogIn createCheckLogIn() {
+        return new CheckLogIn();
+    }
+
+    /**
+     * Create an instance of {@link EditProfileResponse }
+     * 
+     */
+    public EditProfileResponse createEditProfileResponse() {
+        return new EditProfileResponse();
     }
 
     /**
@@ -144,6 +146,31 @@ public class ObjectFactory {
      */
     public Client createClient() {
         return new Client();
+    }
+
+    /**
+     * Create an instance of {@link AddClientResponse }
+     * 
+     */
+    public AddClientResponse createAddClientResponse() {
+        return new AddClientResponse();
+    }
+
+    /**
+     * Create an instance of {@link Message }
+     * 
+     */
+    public Message createMessage() {
+        return new Message();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EditProfileResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "editProfileResponse")
+    public JAXBElement<EditProfileResponse> createEditProfileResponse(EditProfileResponse value) {
+        return new JAXBElement<EditProfileResponse>(_EditProfileResponse_QNAME, EditProfileResponse.class, null, value);
     }
 
     /**
@@ -234,6 +261,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://connector/", name = "getPostResponse")
     public JAXBElement<GetPostResponse> createGetPostResponse(GetPostResponse value) {
         return new JAXBElement<GetPostResponse>(_GetPostResponse_QNAME, GetPostResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EditProfile }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "editProfile")
+    public JAXBElement<EditProfile> createEditProfile(EditProfile value) {
+        return new JAXBElement<EditProfile>(_EditProfile_QNAME, EditProfile.class, null, value);
     }
 
 }

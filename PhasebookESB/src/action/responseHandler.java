@@ -128,6 +128,18 @@ public class responseHandler extends AbstractActionLifecycle
 		 
 		 return message;
 	 }
+	 
+	 public Message editProfile(Message message) throws MessageDeliverException
+	 {
+		 System.out.println("ESB - RESPONSEHANDLER EDIT PROFILE");
+		 Map responseMsg = null;
+		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
+		 System.out.println("EDIT PROFILE RESP: "+responseMsg.toString());
+		 Iterator i = responseMsg.keySet().iterator();
+		 boolean res = Boolean.parseBoolean((String)responseMsg.get(i.next()));
+		 message.getBody().add(res);
+		 return message;
+	 }
 //	 public Message getSearch(Message message) throws MessageDeliverException
 //	 {
 //		 Map responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);

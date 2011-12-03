@@ -141,7 +141,7 @@ public class myInitializer extends AbstractActionLifecycle
 	     String name = (String)requestMsg.get("name");
 	     String gender =  (String) requestMsg.get("gender");
 	     String newPassword=(String) requestMsg.get("newPassword");
-	     int id = (Integer)requestMsg.get("id");
+	     int id = Integer.parseInt((String)requestMsg.get("id"));
 	     float money = Float.parseFloat((String)requestMsg.get("money"));
 	     
 	     Map send = new HashMap();
@@ -195,6 +195,8 @@ public class myInitializer extends AbstractActionLifecycle
 	     
 		return message;
 	}
+	
+	
 // public Message visit(Message message) throws MessageDeliverException {
 //  System.out.println("\nCUCUCU");
 //  Map responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);  

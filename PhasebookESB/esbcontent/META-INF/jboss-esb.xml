@@ -10,15 +10,15 @@
    <jms-bus busid="createuserRequest">
     <jms-message-filter dest-name="queue/createUser_request" dest-type="QUEUE"/>
    </jms-bus>
-<!--       <jms-bus busid="getSearchRequest">  -->
-<!--      <jms-message-filter dest-name="queue/getSearch_request" dest-type="QUEUE"/>  -->
-<!--     </jms-bus>  -->
-    <jms-bus busid="getClientInfoRequest"> 
-     <jms-message-filter dest-name="queue/getClientInfo_request" dest-type="QUEUE"/> 
-   </jms-bus> 
-<!--     <jms-bus busid="editProfileRequest">  -->
-<!--      <jms-message-filter dest-name="queue/editProfile_request" dest-type="QUEUE"/>  -->
-<!--     </jms-bus> -->
+   <!--       <jms-bus busid="getSearchRequest">  
+      <jms-message-filter dest-name="queue/getSearch_request" dest-type="QUEUE"/>  
+     </jms-bus>  -->
+   <jms-bus busid="getClientInfoRequest">
+    <jms-message-filter dest-name="queue/getClientInfo_request" dest-type="QUEUE"/>
+   </jms-bus>
+   <jms-bus busid="editProfileRequest">  
+      <jms-message-filter dest-name="queue/editProfile_request" dest-type="QUEUE"/>  
+     </jms-bus>
    <jms-bus busid="getPostsRequest">
     <jms-message-filter dest-name="queue/getPosts_request" dest-type="QUEUE"/>
    </jms-bus>
@@ -127,19 +127,19 @@
      name="handlergetclientinforesponse" process="getClientInfo"/>
    </actions>
   </service>
-  <!--    <service category="Client" description="edit the profile of the user"  
-    name="editProfile"> 
- 	 <listeners> 
- 	    <jms-listener busidref="editProfileRequest" name="ESB-Listener"/> 
- 	 </listeners> 
- 	 <actions> 
- 	   <action name = "init_getSearch" class="action.myInitializer" process="editProfile"/> 
- 	   <action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">	  
- 		    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl" />   
- 		    <property name="SOAPAction" value="editProfile"/> 
- 		    <property name="responseAsOgnlMap" value="true" />       
-     	</action>  
- 	 </actions> 
-    </service> -->
+  <service category="Client" description="edit the profile of the user" name="editProfile">
+   <listeners>
+    <jms-listener busidref="editProfileRequest" name="ESB-Listener"/>
+   </listeners>
+   <actions>
+    <action class="action.myInitializer" name="init_getSearch" process="editProfile"/>
+    <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="soapui-client-action">
+     <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl"/>
+     <property name="SOAPAction" value="editProfile"/>
+     <property name="responseAsOgnlMap" value="true"/>
+    </action>
+    <action class="action.responseHandler" name="handleeditresponse" process="editProfile"/>
+   </actions>
+  </service>
  </services>
 </jbossesb>

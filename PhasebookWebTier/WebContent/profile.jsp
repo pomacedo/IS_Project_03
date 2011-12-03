@@ -39,12 +39,14 @@
 			personal.setIdPhoto(client.getIdPhoto());
 		}%>
 	<div class="userprofile">
-		<%if(request.getParameter("error")!=null){ %>
+		<%if(request.getParameter("error")!=null)
+		{ %>
 			<label class="labelerror"><%= request.getParameter("error")%></label>
 		<%} %>
 		<div class="infotitle">
 			Basic Information
-			<% if(request.getParameter("id")==null){%> 
+			<% if(request.getParameter("id")==null)
+			{%> 
 			<div style="float: right;" onmouseover="this.style.cursor='pointer';" onmouseout="this.style.cursor='default';" onclick="editProfile()">EDIT</div>
 			<% }%>
 		</div>
@@ -59,7 +61,14 @@
 			</tr>
 			<tr>
 				<td class="infotdtitle">Gender</td>
-				<td class="infotd"><%=client.getGender()=='M'?"Male":"Female"%></td>
+				<td class="infotd"><%
+				char c=(char)client.getGender();
+				if(c=='M'){
+					%><%="Male"%>
+				<%}else{%>
+					<%="Female"%> 
+				<%} %>
+					</td>
 			</tr>
 		</table>
 		<div class="infotitle">Lottery Information</div>

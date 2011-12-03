@@ -43,6 +43,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SendMessage }
+     * 
+     */
+    public SendMessage createSendMessage() {
+        return new SendMessage();
+    }
+
+    /**
+     * Create an instance of {@link AddClientResponse }
+     * 
+     */
+    public AddClientResponse createAddClientResponse() {
+        return new AddClientResponse();
+    }
+
+    /**
+     * Create an instance of {@link CheckLogInResponse }
+     * 
+     */
+    public CheckLogInResponse createCheckLogInResponse() {
+        return new CheckLogInResponse();
+    }
+
+    /**
      * Create an instance of {@link GetPostResponse }
      * 
      */
@@ -59,27 +83,19 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AddClient }
+     * 
+     */
+    public AddClient createAddClient() {
+        return new AddClient();
+    }
+
+    /**
      * Create an instance of {@link GetClientInfoResponse }
      * 
      */
     public GetClientInfoResponse createGetClientInfoResponse() {
         return new GetClientInfoResponse();
-    }
-
-    /**
-     * Create an instance of {@link Message }
-     * 
-     */
-    public Message createMessage() {
-        return new Message();
-    }
-
-    /**
-     * Create an instance of {@link ClientInfo }
-     * 
-     */
-    public ClientInfo createClientInfo() {
-        return new ClientInfo();
     }
 
     /**
@@ -91,14 +107,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetPost }
-     * 
-     */
-    public GetPost createGetPost() {
-        return new GetPost();
-    }
-
-    /**
      * Create an instance of {@link CheckLogIn }
      * 
      */
@@ -107,35 +115,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SendMessage }
+     * Create an instance of {@link GetPost }
      * 
      */
-    public SendMessage createSendMessage() {
-        return new SendMessage();
+    public GetPost createGetPost() {
+        return new GetPost();
     }
 
     /**
-     * Create an instance of {@link CheckLogInResponse }
+     * Create an instance of {@link ClientInfo }
      * 
      */
-    public CheckLogInResponse createCheckLogInResponse() {
-        return new CheckLogInResponse();
-    }
-
-    /**
-     * Create an instance of {@link AddClient }
-     * 
-     */
-    public AddClient createAddClient() {
-        return new AddClient();
-    }
-
-    /**
-     * Create an instance of {@link AddClientResponse }
-     * 
-     */
-    public AddClientResponse createAddClientResponse() {
-        return new AddClientResponse();
+    public ClientInfo createClientInfo() {
+        return new ClientInfo();
     }
 
     /**
@@ -144,6 +136,14 @@ public class ObjectFactory {
      */
     public Client createClient() {
         return new Client();
+    }
+
+    /**
+     * Create an instance of {@link Message }
+     * 
+     */
+    public Message createMessage() {
+        return new Message();
     }
 
     /**

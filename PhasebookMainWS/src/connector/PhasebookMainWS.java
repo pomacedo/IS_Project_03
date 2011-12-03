@@ -31,7 +31,6 @@ public class PhasebookMainWS {
 		
 		HashMap requestMap = new HashMap();
 		requestMap.put("email",email);
-		requestMap.put("password",password);
 		
 		esbMessage.getBody().add(requestMap);
 		
@@ -55,6 +54,41 @@ public class PhasebookMainWS {
 			e.printStackTrace();
 		} catch (RegistryException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;		
+		
+	}
+	
+	@WebMethod
+	public Client getClientInfo(int id)
+	{
+		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
+
+		Message esbMessage = MessageFactory.getInstance().getMessage();
+		
+		HashMap requestMap = new HashMap();
+		requestMap.put("id",id);
+		
+		esbMessage.getBody().add(requestMap);
+		
+		Message retMessage = null;
+
+		ServiceInvoker si;
+		try {
+			
+			si = new ServiceInvoker("Client", "getClientInfo");
+			retMessage = si.deliverSync(esbMessage, 10000L);
+			
+			Client ret = (Client) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+						 
+			System.out.println("getClientInfo ENDED");
+			return ret;
+		} catch (MessageDeliverException e) {
+			e.printStackTrace();
+		} catch (FaultMessageException e) {
+			e.printStackTrace();
+		} catch (RegistryException e) {
 			e.printStackTrace();
 		}
 		return null;		

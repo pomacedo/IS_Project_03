@@ -25,10 +25,12 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _CheckLogInResponse_QNAME = new QName("http://connector/", "checkLogInResponse");
+    private final static QName _GetClientInfoResponse_QNAME = new QName("http://connector/", "getClientInfoResponse");
     private final static QName _GetPost_QNAME = new QName("http://connector/", "getPost");
     private final static QName _CheckLogIn_QNAME = new QName("http://connector/", "checkLogIn");
     private final static QName _SendMessage_QNAME = new QName("http://connector/", "sendMessage");
     private final static QName _AddClient_QNAME = new QName("http://connector/", "addClient");
+    private final static QName _GetClientInfo_QNAME = new QName("http://connector/", "getClientInfo");
     private final static QName _SendMessageResponse_QNAME = new QName("http://connector/", "sendMessageResponse");
     private final static QName _AddClientResponse_QNAME = new QName("http://connector/", "addClientResponse");
     private final static QName _GetPostResponse_QNAME = new QName("http://connector/", "getPostResponse");
@@ -38,46 +40,6 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link CheckLogIn }
-     * 
-     */
-    public CheckLogIn createCheckLogIn() {
-        return new CheckLogIn();
-    }
-
-    /**
-     * Create an instance of {@link ClientInfo }
-     * 
-     */
-    public ClientInfo createClientInfo() {
-        return new ClientInfo();
-    }
-
-    /**
-     * Create an instance of {@link SendMessage }
-     * 
-     */
-    public SendMessage createSendMessage() {
-        return new SendMessage();
-    }
-
-    /**
-     * Create an instance of {@link GetPost }
-     * 
-     */
-    public GetPost createGetPost() {
-        return new GetPost();
-    }
-
-    /**
-     * Create an instance of {@link Message }
-     * 
-     */
-    public Message createMessage() {
-        return new Message();
     }
 
     /**
@@ -97,6 +59,70 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetClientInfoResponse }
+     * 
+     */
+    public GetClientInfoResponse createGetClientInfoResponse() {
+        return new GetClientInfoResponse();
+    }
+
+    /**
+     * Create an instance of {@link Message }
+     * 
+     */
+    public Message createMessage() {
+        return new Message();
+    }
+
+    /**
+     * Create an instance of {@link ClientInfo }
+     * 
+     */
+    public ClientInfo createClientInfo() {
+        return new ClientInfo();
+    }
+
+    /**
+     * Create an instance of {@link GetClientInfo }
+     * 
+     */
+    public GetClientInfo createGetClientInfo() {
+        return new GetClientInfo();
+    }
+
+    /**
+     * Create an instance of {@link GetPost }
+     * 
+     */
+    public GetPost createGetPost() {
+        return new GetPost();
+    }
+
+    /**
+     * Create an instance of {@link CheckLogIn }
+     * 
+     */
+    public CheckLogIn createCheckLogIn() {
+        return new CheckLogIn();
+    }
+
+    /**
+     * Create an instance of {@link SendMessage }
+     * 
+     */
+    public SendMessage createSendMessage() {
+        return new SendMessage();
+    }
+
+    /**
+     * Create an instance of {@link CheckLogInResponse }
+     * 
+     */
+    public CheckLogInResponse createCheckLogInResponse() {
+        return new CheckLogInResponse();
+    }
+
+    /**
      * Create an instance of {@link AddClient }
      * 
      */
@@ -113,11 +139,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CheckLogInResponse }
+     * Create an instance of {@link Client }
      * 
      */
-    public CheckLogInResponse createCheckLogInResponse() {
-        return new CheckLogInResponse();
+    public Client createClient() {
+        return new Client();
     }
 
     /**
@@ -127,6 +153,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://connector/", name = "checkLogInResponse")
     public JAXBElement<CheckLogInResponse> createCheckLogInResponse(CheckLogInResponse value) {
         return new JAXBElement<CheckLogInResponse>(_CheckLogInResponse_QNAME, CheckLogInResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetClientInfoResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "getClientInfoResponse")
+    public JAXBElement<GetClientInfoResponse> createGetClientInfoResponse(GetClientInfoResponse value) {
+        return new JAXBElement<GetClientInfoResponse>(_GetClientInfoResponse_QNAME, GetClientInfoResponse.class, null, value);
     }
 
     /**
@@ -163,6 +198,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://connector/", name = "addClient")
     public JAXBElement<AddClient> createAddClient(AddClient value) {
         return new JAXBElement<AddClient>(_AddClient_QNAME, AddClient.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetClientInfo }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "getClientInfo")
+    public JAXBElement<GetClientInfo> createGetClientInfo(GetClientInfo value) {
+        return new JAXBElement<GetClientInfo>(_GetClientInfo_QNAME, GetClientInfo.class, null, value);
     }
 
     /**

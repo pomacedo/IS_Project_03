@@ -66,6 +66,20 @@ public interface PhasebookMainWS {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns client.artefact.Client
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getClientInfo", targetNamespace = "http://connector/", className = "client.artefact.GetClientInfo")
+    @ResponseWrapper(localName = "getClientInfoResponse", targetNamespace = "http://connector/", className = "client.artefact.GetClientInfoResponse")
+    public Client getClientInfo(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
      * @param arg2
      * @param arg1
      * @param arg0

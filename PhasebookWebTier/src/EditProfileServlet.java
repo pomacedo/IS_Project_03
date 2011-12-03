@@ -46,7 +46,7 @@ public class EditProfileServlet extends HttpServlet {
 		String email=request.getParameter("email");
 		String password=request.getParameter("pass");
 		float money=Float.parseFloat(request.getParameter("money"));
-		char gender=request.getParameter("gender").charAt(0);
+		char gender=(char)request.getParameter("gender").charAt(0);
 		
 		boolean res= ws.editProfile(personal.getId(), personal.getPassword(), name, email, password, gender, money);
 		if(!res)

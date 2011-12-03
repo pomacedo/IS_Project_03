@@ -1,8 +1,11 @@
 package example;
+import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map; 
+import java.util.Scanner;
+
 import javax.ejb.EJB;
 import javax.jws.*;
 
@@ -44,10 +47,11 @@ public class clientWS {
 	}
 	
 	@WebMethod	
-	public boolean editProfile(@WebParam(name = "id") int id, @WebParam(name = "password")String password,@WebParam(name = "name") String name,@WebParam(name = "email")String email,@WebParam(name = "newPassword")String newPassword,@WebParam(name = "gender") char gender,@WebParam(name = "money") float money)
+	public boolean editProfile(@WebParam(name = "id") int id, @WebParam(name = "password")String password,@WebParam(name = "name") String name,@WebParam(name = "email")String email,@WebParam(name = "newPassword")String newPassword,@WebParam(name = "gender") String gender,@WebParam(name = "money") float money)
 	{
-		System.out.println("WEB SERV EDIT "+user.editProfile(id, password, name, email, newPassword, gender, money));
-		return user.editProfile(id,password,name,email,newPassword,gender, money);		
+			
+		//System.out.println("WEB SERV EDIT "+user.editProfile(id, password, name, email, newPassword, gender, money));
+		return user.editProfile(id,password,name,email,newPassword,gender.charAt(0), money);		
 	}
 	
 	

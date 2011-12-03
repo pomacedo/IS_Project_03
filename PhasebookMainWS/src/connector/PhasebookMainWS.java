@@ -288,7 +288,7 @@ public class PhasebookMainWS {
 		requestMap.put("name",name);
 		requestMap.put("email",email);
 		requestMap.put("newPassword",newPassword);
-		requestMap.put("gender",gender);
+		requestMap.put("gender",""+gender);
 		requestMap.put("money",money);
 		
 		

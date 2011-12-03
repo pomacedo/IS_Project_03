@@ -139,10 +139,8 @@ public class myInitializer extends AbstractActionLifecycle
 	     String email = (String)requestMsg.get("email");
 	     String password = (String)requestMsg.get("password");
 	     String name = (String)requestMsg.get("name");
-	     char gender =  (Character) requestMsg.get("gender");
-	     System.out.println("GENDER: "+gender);
-	    if(gender=='M')
-	    	System.out.println("SOU CHAR CRL");
+	     String gender =  (String) requestMsg.get("gender");
+	     
 	     String newPassword=(String) requestMsg.get("newPassword");
 	     System.out.println("1");
 	     int id = (Integer) requestMsg.get("id");

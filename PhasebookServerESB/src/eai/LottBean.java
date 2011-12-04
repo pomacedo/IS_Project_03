@@ -99,6 +99,16 @@ public class LottBean implements LottBeanRemote {
 		}		
 		return true;
 	}
+	
+	public Lottery getLottery(int id){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx=em.getTransaction();
+		Lottery l=em.find(Lottery.class, id);
+		em.close();
+		return l;
+		
+	}
 
 	
 }

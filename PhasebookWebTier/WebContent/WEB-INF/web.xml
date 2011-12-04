@@ -59,4 +59,14 @@
     <servlet-name>EditProfileServlet</servlet-name>
     <url-pattern>/EditProfileServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MakeNewBetServlet</display-name>
+    <servlet-name>MakeNewBetServlet</servlet-name>
+    <servlet-class>MakeNewBetServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MakeNewBetServlet</servlet-name>
+    <url-pattern>/MakeNewBetServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

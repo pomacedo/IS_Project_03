@@ -13,4 +13,5 @@ public interface LottBeanRemote {
 	public int updateResult(int number);
 	public void checkWinners(int idL);
 	public boolean createNextLottery(Date nextDraw);
+	public Lottery getLottery(int id);
 }

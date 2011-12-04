@@ -41,7 +41,6 @@ else
 <title><%=c==null?user.getName():c.getName() %></title>
 </head>
 <body>
-	<%=user.getId() %>
 	<div class="top">
 		<a href="primary.jsp"><img alt="Phasebook Logo"   src="phasebook_logo.png" height="72px" style="position: absolute;left: 150px;top: 15px;"></a>
 		<div class="login">
@@ -58,16 +57,16 @@ else
 	</div>
 	<div class="leftCol">
 	<label class="label5"><%=c==null?user.getName():c.getName() %></label>
-		<% String photoPath="http://www.tutoresnarede.com.br/img/facebook-no-image.gif";%>
-<!--		   if(request.getParameter("id")!=null && c!=null){-->
-<!--			   if(c.getPhoto()!=null){-->
-<!--			   		photoPath=c.getPhoto().getPath();-->
-<!--			   }-->
-<!--		   }-->
-<!--		   else{-->
-<!--			   photoPath=user.getPhotoPath();-->
-<!--		   }-->
-		
+		<% String photoPath="http://www.tutoresnarede.com.br/img/facebook-no-image.gif";
+		   if(request.getParameter("id")!=null && c!=null){
+			   if(c.getId_photo()!=-1){
+			   		photoPath=pb.getPhotoById(c.getId_photo());
+			   }
+		   }
+		   else{
+			   photoPath=pb.getPhotoById(user.getIdPhoto());
+		   }
+		%>
 		<img src="<%=photoPath%>" width="180px" >
 		<br>
 		<div class="leftcolitem" onmouseover="this.style.backgroundColor='#D8DFEA';this.style.cursor='pointer';" onmouseout="this.style.backgroundColor='White';this.style.cursor='default';" onclick="getProfile(<%=request.getParameter("id")%>)"><label class="label2">Info</label></div>

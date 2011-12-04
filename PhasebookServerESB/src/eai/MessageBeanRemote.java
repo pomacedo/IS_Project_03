@@ -16,4 +16,5 @@ public interface MessageBeanRemote
 	public void sendEmailNotification(int id);
 	public int privNumberOfPhotos(int id);
 	public int pubNumberOfPhotos(int id);
+	public List<Integer> getAllIdPhotos(int idViewer, String password, int idTo,boolean isFriends);
 }

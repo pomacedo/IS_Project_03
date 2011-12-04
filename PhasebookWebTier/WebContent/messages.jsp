@@ -11,7 +11,7 @@
 	
 	PhasebookMainWSService mainWS = new PhasebookMainWSService();
 	PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
-	
+	PhotoBeanRemote pb = (PhotoBeanRemote)ctx.lookup("PhotoBean/remote");
 	ManageBeanRemote personal=(ManageBeanRemote)session.getAttribute("user");
 	
 if(session.getAttribute("error")!=null){ %>
@@ -48,12 +48,14 @@ if(session.getAttribute("error")!=null){ %>
 	if(messages!=null)
 	{
 		for(Message m: messages)
-		{%>
+		{
+			client.artefact.Client msgClientFrom =ws.getClientInfo(m.getIdClientFrom()); 
+		%>
 			<div class="message">
 				<div class="avatarMessage" onmouseover="this.style.cursor='pointer';" onmouseout="this.style.cursor='default';" onclick="doForward(<%=m.getIdClientFrom()%>)"> 
-					ir buscar a imagem img alt="" src="" width="50px"
+					<img alt="" src="<%=pb.getPhotoById(m.getIdClientFrom())%>" width="50px">
 				</div>
-				&nbsp;&nbsp;&nbsp;<div style="float: left;" onmouseover="this.style.cursor='pointer';" onmouseout="this.style.cursor='default';" onclick="doForward(<%=m.getIdClientFrom()%>)">&nbsp;&nbsp;<label class="label3" onmouseover="this.style.cursor='pointer';" onmouseout="this.style.cursor='default';" onclick="doForward(<%=m.getIdClientFrom()%>)"><%="nome a ir buscar"/*m.getclient_from().getName()*/ %></label></div><label class="label3" style="font-weight: normal;">&nbsp;says:</label>
+				&nbsp;&nbsp;&nbsp;<div style="float: left;" onmouseover="this.style.cursor='pointer';" onmouseout="this.style.cursor='default';" onclick="doForward(<%=m.getIdClientFrom()%>)">&nbsp;&nbsp;<label class="label3" onmouseover="this.style.cursor='pointer';" onmouseout="this.style.cursor='default';" onclick="doForward(<%=m.getIdClientFrom()%>)"><%=msgClientFrom.getName() %></label></div><label class="label3" style="font-weight: normal;">&nbsp;says:</label>
 				<%if(idTo==-1 || idTo==personal.getId()){ %>
 					<div onmouseover="this.style.backgroundColor='#D8DFEA';this.style.cursor='pointer';" onmouseout="this.style.backgroundColor='White';this.style.cursor='default';"onclick="deleteMessage(<%=m.getId()%>)" style="float: right;"><label class="label2" onmouseover="this.style.cursor='pointer';" onmouseout=";this.style.cursor='default'" >Delete</label></div>
 				<%}%>

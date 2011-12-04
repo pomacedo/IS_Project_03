@@ -72,13 +72,15 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
 	@Override
 	public List<Client> getVariousClientInfo(List<Integer> ids)
 	{
+		System.out.println("CUUUUUUUUUUUUUUUUUUUUUUU ENTREI "+ids.get(0));
 		List<Client> res = new ArrayList<Client>();
 		for(int i: ids)
 		{
 			res.add(getClientInfo(i));
 		}
+		System.out.println("SESSIONBEAN : func getVariousClientInfo returned : "+res);
 		return res;
-	}
+	} 
 	
 	@Override
 	public Client getClientInfo(int id) {

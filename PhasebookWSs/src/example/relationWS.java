@@ -26,6 +26,8 @@ public class relationWS {
 	@WebMethod	
 	public List<Relation> getPendingRelations(@WebParam(name = "id") int id,@WebParam(name = "password") String password)
 	{
+		System.out.println("STARTED GETPENDING RELATIONS - RETURN LIST OF RELATIONS");
+		System.out.println("CONTENTENT :   "+relBeanRem.getNewRequests(id,password));
 		return relBeanRem.getNewRequests(id,password);		
 	}
  

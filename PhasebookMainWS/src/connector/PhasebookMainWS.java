@@ -328,7 +328,7 @@ public class PhasebookMainWS {
 		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
 
 		Message esbMessage = MessageFactory.getInstance().getMessage();
-		System.out.println("GETING FRIENDS ON MAIN WS");
+		System.out.println("GETING FRIENDS ON MAIN WS---------------------");
 //		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
 		HashMap requestMap = new HashMap();
 		requestMap.put("id",id);
@@ -346,9 +346,10 @@ public class PhasebookMainWS {
 			List<Integer> response = (List<Integer>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
 			if(response.size()==0 || response==null)
 				return null;
-			System.out.println("\n GET_FRIENDS_RELATIONS response is: "+response);
+			System.out.println("\n --------------------GET_FRIENDS_RELATIONS response is: "+response.get(0));
+			System.out.println("\n --------------------GET_FRIENDS_RELATIONS response is: "+response.size());
 			HashMap requestMap2 = new HashMap();
-			requestMap.put("ids",response);
+			requestMap2.put("ids",response);
 			esbMessage.getBody().add(requestMap2);
 		
 			si = new ServiceInvoker("Client", "getFriendsInfo");
@@ -359,7 +360,7 @@ public class PhasebookMainWS {
 			System.out.println("MAIN WS - Pedido de GETFRIENDS enviado\n");
 			List<Client> response2 = (List<Client>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
 			
-			 System.out.println("\n GETFRIENDSINFO response is: "+response2);
+			System.out.println("\n ----------------------GETFRIENDSINFO response is: "+response2);
 			 
 			
 			return response2;

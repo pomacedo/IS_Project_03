@@ -55,8 +55,25 @@ public class responseHandler extends AbstractActionLifecycle
 		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
 		 
 		 System.out.println("getfriendsinfo to be handled:"+responseMsg.toString());
+		 List<Client> res = new ArrayList<Client>();
 		 Iterator i = responseMsg.keySet().iterator();
-		 List<Client> res = (List<Client>)responseMsg.get(i.next()); 
+		 String email="",name="",password="";
+		 int id=0,idPhoto=-1;
+		 while(i.hasNext())
+		 {
+			 System.out.println("-->"+i.next());
+//			 email =(String) responseMsg.get(i.next());		 
+//			 char gender = (char) Integer.parseInt((String) responseMsg.get(i.next()));
+//			 id = Integer.parseInt((String) responseMsg.get(i.next()));
+//			 idPhoto = Integer.parseInt((String) responseMsg.get(i.next()));
+//			 double money = Double.parseDouble((String) responseMsg.get(i.next()));
+//			 name = (String) responseMsg.get(i.next());
+//			 password = (String) responseMsg.get(i.next());
+//			 Client c = new Client(name, password, email, money, gender);
+//			 c.setId(id);
+//			 c.setId_photo(idPhoto);
+//			 res.add(c);
+		 }
 		 message.getBody().add(res);
 		 System.out.println("RESPONSE HANDLER - GET FIRENDS INFO ENDED");
 		 

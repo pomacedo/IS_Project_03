@@ -21,11 +21,7 @@
 		if(request.getParameter("id")!=null){
 			try{
 				client=ws.getClientInfo(Integer.parseInt(request.getParameter("id")));
-				personal.setEmail(client.getEmail());
-				personal.setId(client.getId());
-				personal.setPassword(client.getPassword());
-				personal.setName(client.getName());
-				personal.setIdPhoto(client.getIdPhoto());	
+				
 			}catch(NumberFormatException e){
 				
 				client=ws.getClientInfo(personal.getId());

@@ -126,7 +126,7 @@ public class RelationBean implements RelationBeanRemote {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		List<Relation> list=(List<Relation>)em.createQuery("SELECT r FROM Relation r WHERE (r.id_client_from LIKE ?1 or r.id_client_to LIKE ?2) and (r.status like 'P')").setParameter(1, id).setParameter(2, id).getResultList();
-		
+		System.out.println("getNewRequests BEAN : "+list);
 //		Client c1 = em.find(Client.class, id);
 //		if(!c1.getPassword().equals(password))
 //			return null;

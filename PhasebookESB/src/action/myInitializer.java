@@ -136,13 +136,16 @@ public class myInitializer extends AbstractActionLifecycle
 		 System.out.println("ESB - INIT GET FRIENDS INFO");
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
 		 
-	     List<Integer> ids = (List<Integer>) requestMsg.get("ids");	     
-	     
+	     List<Integer> ids = (List<Integer>) requestMsg.get("ids");	
+	     List<String> newIDS = new ArrayList<String>();
+	     for(int i:ids)
+	    	 newIDS.add(""+i);
+	     System.out.println(ids.get(0));
 	     Map send = new HashMap();
-	     send.put("getFriendsInfo.ids", ids);
+	     send.put("getFriendsInfo.ids", (ArrayList<String>)newIDS);
 	     
 	     message.getBody().add(send);
-	     System.out.println("ESB INIT - GET FRIENDS INFO ENDEED");
+	     System.out.println("ESB INIT - GET FRIENDS INFO ENDEED ..... "+((List<Integer>)send.get("getFriendsInfo.ids")).get(0));
 		return message;
 	}
 	

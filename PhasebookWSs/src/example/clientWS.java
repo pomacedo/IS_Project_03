@@ -37,10 +37,10 @@ public class clientWS {
 	@WebMethod	
 	public List<Client> getSearch(@WebParam(name = "searchFor") String searchFor)
 	{
-		System.out.println("WEBSERVICE GETSEARCH!!!!!!!!!!!!!#"+searchFor+"#!!!!!!!!");
+		
 		if((searchFor == null) || searchFor.equals("."))
 			searchFor="";
-		System.out.println("WEBSERVICE GETSEARCH!!!!!!!!!!!!!#"+searchFor+"#!!!!!!!!");
+		
 		return user.getSearch(searchFor);		
 	}
 	
@@ -52,16 +52,22 @@ public class clientWS {
 	
 	@WebMethod	
 	public boolean editProfile(@WebParam(name = "id") int id, @WebParam(name = "password")String password,@WebParam(name = "name") String name,@WebParam(name = "email")String email,@WebParam(name = "newPassword")String newPassword,@WebParam(name = "gender") String gender,@WebParam(name = "money") float money)
-	{
-			
+	{			
 		//System.out.println("WEB SERV EDIT "+user.editProfile(id, password, name, email, newPassword, gender, money));
 		return user.editProfile(id,password,name,email,newPassword,gender.charAt(0), money);		
 	}
 	
 	@WebMethod	
-	public List<Client> getFriendsInfo(@WebParam(name = "ids") List<Integer> ids)
+	public List<Client> getFriendsInfo(@WebParam(name = "ids") ArrayList<String> ids)
 	{
-		return user.getVariousClientInfo(ids);		
+		System.out.println("WEB SERV: "+ids.size());
+		List<Integer> toGo=new ArrayList<Integer>();
+		for(String i: ids)
+		{
+			System.out.println(i);
+			toGo.add(Integer.parseInt(i));
+		}
+		return user.getVariousClientInfo(toGo);		
 	}
 	
 }

@@ -22,7 +22,7 @@ public class BetBean implements BetBeanRemote {
 
     /**
      * Default constructor. 
-     */
+     */ 
     public BetBean() {
         // TODO Auto-generated constructor stub
     }

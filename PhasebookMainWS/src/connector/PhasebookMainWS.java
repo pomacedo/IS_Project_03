@@ -323,5 +323,147 @@ public class PhasebookMainWS {
 		return false;		
 		
 	}
+	@WebMethod
+	public List<Client> getFriends(int id){
+		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
+
+		Message esbMessage = MessageFactory.getInstance().getMessage();
+		System.out.println("GETING FRIENDS ON MAIN WS");
+//		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
+		HashMap requestMap = new HashMap();
+		requestMap.put("id",id);
+		esbMessage.getBody().add(requestMap);
+		
+		Message retMessage = null;
+
+		ServiceInvoker si;
+		try {
+			
+			si = new ServiceInvoker("Relation", "getRelations");
+			retMessage = si.deliverSync(esbMessage, 10000L);
+			
+			System.out.println("MAIN WS - Pedido de GETRELATIONS enviado\n");
+			List<Integer> response = (List<Integer>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+			
+			
+			
+			System.out.println("\n GET_FRIENDS_RELATIONS response is: "+response);
+			HashMap requestMap2 = new HashMap();
+			requestMap.put("ids",response);
+			esbMessage.getBody().add(requestMap2);
+		
+			si = new ServiceInvoker("Client", "getFriendsInfo");
+			retMessage = si.deliverSync(esbMessage, 10000L);
+			
+			
+			
+			System.out.println("MAIN WS - Pedido de GETFRIENDS enviado\n");
+			List<Client> response2 = (List<Client>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+			
+			 System.out.println("\n GETFRIENDSINFO response is: "+response2);
+			 
+			
+			return response2;
+		} catch (MessageDeliverException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FaultMessageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RegistryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;		
+		
+	}
+	
+	@WebMethod
+	public List<Relation> getNewRequests(int id, String password){
+		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
+
+		Message esbMessage = MessageFactory.getInstance().getMessage();
+		System.out.println("getNewRequests ON MAIN WS");
+//		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
+		HashMap requestMap = new HashMap();
+		requestMap.put("id",id);
+		requestMap.put("password",password);
+		
+		esbMessage.getBody().add(requestMap);
+		
+		Message retMessage = null;
+
+		ServiceInvoker si;
+		try {
+			
+			si = new ServiceInvoker("Relation", "getPendingRelations");
+			retMessage = si.deliverSync(esbMessage, 10000L);
+			
+			System.out.println("MAIN WS - Pedido de getNewRequests enviado\n");
+			List<Relation> response = (List<Relation>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+			
+			
+			
+			System.out.println("\n GET_FRIENDS_RELATIONS response is: "+response);
+			
+			
+			
+			
+			return response;
+		} catch (MessageDeliverException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FaultMessageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RegistryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;		
+		
+	}
+	
+	@WebMethod
+	public List<Client> getSearch(String searchFor){
+		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
+
+		Message esbMessage = MessageFactory.getInstance().getMessage();
+		System.out.println("getSearch ON MAIN WS");
+//		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
+		HashMap requestMap = new HashMap();
+		requestMap.put("searchFor",searchFor);
+		
+		
+		esbMessage.getBody().add(requestMap);
+		
+		Message retMessage = null;
+
+		ServiceInvoker si;
+		try {
+			
+			si = new ServiceInvoker("Client", "searchFor");
+			retMessage = si.deliverSync(esbMessage, 10000L);
+			
+			System.out.println("MAIN WS - Pedido de getSearch enviado\n");
+			List<Client> response = (List<Client>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+			
+			System.out.println("\n getSearch response is: "+response);
+							 
+			
+			return response;
+		} catch (MessageDeliverException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FaultMessageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RegistryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;		
+		
+	}
 	
 }

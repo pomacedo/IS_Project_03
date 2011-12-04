@@ -15,6 +15,6 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/commons-fileupload-1.2.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/commons-io-2.1.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/PhasebookServerESB"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/PhasebookServerESB"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

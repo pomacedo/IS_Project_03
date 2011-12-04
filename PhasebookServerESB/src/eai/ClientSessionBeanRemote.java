@@ -17,4 +17,5 @@ public interface ClientSessionBeanRemote {
 	public boolean editProfile(int id,String password,String name,String email,String newPassword,char gender, float money);
 	public boolean betWon(int id);
 	public boolean setProfilePhoto(int id,String password,int idPhoto);
+	public List<Client> getVariousClientInfo(List<Integer> ids);
 } 

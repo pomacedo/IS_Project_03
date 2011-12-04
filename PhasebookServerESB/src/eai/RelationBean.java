@@ -126,6 +126,7 @@ public class RelationBean implements RelationBeanRemote {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		List<Relation> list=(List<Relation>)em.createQuery("SELECT r FROM Relation r WHERE (r.id_client_from LIKE ?1 or r.id_client_to LIKE ?2) and (r.status like 'P')").setParameter(1, id).setParameter(2, id).getResultList();
+		
 //		Client c1 = em.find(Client.class, id);
 //		if(!c1.getPassword().equals(password))
 //			return null;
@@ -138,6 +139,8 @@ public class RelationBean implements RelationBeanRemote {
 //			if(r.getStatus() == 'P')
 //				toGo.add(r);
 //		}		
+		
+		
 		return list;
 	}
 	
@@ -267,7 +270,7 @@ public class RelationBean implements RelationBeanRemote {
 	}
 	
 	@Override
-	public List<Client> getFriends(int id) {
+	public List<Integer> getFriends(int id) {
 		
 		
 		//TODO esta tambem precisa de reevisao
@@ -275,7 +278,7 @@ public class RelationBean implements RelationBeanRemote {
 		EntityManager em = emf.createEntityManager();
 		
 //		Client c1 = em.find(Client.class,id);
-		List<Client> result= new ArrayList<Client>();
+		List<Integer> result= new ArrayList<Integer>();
 		
 //		for(Relation r:c1.getRelationFrom())// percorre as relacoes pedidas por o cliente x
 //		{
@@ -290,9 +293,13 @@ public class RelationBean implements RelationBeanRemote {
 		
 		List<Relation> list=(List<Relation>)em.createQuery("SELECT r FROM Relation r WHERE (r.id_client_from LIKE ?1 or r.id_client_to LIKE ?2) and (r.status like 'A')").setParameter(1, id).setParameter(2, id).getResultList();
 		for(Relation r:list)
-		result.add(em.find(Client.class, r.getId_client_from()==id?r.getId_client_to():r.getId_client_from()));
-		
-		
+		{
+		//result.add(em.find(Client.class, r.getId_client_from()==id?r.getId_client_to():r.getId_client_from()));
+			if(r.getId_client_from()!=id)
+				result.add(r.getId_client_from());
+			else
+				result.add(r.getId_client_to());
+		}
 		if(result.size()==0)
 			return null;
 		

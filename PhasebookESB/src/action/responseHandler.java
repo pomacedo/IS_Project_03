@@ -31,12 +31,43 @@ public class responseHandler extends AbstractActionLifecycle
 	 public responseHandler(ConfigTree config) {
 	  _config = config;
 	 }
-		 
-	 public Message checkLogInRsp(Message message) throws MessageDeliverException
+	 public Message getRelations(Message message) throws MessageDeliverException
 	 {
+		 System.out.println("RESPONSE HANDLER - GET RELATIONS");
+		 Map responseMsg = null;
+		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);		 
+		 System.out.println(responseMsg.toString());
+		 List<Integer> ids = new ArrayList<Integer>();
+		 Iterator i = responseMsg.keySet().iterator();
+		 while(i.hasNext())
+			 ids.add(Integer.parseInt((String)responseMsg.get(i.next())));
+		
+		 message.getBody().add(ids);
+		 System.out.println("RESPONSE HANDLER - GET RELATIONS ENDED");
+		 return message;
+	 }
+	 
+	 public Message getFriendsInfo(Message message) throws MessageDeliverException
+	 {
+		 System.out.println("RESPONSE HANDLER - GET FRIENDS INFO");
 		 Map responseMsg = null;
 		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
-		 System.out.println("RESPONSE HANDLER"+responseMsg.toString());
+		 
+		 System.out.println("getfriendsinfo to be handled:"+responseMsg.toString());
+		 Iterator i = responseMsg.keySet().iterator();
+		 List<Client> res = (List<Client>)responseMsg.get(i.next()); 
+		 message.getBody().add(res);
+		 System.out.println("RESPONSE HANDLER - GET FIRENDS INFO ENDED");
+		 
+		 return message;
+	 }
+	 public Message checkLogInRsp(Message message) throws MessageDeliverException
+	 {
+		 System.out.println("RESPONSE HANDLER - CHECK LOGIN");
+		 Map responseMsg = null;
+		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
+		 
+		 System.out.println(responseMsg.toString());
 		 String email="",name="",password="";
 		 int id=0,photo=-1;
 		 Iterator i = responseMsg.keySet().iterator();
@@ -48,17 +79,17 @@ public class responseHandler extends AbstractActionLifecycle
 		 
 		 ClientInfo temp = new ClientInfo(email,id,password,name,photo);
 		 
-		 //System.out.println("\nGGGGGG "+temp.getEmail()+",,"+temp.getName()+",,"+id+",,"+password+",,");
-		 message.getBody().add(temp);
 		 
+		 message.getBody().add(temp);
+		 System.out.println("ESB RESPONSE HANDLER - CHECK LOG IN ENDED");
 		 return message;
 	 }
 	 public Message getPosts(Message message) throws MessageDeliverException
 	 {
 		 Map responseMsg = null;
-		 System.out.println("ESB RESNPONSE HANDLER");
+		 System.out.println("ESB RESNPONSE HANDLER - GET POSTS");
 		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
-		 System.out.println("ESB RESPONSE HANDLER"+responseMsg.toString());
+		 System.out.println(responseMsg.toString());
 		 Iterator i = responseMsg.keySet().iterator();
 		 List<data.Message> result = new ArrayList<data.Message>();
 		 while(i.hasNext())
@@ -80,20 +111,21 @@ public class responseHandler extends AbstractActionLifecycle
 				cur.setMsg_date(d);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
-				System.out.println("falhou : ");
+				System.out.println("falhou PARSE DA DATA: ");
 				
 			}			 		 
 			cur.setText((String) responseMsg.get(i.next()));		 
 			 
 			 result.add(cur);
 		 }
+		 System.out.println("ESB RESPONSE HANDLER - GET POSTS ENDED");
 		 message.getBody().add(result);
 		 return message;
 	 }
 	 public Message addPhoto(Message message) throws MessageDeliverException
 	 {
 		 Map responseMsg = null;
-		 System.out.println("ESB HANDLE addPhoto");
+		 System.out.println("ESB HANDLE add Photo");
 		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
 		 System.out.println("Map= "+responseMsg.toString());
 		 int id=-1;
@@ -140,7 +172,20 @@ public class responseHandler extends AbstractActionLifecycle
 		 
 		 System.out.println("cenas"+res);
 		 message.getBody().add(res);
+		 System.out.println("ESB RESPONSE HANDLER- EDIT PROFILE ENDED");
 		 return message;
+	 }
+	 
+	 public Message getPendingRelations(Message message) throws MessageDeliverException
+	 {
+		 System.out.println("ESB - RESPONSEHANDLER GET PENDING RELATIONS");
+		 Map responseMsg = null;
+		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
+		 System.out.println("TO HANDLE: "+responseMsg.toString());
+		 
+		 
+		 System.out.println("ESB - RESPONSEHANDLER GET PENDING RELATIONS ENDED");
+		return message; 
 	 }
 //	 public Message getSearch(Message message) throws MessageDeliverException
 //	 {

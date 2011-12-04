@@ -25,9 +25,19 @@
    <jms-bus busid="sendMessageRequest">
     <jms-message-filter dest-name="queue/sendMessage_request" dest-type="QUEUE"/>
    </jms-bus>
+   <jms-bus busid="getRelationsRequest">
+    <jms-message-filter dest-name="queue/getRelations_request" dest-type="QUEUE"/>
+   </jms-bus>
+   <jms-bus busid="getFriendsInfoRequest">
+    <jms-message-filter dest-name="queue/getFriendsInfo_request" dest-type="QUEUE"/>
+   </jms-bus>
+   <jms-bus busid="getPendingRelationsRequest">
+    <jms-message-filter dest-name="queue/getPendingRelations_request" dest-type="QUEUE"/>
+   </jms-bus>
   </jms-provider>
  </providers>
  <services>
+ <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Client Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <service category="Client"
    description="Authentication Login Description" name="checkLogIn">
    <listeners>
@@ -72,6 +82,53 @@
     <action class="action.responseHandler" name="handleeditresponse" process="editProfile"/>
    </actions>
   </service>
+  
+  <service category="Client" description="edit the profile of the user" name="getFriendsInfo">
+   <listeners>
+    <jms-listener busidref="getFriendsInfoRequest" name="ESB-Listener"/>
+   </listeners>
+   <actions>
+    <action class="action.myInitializer" name="init_getFrindsInfo" process="getFriendsInfo"/>
+    <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="soapui-client-action">
+     <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl"/>
+     <property name="SOAPAction" value="getFriendsInfo"/>
+     <property name="responseAsOgnlMap" value="true"/>
+    </action>
+    <action class="action.responseHandler" name="handleFriendsInfo" process="getFriendsInfo"/>
+   </actions>
+  </service>
+  <service category="Client" description="get information of an client" name="getClientInfo">
+   <listeners>
+    <jms-listener busidref="getClientInfoRequest" name="ESB-Listener"/>
+   </listeners>
+   <actions>
+    <action class="action.myInitializer" name="init_getSearch" process="getClientInfo"/>
+    <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="soapui-client-action">
+     <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl"/>
+     <property name="SOAPAction" value="getClientInfo"/>
+     <property name="responseAsOgnlMap" value="true"/>
+    </action>
+    <action class="action.responseHandler"
+     name="handlergetclientinforesponse" process="getClientInfo"/>
+   </actions>
+  </service>
+  <!--    <service category="Client" description="search users"  
+    name="getSearch"> 
+ 	 <listeners> 
+ 	    <jms-listener busidref="getSearchRequest" name="ESB-Listener"/> 
+ 	 </listeners> 
+ 	 <actions> 
+ 	   <action name = "init_getSearch" class="action.myInitializer" process="getSearch"/> 
+ 	   <action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">	  
+ 		    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl" />   
+ 		    <property name="SOAPAction" value="getSearch"/> 
+ 		    <property name="responseAsOgnlMap" value="true" />       
+     	</action>  
+ 	 </actions> 
+    </service> -->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Client Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Message Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <service category="Message" description="get posts" name="getPosts">
    <listeners>
     <jms-listener busidref="getPostsRequest" name="ESB-Listener"/>
@@ -99,6 +156,8 @@
     </action>
    </actions>
   </service>
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Message Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Photo Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <service category="Photo" description="add new photo" name="addPhoto">
    <listeners>
     <jms-listener busidref="sendMessageRequest" name="ESB-Listener"/>
@@ -113,35 +172,41 @@
     <action class="action.responseHandler" name="handleAddPhotoRsp" process="addPhoto"/>
    </actions>
   </service>
-  <!--    <service category="Client" description="search users"  
-    name="getSearch"> 
- 	 <listeners> 
- 	    <jms-listener busidref="getSearchRequest" name="ESB-Listener"/> 
- 	 </listeners> 
- 	 <actions> 
- 	   <action name = "init_getSearch" class="action.myInitializer" process="getSearch"/> 
- 	   <action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">	  
- 		    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl" />   
- 		    <property name="SOAPAction" value="getSearch"/> 
- 		    <property name="responseAsOgnlMap" value="true" />       
-     	</action>  
- 	 </actions> 
-    </service> -->
-  <service category="Client" description="get information of an client" name="getClientInfo">
+  
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Photo Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Relation Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+  <service category="Relation" description="get information of an client" name="getRelations">
    <listeners>
-    <jms-listener busidref="getClientInfoRequest" name="ESB-Listener"/>
+    <jms-listener busidref="getRelationsRequest" name="ESB-Listener"/>
    </listeners>
    <actions>
-    <action class="action.myInitializer" name="init_getSearch" process="getClientInfo"/>
+    <action class="action.myInitializer" name="init_relationsSearch" process="getRelations"/>
     <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="soapui-client-action">
-     <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl"/>
-     <property name="SOAPAction" value="getClientInfo"/>
+     <property name="wsdl" value="http://localhost:8080/PhasebookWSs/relationWS?wsdl"/>
+     <property name="SOAPAction" value="getRelations"/>
      <property name="responseAsOgnlMap" value="true"/>
     </action>
     <action class="action.responseHandler"
-     name="handlergetclientinforesponse" process="getClientInfo"/>
+     name="handlergetclientinforesponse" process="getRelations"/>
    </actions>
   </service>
   
+  <service category="Relation" description="get information of an client" name="getPendingRelations">
+   <listeners>
+    <jms-listener busidref="getPendingRelationsRequest" name="ESB-Listener"/>
+   </listeners>
+   <actions>
+    <action class="action.myInitializer" name="init_getPendingRels" process="getPendingRelations"/>
+    <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="soapui-client-action">
+     <property name="wsdl" value="http://localhost:8080/PhasebookWSs/relationWS?wsdl"/>
+     <property name="SOAPAction" value="getPendingRelations"/>
+     <property name="responseAsOgnlMap" value="true"/>
+    </action>
+    <action class="action.responseHandler"
+     name="handlergetpendingrelations" process="getPendingRelations"/>
+   </actions>
+  </service>
+  
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Relation Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
  </services>
 </jbossesb>

@@ -70,6 +70,17 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
 	}
 
 	@Override
+	public List<Client> getVariousClientInfo(List<Integer> ids)
+	{
+		List<Client> res = new ArrayList<Client>();
+		for(int i: ids)
+		{
+			res.add(getClientInfo(i));
+		}
+		return res;
+	}
+	
+	@Override
 	public Client getClientInfo(int id) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();

@@ -28,7 +28,7 @@ public class clientWS {
 	@WebMethod	
 	public int createUser(@WebParam(name = "name") String name,@WebParam(name = "password") String password,@WebParam(name = "gender") String gender,@WebParam(name = "email") String email)
 	{
-		//char g = gender.charAt(0);
+
 		System.out.println("WebService : "+name+" "+password+"GENDER="+gender+"=");
 		char g = gender.charAt(0);
 		return user.addClient(name,password,g,email);		
@@ -54,5 +54,10 @@ public class clientWS {
 		return user.editProfile(id,password,name,email,newPassword,gender.charAt(0), money);		
 	}
 	
+	@WebMethod	
+	public List<Client> getFriendsInfo(@WebParam(name = "ids") List<Integer> ids)
+	{
+		return user.getVariousClientInfo(ids);		
+	}
 	
 }

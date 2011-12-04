@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import data.Client;
@@ -15,6 +16,18 @@ import eai.RelationBeanRemote;
 public class relationWS {
 	@EJB(mappedName = "RelationBean/remote")
 	RelationBeanRemote relBeanRem;
+	
+	
+	@WebMethod	
+	public List<Integer> getRelations(@WebParam(name = "id") int id)
+	{
+		return relBeanRem.getFriends(id);		
+	}
+	@WebMethod	
+	public List<Relation> getPendingRelations(@WebParam(name = "id") int id,@WebParam(name = "password") String password)
+	{
+		return relBeanRem.getNewRequests(id,password);		
+	}
 	
 //	@WebMethod
 //	public boolean addFriend(String idFrom,String password, String idTo){

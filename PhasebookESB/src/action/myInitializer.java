@@ -65,6 +65,7 @@ public class myInitializer extends AbstractActionLifecycle
 	     
 		 return message;
 	}
+	 
 	public Message checkLogIn(Message message) throws MessageDeliverException
 	{
 		 System.out.println("ESB - INIT LOGIN");
@@ -126,10 +127,39 @@ public class myInitializer extends AbstractActionLifecycle
 	     send.put("getClientInfo.id", id);
 	     
 	     message.getBody().add(send);
-	     
+	     System.out.println("ESB INIT - GET CLIENT INFO ENDEED");
 		return message;
 	}
 	
+	public Message getFriendsInfo(Message message) throws MessageDeliverException
+	{
+		 System.out.println("ESB - INIT GET FRIENDS INFO");
+		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
+		 
+	     List<Integer> ids = (List<Integer>) requestMsg.get("ids");	     
+	     
+	     Map send = new HashMap();
+	     send.put("getFriendsInfo.ids", ids);
+	     
+	     message.getBody().add(send);
+	     System.out.println("ESB INIT - GET FRIENDS INFO ENDEED");
+		return message;
+	}
+	
+	public Message getRelations(Message message) throws MessageDeliverException
+	{
+		 System.out.println("ESB - INIT GET RELATIONS");
+		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
+		 
+	     int id = (Integer) requestMsg.get("id");	     
+	     
+	     Map send = new HashMap();
+	     send.put("getRelations.id", id);
+	     
+	     message.getBody().add(send);
+	     System.out.println("ESB INIT - GET RELATIONS ENDEED");
+		return message;
+	}
 	
 	public Message editProfile(Message message) throws MessageDeliverException
 	{
@@ -139,14 +169,10 @@ public class myInitializer extends AbstractActionLifecycle
 	     String email = (String)requestMsg.get("email");
 	     String password = (String)requestMsg.get("password");
 	     String name = (String)requestMsg.get("name");
-	     String gender =  (String) requestMsg.get("gender");
-	     
-	     String newPassword=(String) requestMsg.get("newPassword");
-	     System.out.println("1");
-	     int id = (Integer) requestMsg.get("id");
-	     System.out.println("2");
-	     float money = (Float)requestMsg.get("money");
-	     System.out.println("3");
+	     String gender =  (String) requestMsg.get("gender");	     
+	     String newPassword=(String) requestMsg.get("newPassword");	     
+	     int id = (Integer) requestMsg.get("id");	     
+	     float money = (Float)requestMsg.get("money");	     
 	     
 	     Map send = new HashMap();
 	     send.put("editProfile.email", email);
@@ -157,7 +183,7 @@ public class myInitializer extends AbstractActionLifecycle
 	     send.put("editProfile.newPassword", newPassword);
 	     send.put("editProfile.money",money);
 	     message.getBody().add(send);
-	     System.out.println("VOU SAIR DO INIT PESDRIGAAAAAAAAAAAAAAO");
+	     System.out.println("VOU SAIR DO INIT EDIT PROFILE");
 		return message;
 	}
 	public Message sendMessage(Message message) throws MessageDeliverException
@@ -165,8 +191,7 @@ public class myInitializer extends AbstractActionLifecycle
 		System.out.println("ESB - INIT SEND MESSAGE");
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
 		 System.out.println("");System.out.println("INIT SEND MESSAGE\nMAP: "+requestMsg.toString()); 
-		 int idFrom = (Integer)requestMsg.get("idFrom");
-		 
+		 int idFrom = (Integer)requestMsg.get("idFrom");		 
 		 String password = (String) requestMsg.get("password");		 
 	     String text = (String)requestMsg.get("message");	     
 	     int idTo = (Integer)requestMsg.get("idTo");	     
@@ -191,15 +216,27 @@ public class myInitializer extends AbstractActionLifecycle
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
 		 
 	     String path = (String)requestMsg.get("path");	     
-	     System.out.println("INIT ADD PHOTO photo path: "+path);
+	     
 	     Map send = new HashMap();
 	     send.put("addPhoto.photoPath", path);
 	     
 	     message.getBody().add(send);
-	     
+	     System.out.println("INIT ADD PHOTO ENDED");
 		return message;
 	}
 	
+	public Message getPendingRelations(Message message) throws MessageDeliverException
+	{
+		 System.out.println("INIT GET PENDING RELATIONS");
+		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
+		 String password = (String) requestMsg.get("password");		 
+	     int id = (Integer) requestMsg.get("id");	
+	     Map send = new HashMap();
+	     send.put("getPendingRelations.id",id);
+	     send.put("getPendingRelations.password",password);
+		 System.out.println("INIT GET PENDING RELATIONS ENDED");
+		 return message;
+	}
 	
 // public Message visit(Message message) throws MessageDeliverException {
 //  System.out.println("\nCUCUCU");

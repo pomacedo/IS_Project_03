@@ -246,7 +246,7 @@ public class responseHandler extends AbstractActionLifecycle
 		 System.out.println("ESB - RESPONSEHANDLER GET PENDING RELATIONS");
 		 Map responseMsg = null;
 		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
-		 System.out.println("TO HANDLE: "+responseMsg.toString());
+		 System.out.println("----------TO HANDLE: "+responseMsg.toString());
 		 List<Relation> res = new ArrayList<Relation>();
 		 Iterator i = responseMsg.keySet().iterator();
 		 while(i.hasNext())
@@ -265,32 +265,4 @@ public class responseHandler extends AbstractActionLifecycle
 		return message; 
 	 }
 	 
-//	 public Message getSearch(Message message) throws MessageDeliverException
-//	 {
-//		 Map responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
-//		 System.out.println("ResponseHandler map: "+responseMsg.toString());
-//		 System.out.println("");
-//		 Iterator i = responseMsg.keySet().iterator();
-//		 while (i.hasNext())
-//		 {
-//			 Client temp = new Client();
-//			 
-//			 String email =(String) responseMsg.get(i.next());
-//			 int id = Integer.parseInt((String) responseMsg.get(i.next()));
-//			 String name = (String) responseMsg.get(i.next());
-//			 String password = (String) responseMsg.get(i.next());
-//			 String photo = (String) responseMsg.get(i.next());
-//			 temp.setEmail(email);
-//			 temp.setId(id);
-//			 temp.setName(name);
-//			 temp.setPassword(password);
-//			 //to be continued
-//		 }
-//		 
-//		 
-////		 System.out.println("\nGGGGGG "+temp.getEmail()+",,"+temp.getName()+",,"+id+",,"+password+",,"+photo);
-////		 message.getBody().add(temp);
-//		 
-//		 return message;
-//	 }
 }

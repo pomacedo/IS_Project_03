@@ -72,7 +72,6 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
 	@Override
 	public List<Client> getVariousClientInfo(List<Integer> ids)
 	{
-		System.out.println("CUUUUUUUUUUUUUUUUUUUUUUU ENTREI "+ids.get(0));
 		List<Client> res = new ArrayList<Client>();
 		for(int i: ids)
 		{
@@ -93,7 +92,7 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
 
 	@Override
 	public List<Client> getSearch(String searchfor) {
-		System.out.println("ESTOU NO BEAN "+searchfor);
+		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		List<Client> list=(List<Client>)em.createQuery("SELECT c FROM Client c where c.name LIKE '"+"%"+searchfor+"%'").getResultList();

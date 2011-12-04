@@ -24,5 +24,4 @@
  <jmsQueue>getFriendsInfo_request_reply</jmsQueue>
  <jmsQueue>getPendingRelations_request</jmsQueue>
  <jmsQueue>getPendingRelations_request_reply</jmsQueue>
-
 </jbossesb-deployment>

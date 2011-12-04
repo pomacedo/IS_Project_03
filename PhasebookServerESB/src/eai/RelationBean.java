@@ -70,6 +70,8 @@ public class RelationBean implements RelationBeanRemote {
 		return true;
 	}
 	
+	
+	
 	@Override
 	public boolean checkIfIsFriend(int id, String password,List<Relation> relList, int idFriend) 
 	{
@@ -86,6 +88,8 @@ public class RelationBean implements RelationBeanRemote {
 		}
 		return isFriend;
 	}
+	
+	
 	
 	@Override
 	public boolean checkIfIsApprovedFriend(int id, String password,List<Relation> relList, int idFriend) {
@@ -120,13 +124,14 @@ public class RelationBean implements RelationBeanRemote {
 		return list.size();
 	}
 	
-	
+
 	@Override
 	public List<Relation> getNewRequests(int id, String password) {
+		System.out.println("getting "+id+"|"+password);
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
-		List<Relation> list=(List<Relation>)em.createQuery("SELECT r FROM Relation r WHERE (r.id_client_from LIKE ?1 or r.id_client_to LIKE ?2) and (r.status like 'P')").setParameter(1, id).setParameter(2, id).getResultList();
-		System.out.println("getNewRequests BEAN : "+list);
+		List<Relation> list=(List<Relation>)em.createQuery("SELECT r FROM Relation r WHERE ( r.id_client_to LIKE ?1) and (r.status like 'P')").setParameter(1, id).getResultList();
+		System.out.println("GETNEWREQUEST BEAN : "+list);
 //		Client c1 = em.find(Client.class, id);
 //		if(!c1.getPassword().equals(password))
 //			return null;

@@ -187,10 +187,10 @@
      <property name="SOAPAction" value="getRelations"/>
      <property name="responseAsOgnlMap" value="true"/>
     </action>
-    <action class="action.responseHandler"
-     name="handlergetclientinforesponse" process="getRelations"/>
+    <action class="action.responseHandler" name="handlergetrelationsresponse" process="getRelations"/>
    </actions>
   </service>
+  
   <service category="Relation"
    description="get information of an client" name="getPendingRelations">
    <listeners>
@@ -200,7 +200,7 @@
     <action class="action.myInitializer" name="init_getPendingRels" process="getPendingRelations"/>
     <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="soapui-client-action">
      <property name="wsdl" value="http://localhost:8080/PhasebookWSs/relationWS?wsdl"/>
-     <property name="SOAPAction" value="getPendingRelations"/>
+     <property name="SOAPAction" value="teste"/>
      <property name="responseAsOgnlMap" value="true"/>
     </action>
     <action class="action.responseHandler"

@@ -386,7 +386,7 @@ public class PhasebookMainWS {
 		System.out.println("getNewRequests ON MAIN WS");
 //		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
 		HashMap requestMap = new HashMap();
-		requestMap.put("id",id);
+		requestMap.put("id",""+id);
 		requestMap.put("password",password);
 		
 		esbMessage.getBody().add(requestMap);
@@ -402,7 +402,7 @@ public class PhasebookMainWS {
 			System.out.println("MAIN WS - Pedido de getNewRequests enviado\n");
 			List<Relation> response = (List<Relation>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
 						
-			System.out.println("\n GET_FRIENDS_RELATIONS response is: "+response);
+			System.out.println("\n GET PENDING REQUEST response is: "+response);
 					
 			return response;
 		} catch (MessageDeliverException e) {

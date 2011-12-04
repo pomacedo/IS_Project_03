@@ -210,6 +210,7 @@ public class myInitializer extends AbstractActionLifecycle
 	     System.out.println("VOU SAIR DO INIT EDIT PROFILE");
 		return message;
 	}
+	
 	public Message sendMessage(Message message) throws MessageDeliverException
 	{
 		System.out.println("ESB - INIT SEND MESSAGE");
@@ -254,11 +255,11 @@ public class myInitializer extends AbstractActionLifecycle
 		 System.out.println("INIT GET PENDING RELATIONS");
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
 		 String password = (String) requestMsg.get("password");		 
-	     int id = (Integer) requestMsg.get("id");	
+	     String id = (String) requestMsg.get("id");	
 	     Map send = new HashMap();
-	     send.put("getPendingRelations.id",id);
-	     send.put("getPendingRelations.password",password);
-		 System.out.println("INIT GET PENDING RELATIONS ENDED");
+	     send.put("getNewFriendRequest.id",Integer.parseInt(id));
+	     send.put("getNewFriendRequest.password",password);
+		 System.out.println("INIT GET PENDING RELATIONS ENDED"+id+",,,"+password);
 		 return message;
 	}
 	

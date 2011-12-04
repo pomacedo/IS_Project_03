@@ -3,35 +3,35 @@ package example;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
-import javax.jws.WebService;
+import javax.jws.*;
 
-import data.Client;
 import data.Relation;
 
-import eai.RelationBeanRemote;
+import eai.*;
 
 @WebService(name = "relationws", targetNamespace = "http://PhasebookWSs/relationWS")
 public class relationWS {
 	@EJB(mappedName = "RelationBean/remote")
 	RelationBeanRemote relBeanRem;
 	
-	
 	@WebMethod	
 	public List<Integer> getRelations(@WebParam(name = "id") int id)
 	{
 		return relBeanRem.getFriends(id);		
 	}
-	@WebMethod	
-	public List<Relation> getPendingRelations(@WebParam(name = "id") int id,@WebParam(name = "password") String password)
+
+	@WebMethod
+	public List<Relation> getNewFriendRequest(@WebParam(name = "id") int id,@WebParam(name = "password") String password)
 	{
-		System.out.println("STARTED GETPENDING RELATIONS - RETURN LIST OF RELATIONS");
-		System.out.println("CONTENTENT :   "+relBeanRem.getNewRequests(id,password));
+		System.out.println("STARTED GETPENDING RELATIONS "+id+"|"+password);		
 		return relBeanRem.getNewRequests(id,password);		
 	}
- 
 	
+	@WebMethod Integer teste(@WebParam(name="id")int id, @WebParam(name="password")String pass)
+	{
+		System.out.println("cuucu WHOOOOOOOOOOOOOOAAAAAAAAAAAAAAAHHHHHHHHHH!!!"+id+" "+pass);
+		return 1000;
+	}
 	@WebMethod
 	public boolean addFriend(@WebParam(name = "id") int id,@WebParam(name = "password") String password,@WebParam(name = "idTo") int idTo){
 		return relBeanRem.addFriend( id, password, idTo);

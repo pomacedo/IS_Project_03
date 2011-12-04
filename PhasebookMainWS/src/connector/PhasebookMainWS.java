@@ -344,9 +344,8 @@ public class PhasebookMainWS {
 			
 			System.out.println("MAIN WS - Pedido de GETRELATIONS enviado\n");
 			List<Integer> response = (List<Integer>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
-			
-			
-			
+			if(response.size()==0 || response==null)
+				return null;
 			System.out.println("\n GET_FRIENDS_RELATIONS response is: "+response);
 			HashMap requestMap2 = new HashMap();
 			requestMap.put("ids",response);
@@ -401,14 +400,9 @@ public class PhasebookMainWS {
 			
 			System.out.println("MAIN WS - Pedido de getNewRequests enviado\n");
 			List<Relation> response = (List<Relation>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
-			
-			
-			
+						
 			System.out.println("\n GET_FRIENDS_RELATIONS response is: "+response);
-			
-			
-			
-			
+					
 			return response;
 		} catch (MessageDeliverException e) {
 			// TODO Auto-generated catch block
@@ -429,7 +423,9 @@ public class PhasebookMainWS {
 		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
 
 		Message esbMessage = MessageFactory.getInstance().getMessage();
-		System.out.println("getSearch ON MAIN WS");
+		System.out.println("getSearch ON MAIN WS ###"+searchFor+"###");
+		if(searchFor.equals(""))
+			searchFor=".";
 //		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
 		HashMap requestMap = new HashMap();
 		requestMap.put("searchFor",searchFor);
@@ -442,7 +438,7 @@ public class PhasebookMainWS {
 		ServiceInvoker si;
 		try {
 			
-			si = new ServiceInvoker("Client", "searchFor");
+			si = new ServiceInvoker("Client", "getSearch");
 			retMessage = si.deliverSync(esbMessage, 10000L);
 			
 			System.out.println("MAIN WS - Pedido de getSearch enviado\n");

@@ -103,16 +103,16 @@ public class myInitializer extends AbstractActionLifecycle
 	
 	public Message getSearch(Message message) throws MessageDeliverException
 	{
-		 
+		System.out.println("ESB INIT - GET SEARCH\n");
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
 		 
-	     String searchFor = (String)requestMsg.get("searchfor");	     
-	     
+	     String searchFor = (String)requestMsg.get("searchFor");	     
+	     System.out.println("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL "+searchFor);
 	     Map send = new HashMap();
-	     send.put("getSearch.searchfor", searchFor);
+	     send.put("getSearch.searchFor", searchFor);
 	     
 	     message.getBody().add(send);
-	     
+	     System.out.println("ESB INIT - GET SEARCH EDNDED\n");
 		return message;
 	}
 	

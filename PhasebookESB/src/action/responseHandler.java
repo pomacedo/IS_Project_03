@@ -17,6 +17,7 @@ import org.jboss.soa.esb.message.Body;
 import org.jboss.soa.esb.message.Message;
 
 import data.Client;
+import data.Relation;
 
 
 import eai.ClientInfo;
@@ -61,6 +62,38 @@ public class responseHandler extends AbstractActionLifecycle
 		 
 		 return message;
 	 }
+	 
+	 public Message getSearch(Message message) throws MessageDeliverException
+	 {
+		 System.out.println("RESPONSE HANDLER - GET SEARCH");
+		 Map responseMsg = null;
+		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
+		 
+		 System.out.println("GET SEACRH to be handled:"+responseMsg.toString());
+		 List<Client> res = new ArrayList<Client>();
+		 Iterator i = responseMsg.keySet().iterator();
+		 String email="",name="",password="";
+		 int id=0,idPhoto=-1;
+		 while(i.hasNext())
+		 {
+			 email =(String) responseMsg.get(i.next());		 
+			 char gender = (char) Integer.parseInt((String) responseMsg.get(i.next()));
+			 id = Integer.parseInt((String) responseMsg.get(i.next()));
+			 idPhoto = Integer.parseInt((String) responseMsg.get(i.next()));
+			 double money = Double.parseDouble((String) responseMsg.get(i.next()));
+			 name = (String) responseMsg.get(i.next());
+			 password = (String) responseMsg.get(i.next());
+			 Client c = new Client(name, password, email, money, gender);
+			 c.setId(id);
+			 c.setId_photo(idPhoto);
+			 res.add(c);
+		 }
+		 message.getBody().add(res);
+		 System.out.println("RESPONSE HANDLER - GET SEARCH ENDED");
+		 
+		 return message;
+	 }
+	 
 	 public Message checkLogInRsp(Message message) throws MessageDeliverException
 	 {
 		 System.out.println("RESPONSE HANDLER - CHECK LOGIN");
@@ -98,7 +131,7 @@ public class responseHandler extends AbstractActionLifecycle
 			 String s = i.next().toString();			 
 			 cur.setId(Integer.parseInt((String) responseMsg.get(s)));
 			 cur.setId_client_from(Integer.parseInt((String)responseMsg.get(i.next())));			 
-			 cur.setId_client_from(Integer.parseInt((String)responseMsg.get(i.next())));			 
+			 cur.setId_client_to(Integer.parseInt((String)responseMsg.get(i.next())));			 
 			 cur.setId_photo(Integer.parseInt((String)responseMsg.get(i.next())));			 
 			 cur.setIs_private(Boolean.parseBoolean((String)responseMsg.get(i.next())));			 
 			 cur.setIs_read(Boolean.parseBoolean((String) responseMsg.get(i.next())));			 
@@ -182,11 +215,24 @@ public class responseHandler extends AbstractActionLifecycle
 		 Map responseMsg = null;
 		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
 		 System.out.println("TO HANDLE: "+responseMsg.toString());
-		 
-		 
+		 List<Relation> res = new ArrayList<Relation>();
+		 Iterator i = responseMsg.keySet().iterator();
+		 while(i.hasNext())
+		 {
+			 int id = Integer.parseInt((String) responseMsg.get(i.next()));
+			 int idFrom = Integer.parseInt((String) responseMsg.get(i.next()));
+			 int idTo = Integer.parseInt((String) responseMsg.get(i.next()));
+			 char status = (char) Integer.parseInt((String) responseMsg.get(i.next()));
+			 Relation r = new Relation(idFrom, idTo);
+			 r.setId(idTo);
+			 r.setStatus(status);
+			 res.add(r);
+		 }
 		 System.out.println("ESB - RESPONSEHANDLER GET PENDING RELATIONS ENDED");
+		 message.getBody().add(res);
 		return message; 
 	 }
+	 
 //	 public Message getSearch(Message message) throws MessageDeliverException
 //	 {
 //		 Map responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);

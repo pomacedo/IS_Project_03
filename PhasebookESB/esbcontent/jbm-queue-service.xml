@@ -24,18 +24,18 @@
   <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer
   </depends>
  </mbean> 
-<!--  <mbean code="org.jboss.jms.server.destination.QueueService" -->
-<!--   name="jboss.esb.quickstart.destination:service=Queue,name=getSearch_request" -->
-<!--   xmbean-dd="xmdesc/Queue-xmbean.xml"> -->
-<!--   <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer -->
-<!--   </depends> -->
-<!--  </mbean>  -->
-<!--  <mbean code="org.jboss.jms.server.destination.QueueService" -->
-<!--   name="jboss.esb.quickstart.destination:service=Queue,name=getSearch_request_reply" -->
-<!--   xmbean-dd="xmdesc/Queue-xmbean.xml"> -->
-<!--   <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer -->
-<!--   </depends> -->
-<!--  </mbean>  -->
+ <mbean code="org.jboss.jms.server.destination.QueueService"
+  name="jboss.esb.quickstart.destination:service=Queue,name=getSearch_request"
+  xmbean-dd="xmdesc/Queue-xmbean.xml">
+  <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer
+  </depends>
+ </mbean> 
+ <mbean code="org.jboss.jms.server.destination.QueueService"
+  name="jboss.esb.quickstart.destination:service=Queue,name=getSearch_request_reply"
+  xmbean-dd="xmdesc/Queue-xmbean.xml">
+  <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer
+  </depends>
+ </mbean> 
  <mbean code="org.jboss.jms.server.destination.QueueService"
   name="jboss.esb.quickstart.destination:service=Queue,name=getClientInfo_request"
   xmbean-dd="xmdesc/Queue-xmbean.xml">

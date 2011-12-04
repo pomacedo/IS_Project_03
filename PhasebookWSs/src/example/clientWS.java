@@ -35,9 +35,13 @@ public class clientWS {
 	}
 	
 	@WebMethod	
-	public List<Client> getSearch(@WebParam(name = "searchfor") String searchfor)
+	public List<Client> getSearch(@WebParam(name = "searchFor") String searchFor)
 	{
-		return user.getSearch(searchfor);		
+		System.out.println("WEBSERVICE GETSEARCH!!!!!!!!!!!!!#"+searchFor+"#!!!!!!!!");
+		if((searchFor == null) || searchFor.equals("."))
+			searchFor="";
+		System.out.println("WEBSERVICE GETSEARCH!!!!!!!!!!!!!#"+searchFor+"#!!!!!!!!");
+		return user.getSearch(searchFor);		
 	}
 	
 	@WebMethod	

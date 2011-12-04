@@ -91,6 +91,7 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
 
 	@Override
 	public List<Client> getSearch(String searchfor) {
+		System.out.println("ESTOU NO BEAN "+searchfor);
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
 		List<Client> list=(List<Client>)em.createQuery("SELECT c FROM Client c where c.name LIKE '"+"%"+searchfor+"%'").getResultList();

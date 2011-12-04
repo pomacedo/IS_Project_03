@@ -10,9 +10,9 @@
    <jms-bus busid="createuserRequest">
     <jms-message-filter dest-name="queue/createUser_request" dest-type="QUEUE"/>
    </jms-bus>
-   <!--       <jms-bus busid="getSearchRequest">  
+   <jms-bus busid="getSearchRequest">  
       <jms-message-filter dest-name="queue/getSearch_request" dest-type="QUEUE"/>  
-     </jms-bus>  -->
+   </jms-bus> 
    <jms-bus busid="getClientInfoRequest">
     <jms-message-filter dest-name="queue/getClientInfo_request" dest-type="QUEUE"/>
    </jms-bus>
@@ -112,7 +112,7 @@
      name="handlergetclientinforesponse" process="getClientInfo"/>
    </actions>
   </service>
-  <!--    <service category="Client" description="search users"  
+   <service category="Client" description="search users"  
     name="getSearch"> 
  	 <listeners> 
  	    <jms-listener busidref="getSearchRequest" name="ESB-Listener"/> 
@@ -123,9 +123,10 @@
  		    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl" />   
  		    <property name="SOAPAction" value="getSearch"/> 
  		    <property name="responseAsOgnlMap" value="true" />       
-     	</action>  
+     	</action> 
+     	<action name="responsehandlergetsearch" class="action.responseHandler" process="getSearch"/>
  	 </actions> 
-    </service> -->
+    </service>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Client Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Message Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->

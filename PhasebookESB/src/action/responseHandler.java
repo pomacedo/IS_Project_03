@@ -94,6 +94,21 @@ public class responseHandler extends AbstractActionLifecycle
 		 return message;
 	 }
 	 
+	 public Message addFriend(Message message) throws MessageDeliverException
+	 {
+		 System.out.println("RESPONSE HANDLER - addFriend");
+		 Map responseMsg = null;
+		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
+		 Iterator i = responseMsg.keySet().iterator();
+		 boolean res = Boolean.parseBoolean((String)responseMsg.get(i.next()));
+		 
+		 System.out.println("RESULTADO DO ADD FRIEND NO RESPONSE HANDLER :"+res);
+		 message.getBody().add(res);
+		 System.out.println("ESB RESPONSE HANDLER- addFriend ENDED");
+		 return message;
+	 }
+	 
+	 
 	 public Message checkLogInRsp(Message message) throws MessageDeliverException
 	 {
 		 System.out.println("RESPONSE HANDLER - CHECK LOGIN");

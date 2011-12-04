@@ -27,12 +27,14 @@ public class ObjectFactory {
     private final static QName _EditProfileResponse_QNAME = new QName("http://connector/", "editProfileResponse");
     private final static QName _GetClientInfoResponse_QNAME = new QName("http://connector/", "getClientInfoResponse");
     private final static QName _GetPost_QNAME = new QName("http://connector/", "getPost");
+    private final static QName _AddFriend_QNAME = new QName("http://connector/", "addFriend");
     private final static QName _AddClientResponse_QNAME = new QName("http://connector/", "addClientResponse");
     private final static QName _GetFriends_QNAME = new QName("http://connector/", "getFriends");
     private final static QName _CheckLogInResponse_QNAME = new QName("http://connector/", "checkLogInResponse");
-    private final static QName _GetNewRequestsResponse_QNAME = new QName("http://connector/", "getNewRequestsResponse");
     private final static QName _GetNewRequests_QNAME = new QName("http://connector/", "getNewRequests");
+    private final static QName _GetNewRequestsResponse_QNAME = new QName("http://connector/", "getNewRequestsResponse");
     private final static QName _GetSearchResponse_QNAME = new QName("http://connector/", "getSearchResponse");
+    private final static QName _AddFriendResponse_QNAME = new QName("http://connector/", "addFriendResponse");
     private final static QName _CheckLogIn_QNAME = new QName("http://connector/", "checkLogIn");
     private final static QName _SendMessage_QNAME = new QName("http://connector/", "sendMessage");
     private final static QName _GetFriendsResponse_QNAME = new QName("http://connector/", "getFriendsResponse");
@@ -51,99 +53,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetSearchResponse }
+     * Create an instance of {@link SendMessage }
      * 
      */
-    public GetSearchResponse createGetSearchResponse() {
-        return new GetSearchResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetFriendsResponse }
-     * 
-     */
-    public GetFriendsResponse createGetFriendsResponse() {
-        return new GetFriendsResponse();
-    }
-
-    /**
-     * Create an instance of {@link EditProfileResponse }
-     * 
-     */
-    public EditProfileResponse createEditProfileResponse() {
-        return new EditProfileResponse();
-    }
-
-    /**
-     * Create an instance of {@link AddClient }
-     * 
-     */
-    public AddClient createAddClient() {
-        return new AddClient();
-    }
-
-    /**
-     * Create an instance of {@link ClientInfo }
-     * 
-     */
-    public ClientInfo createClientInfo() {
-        return new ClientInfo();
-    }
-
-    /**
-     * Create an instance of {@link Relation }
-     * 
-     */
-    public Relation createRelation() {
-        return new Relation();
-    }
-
-    /**
-     * Create an instance of {@link SendMessageResponse }
-     * 
-     */
-    public SendMessageResponse createSendMessageResponse() {
-        return new SendMessageResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetClientInfoResponse }
-     * 
-     */
-    public GetClientInfoResponse createGetClientInfoResponse() {
-        return new GetClientInfoResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetClientInfo }
-     * 
-     */
-    public GetClientInfo createGetClientInfo() {
-        return new GetClientInfo();
-    }
-
-    /**
-     * Create an instance of {@link EditProfile }
-     * 
-     */
-    public EditProfile createEditProfile() {
-        return new EditProfile();
-    }
-
-    /**
-     * Create an instance of {@link GetFriends }
-     * 
-     */
-    public GetFriends createGetFriends() {
-        return new GetFriends();
-    }
-
-    /**
-     * Create an instance of {@link CheckLogInResponse }
-     * 
-     */
-    public CheckLogInResponse createCheckLogInResponse() {
-        return new CheckLogInResponse();
+    public SendMessage createSendMessage() {
+        return new SendMessage();
     }
 
     /**
@@ -155,35 +69,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AddClientResponse }
+     * Create an instance of {@link CheckLogInResponse }
      * 
      */
-    public AddClientResponse createAddClientResponse() {
-        return new AddClientResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetPost }
-     * 
-     */
-    public GetPost createGetPost() {
-        return new GetPost();
-    }
-
-    /**
-     * Create an instance of {@link SendMessage }
-     * 
-     */
-    public SendMessage createSendMessage() {
-        return new SendMessage();
-    }
-
-    /**
-     * Create an instance of {@link GetSearch }
-     * 
-     */
-    public GetSearch createGetSearch() {
-        return new GetSearch();
+    public CheckLogInResponse createCheckLogInResponse() {
+        return new CheckLogInResponse();
     }
 
     /**
@@ -195,6 +85,102 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetFriendsResponse }
+     * 
+     */
+    public GetFriendsResponse createGetFriendsResponse() {
+        return new GetFriendsResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetClientInfoResponse }
+     * 
+     */
+    public GetClientInfoResponse createGetClientInfoResponse() {
+        return new GetClientInfoResponse();
+    }
+
+    /**
+     * Create an instance of {@link Relation }
+     * 
+     */
+    public Relation createRelation() {
+        return new Relation();
+    }
+
+    /**
+     * Create an instance of {@link GetClientInfo }
+     * 
+     */
+    public GetClientInfo createGetClientInfo() {
+        return new GetClientInfo();
+    }
+
+    /**
+     * Create an instance of {@link SendMessageResponse }
+     * 
+     */
+    public SendMessageResponse createSendMessageResponse() {
+        return new SendMessageResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetSearchResponse }
+     * 
+     */
+    public GetSearchResponse createGetSearchResponse() {
+        return new GetSearchResponse();
+    }
+
+    /**
+     * Create an instance of {@link AddClientResponse }
+     * 
+     */
+    public AddClientResponse createAddClientResponse() {
+        return new AddClientResponse();
+    }
+
+    /**
+     * Create an instance of {@link EditProfileResponse }
+     * 
+     */
+    public EditProfileResponse createEditProfileResponse() {
+        return new EditProfileResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetSearch }
+     * 
+     */
+    public GetSearch createGetSearch() {
+        return new GetSearch();
+    }
+
+    /**
+     * Create an instance of {@link GetNewRequestsResponse }
+     * 
+     */
+    public GetNewRequestsResponse createGetNewRequestsResponse() {
+        return new GetNewRequestsResponse();
+    }
+
+    /**
+     * Create an instance of {@link AddFriend }
+     * 
+     */
+    public AddFriend createAddFriend() {
+        return new AddFriend();
+    }
+
+    /**
+     * Create an instance of {@link AddFriendResponse }
+     * 
+     */
+    public AddFriendResponse createAddFriendResponse() {
+        return new AddFriendResponse();
+    }
+
+    /**
      * Create an instance of {@link Client }
      * 
      */
@@ -203,11 +189,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Message }
+     * Create an instance of {@link AddClient }
      * 
      */
-    public Message createMessage() {
-        return new Message();
+    public AddClient createAddClient() {
+        return new AddClient();
+    }
+
+    /**
+     * Create an instance of {@link GetPost }
+     * 
+     */
+    public GetPost createGetPost() {
+        return new GetPost();
     }
 
     /**
@@ -219,11 +213,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetNewRequestsResponse }
+     * Create an instance of {@link GetFriends }
      * 
      */
-    public GetNewRequestsResponse createGetNewRequestsResponse() {
-        return new GetNewRequestsResponse();
+    public GetFriends createGetFriends() {
+        return new GetFriends();
+    }
+
+    /**
+     * Create an instance of {@link EditProfile }
+     * 
+     */
+    public EditProfile createEditProfile() {
+        return new EditProfile();
+    }
+
+    /**
+     * Create an instance of {@link Message }
+     * 
+     */
+    public Message createMessage() {
+        return new Message();
+    }
+
+    /**
+     * Create an instance of {@link ClientInfo }
+     * 
+     */
+    public ClientInfo createClientInfo() {
+        return new ClientInfo();
     }
 
     /**
@@ -254,6 +272,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddFriend }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "addFriend")
+    public JAXBElement<AddFriend> createAddFriend(AddFriend value) {
+        return new JAXBElement<AddFriend>(_AddFriend_QNAME, AddFriend.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AddClientResponse }{@code >}}
      * 
      */
@@ -281,15 +308,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetNewRequestsResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://connector/", name = "getNewRequestsResponse")
-    public JAXBElement<GetNewRequestsResponse> createGetNewRequestsResponse(GetNewRequestsResponse value) {
-        return new JAXBElement<GetNewRequestsResponse>(_GetNewRequestsResponse_QNAME, GetNewRequestsResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetNewRequests }{@code >}}
      * 
      */
@@ -299,12 +317,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetNewRequestsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "getNewRequestsResponse")
+    public JAXBElement<GetNewRequestsResponse> createGetNewRequestsResponse(GetNewRequestsResponse value) {
+        return new JAXBElement<GetNewRequestsResponse>(_GetNewRequestsResponse_QNAME, GetNewRequestsResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetSearchResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://connector/", name = "getSearchResponse")
     public JAXBElement<GetSearchResponse> createGetSearchResponse(GetSearchResponse value) {
         return new JAXBElement<GetSearchResponse>(_GetSearchResponse_QNAME, GetSearchResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddFriendResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "addFriendResponse")
+    public JAXBElement<AddFriendResponse> createAddFriendResponse(AddFriendResponse value) {
+        return new JAXBElement<AddFriendResponse>(_AddFriendResponse_QNAME, AddFriendResponse.class, null, value);
     }
 
     /**

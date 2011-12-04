@@ -49,6 +49,26 @@ public interface PhasebookMainWS {
 
     /**
      * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "addFriend", targetNamespace = "http://connector/", className = "client.artefact.AddFriend")
+    @ResponseWrapper(localName = "addFriendResponse", targetNamespace = "http://connector/", className = "client.artefact.AddFriendResponse")
+    public boolean addFriend(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        int arg2);
+
+    /**
+     * 
      * @param arg1
      * @param arg0
      * @return

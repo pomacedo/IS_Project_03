@@ -28,11 +28,12 @@ public class relationWS {
 	{
 		return relBeanRem.getNewRequests(id,password);		
 	}
+ 
 	
-//	@WebMethod
-//	public boolean addFriend(String idFrom,String password, String idTo){
-//		return relBeanRem.addFriend( Integer.parseInt(idFrom), password,  Integer.parseInt(idTo));
-//	}
+	@WebMethod
+	public boolean addFriend(@WebParam(name = "id") int id,@WebParam(name = "password") String password,@WebParam(name = "idTo") int idTo){
+		return relBeanRem.addFriend( id, password, idTo);
+	}
 //	@WebMethod	
 //	public List<Relation> checkMyFriends(String id, String password){
 //		return relBeanRem.checkMyFriends( Integer.parseInt(id),  password);

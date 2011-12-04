@@ -10,9 +10,12 @@
    <jms-bus busid="createuserRequest">
     <jms-message-filter dest-name="queue/createUser_request" dest-type="QUEUE"/>
    </jms-bus>
-   <jms-bus busid="getSearchRequest">  
-      <jms-message-filter dest-name="queue/getSearch_request" dest-type="QUEUE"/>  
-   </jms-bus> 
+   <jms-bus busid="getSearchRequest">
+    <jms-message-filter dest-name="queue/getSearch_request" dest-type="QUEUE"/>
+   </jms-bus>
+   <jms-bus busid="addFriendRequest">
+    <jms-message-filter dest-name="queue/addFriend_request" dest-type="QUEUE"/>
+   </jms-bus>
    <jms-bus busid="getClientInfoRequest">
     <jms-message-filter dest-name="queue/getClientInfo_request" dest-type="QUEUE"/>
    </jms-bus>
@@ -37,7 +40,7 @@
   </jms-provider>
  </providers>
  <services>
- <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Client Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Client Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <service category="Client"
    description="Authentication Login Description" name="checkLogIn">
    <listeners>
@@ -67,7 +70,6 @@
     </action>
    </actions>
   </service>
-  
   <service category="Client" description="edit the profile of the user" name="editProfile">
    <listeners>
     <jms-listener busidref="editProfileRequest" name="ESB-Listener"/>
@@ -82,7 +84,6 @@
     <action class="action.responseHandler" name="handleeditresponse" process="editProfile"/>
    </actions>
   </service>
-  
   <service category="Client" description="edit the profile of the user" name="getFriendsInfo">
    <listeners>
     <jms-listener busidref="getFriendsInfoRequest" name="ESB-Listener"/>
@@ -112,24 +113,23 @@
      name="handlergetclientinforesponse" process="getClientInfo"/>
    </actions>
   </service>
-   <service category="Client" description="search users"  
-    name="getSearch"> 
- 	 <listeners> 
- 	    <jms-listener busidref="getSearchRequest" name="ESB-Listener"/> 
- 	 </listeners> 
- 	 <actions> 
- 	   <action name = "init_getSearch" class="action.myInitializer" process="getSearch"/> 
- 	   <action name="soapui-client-action" class="org.jboss.soa.esb.actions.soap.SOAPClient">	  
- 		    <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl" />   
- 		    <property name="SOAPAction" value="getSearch"/> 
- 		    <property name="responseAsOgnlMap" value="true" />       
-     	</action> 
-     	<action name="responsehandlergetsearch" class="action.responseHandler" process="getSearch"/>
- 	 </actions> 
-    </service>
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Client Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Message Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+  <service category="Client" description="search users" name="getSearch">
+   <listeners>
+    <jms-listener busidref="getSearchRequest" name="ESB-Listener"/>
+   </listeners>
+   <actions>
+    <action class="action.myInitializer" name="init_getSearch" process="getSearch"/>
+    <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="soapui-client-action">
+     <property name="wsdl" value="http://localhost:8080/PhasebookWSs/clientWS?wsdl"/>
+     <property name="SOAPAction" value="getSearch"/>
+     <property name="responseAsOgnlMap" value="true"/>
+    </action>
+    <action class="action.responseHandler"
+     name="responsehandlergetsearch" process="getSearch"/>
+   </actions>
+  </service>
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Client Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Message Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <service category="Message" description="get posts" name="getPosts">
    <listeners>
     <jms-listener busidref="getPostsRequest" name="ESB-Listener"/>
@@ -157,8 +157,8 @@
     </action>
    </actions>
   </service>
-  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Message Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Photo Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Message Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Photo Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <service category="Photo" description="add new photo" name="addPhoto">
    <listeners>
     <jms-listener busidref="sendMessageRequest" name="ESB-Listener"/>
@@ -173,10 +173,10 @@
     <action class="action.responseHandler" name="handleAddPhotoRsp" process="addPhoto"/>
    </actions>
   </service>
-  
-  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Photo Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Relation Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-  <service category="Relation" description="get information of an client" name="getRelations">
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Photo Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Relation Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+  <service category="Relation"
+   description="get information of an client" name="getRelations">
    <listeners>
     <jms-listener busidref="getRelationsRequest" name="ESB-Listener"/>
    </listeners>
@@ -191,8 +191,8 @@
      name="handlergetclientinforesponse" process="getRelations"/>
    </actions>
   </service>
-  
-  <service category="Relation" description="get information of an client" name="getPendingRelations">
+  <service category="Relation"
+   description="get information of an client" name="getPendingRelations">
    <listeners>
     <jms-listener busidref="getPendingRelationsRequest" name="ESB-Listener"/>
    </listeners>
@@ -207,7 +207,21 @@
      name="handlergetpendingrelations" process="getPendingRelations"/>
    </actions>
   </service>
-  
+  <service category="Relation" description="Add a new friend request" name="addFriend">
+   <listeners>
+    <jms-listener busidref="addFriendRequest" name="ESB-Listener"/>
+   </listeners>
+   <actions>
+    <action class="action.myInitializer" name="init_addFriend" process="addFriend"/>
+    <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="soapui-client-action">
+     <property name="wsdl" value="http://localhost:8080/PhasebookWSs/relationWS?wsdl"/>
+     <property name="SOAPAction" value="addFriend"/>
+     <property name="responseAsOgnlMap" value="true"/>
+    </action>
+    <action class="action.responseHandler"
+     name="handlergetpendingrelations" process="addFriend"/> 
+   </actions>
+  </service>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Relation Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
  </services>
 </jbossesb>

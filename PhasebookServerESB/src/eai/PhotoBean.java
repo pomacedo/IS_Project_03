@@ -20,7 +20,7 @@ import data.Photo;
  */
 @Stateless
 public class PhotoBean implements PhotoBeanRemote {
-
+ 
     /**
      * Default constructor. 
      */

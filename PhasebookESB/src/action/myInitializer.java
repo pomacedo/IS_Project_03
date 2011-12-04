@@ -161,6 +161,27 @@ public class myInitializer extends AbstractActionLifecycle
 		return message;
 	}
 	
+	public Message addFriend(Message message) throws MessageDeliverException
+	{
+		 System.out.println("ESB -------- INIT add Friend");
+		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
+		 
+	     int id = (Integer) requestMsg.get("id");
+	     String password = (String) requestMsg.get("password");
+	     int idTo = (Integer) requestMsg.get("idTo");
+	     
+	     Map send = new HashMap();
+	     send.put("addFriend.id", id);
+	     send.put("addFriend.password", password);
+	     send.put("addFriend.idTo", idTo);
+	     
+	     message.getBody().add(send);
+	     System.out.println("ESB INIT - add Friend ENDEED");
+		return message;
+	}
+	
+	
+	
 	public Message editProfile(Message message) throws MessageDeliverException
 	{
 		System.out.println("init edit profile");

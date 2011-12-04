@@ -50,6 +50,8 @@ public class PhotoBean implements PhotoBeanRemote {
 
  	@Override
  	public String getPhotoById(int idPhoto) {
+ 		if(idPhoto==-1)
+ 			return "";
  		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
  		EntityManager em = emf.createEntityManager();
  		Photo p=em.find(Photo.class, idPhoto);

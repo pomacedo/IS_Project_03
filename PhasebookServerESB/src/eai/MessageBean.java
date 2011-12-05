@@ -283,4 +283,18 @@ public class MessageBean implements MessageBeanRemote {
  		}
  		return count;
  	}
+
+	@Override
+	public List<Integer> getAllIdPhotos(int idViewer, String password, int idTo,boolean isFriends) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
+ 		EntityManager em = emf.createEntityManager();
+ 		List<Integer> list;
+ 		if(isFriends)
+ 			list=(List<Integer>)em.createQuery("SELECT m.id_photo FROM Message m WHERE m.id_client_to LIKE ?1 and m.id_photo != -1").setParameter(1, idTo).getResultList();
+ 		else
+ 			list=(List<Integer>)em.createQuery("SELECT m.id_photo FROM Message m WHERE m.id_client_to LIKE ?1 and m.is_private is false and m.id_photo != -1").setParameter(1, idTo).getResultList();
+ 		
+		return list;
+	}	
+ 	
 }

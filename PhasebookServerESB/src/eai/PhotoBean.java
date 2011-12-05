@@ -80,5 +80,18 @@ public class PhotoBean implements PhotoBeanRemote {
 		em.close();
 		return photo.getId();
 	}
+
+	@Override
+	public List<Photo> getPhotosById(List<Integer> ids) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
+ 		EntityManager em = emf.createEntityManager();
+		List<Photo> paths=new ArrayList<Photo>();
+		for(Integer id:ids){
+			Photo p=em.find(Photo.class, id);
+			paths.add(p);
+		}
+		em.close();
+		return paths;
+	}
  	
 }

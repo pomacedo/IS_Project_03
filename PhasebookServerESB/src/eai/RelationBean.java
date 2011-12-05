@@ -153,9 +153,9 @@ public class RelationBean implements RelationBeanRemote {
 	public void acceptFriend(int id, String password, int idRel) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
-		Client c1 = em.find(Client.class, id);
-		if(!c1.getPassword().equals(password))
-			return;
+//		Client c1 = em.find(Client.class, id);
+//		if(!c1.getPassword().equals(password))
+//			return;
 		Relation r1=em.find(Relation.class,idRel);
 		if(r1.getId_client_to() == id)
 		{
@@ -175,9 +175,9 @@ public class RelationBean implements RelationBeanRemote {
 	public void declineFriend(int id, String password, int idRel) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PhasebookServerESB");
 		EntityManager em = emf.createEntityManager();
-		Client c1 = em.find(Client.class, id);
-		if(!c1.getPassword().equals(password))
-			return;
+//		Client c1 = em.find(Client.class, id);
+//		if(!c1.getPassword().equals(password))
+//			return;
 		Relation r1=em.find(Relation.class,idRel);
 		EntityTransaction tx=em.getTransaction();
 		try{

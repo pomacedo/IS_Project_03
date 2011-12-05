@@ -346,15 +346,14 @@ public class PhasebookMainWS {
 			List<Integer> response = (List<Integer>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
 			if(response.size()==0 || response==null)
 				return null;
-			System.out.println("\n --------------------GET_FRIENDS_RELATIONS response is: "+response.get(0));
-			System.out.println("\n --------------------GET_FRIENDS_RELATIONS response is: "+response.size());
+			
 			HashMap requestMap2 = new HashMap();
 			requestMap2.put("ids",response);
-			esbMessage.getBody().add(requestMap2);
+			Message esbMessage2 = MessageFactory.getInstance().getMessage();
+			esbMessage2.getBody().add(requestMap2);
 		
 			si = new ServiceInvoker("Client", "getFriendsInfo");
-			retMessage = si.deliverSync(esbMessage, 10000L);
-			
+			retMessage = si.deliverSync(esbMessage2, 10000L);		
 			
 			
 			System.out.println("MAIN WS - Pedido de GETFRIENDS enviado\n");
@@ -499,81 +498,69 @@ public class PhasebookMainWS {
 		return false;
 	}
 	
-//	@WebMethod
-//	public void declineFriend(int id, String password,int idRel){
-//		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
-//
-//		Message esbMessage = MessageFactory.getInstance().getMessage();
-//		System.out.println("declineFriend ON MAIN WS ###"+id+" "+password+" "+idRel+"###");
-//
-//		HashMap requestMap = new HashMap();
-//		requestMap.put("id",id);
-//		requestMap.put("password",password);
-//		requestMap.put("idRel",idRel);
-//		esbMessage.getBody().add(requestMap);
-//		
-//		Message retMessage = null;
-//
-//		ServiceInvoker si;
-//		try {
-//			si = new ServiceInvoker("Relation", "declineFriend");
-//			retMessage = si.deliverSync(esbMessage, 10000L);
-//			System.out.println("MAIN WS - Pedido de declineFriend enviado\n");
-//			
-//			System.out.println("\n declineFriend response is: "+retMessage.getBody().get(Body.DEFAULT_LOCATION));
-//							 
-//			
-//			
-//		} catch (MessageDeliverException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (FaultMessageException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (RegistryException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//	}
 	
+	@WebMethod
+	public void acceptFriend(int id,String password, int idRel)
+	{
+		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
+
+		Message esbMessage = MessageFactory.getInstance().getMessage();
+		System.out.println("MAIN WS - ACCEPT FRIEND");
+		HashMap send = new HashMap();
+		send.put("id",id);
+		send.put("password",password);
+		send.put("idRel",idRel);
+		esbMessage.getBody().add(send);		
+		
+		ServiceInvoker si;
+		try {
+			si = new ServiceInvoker("Relation", "acceptFriend");
+			si.deliverSync(esbMessage, 10000L);
+			System.out.println("MAIN WS - accpet Friend\n");		
+			
+		} catch (MessageDeliverException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FaultMessageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RegistryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
-//	@WebMethod
-//	public void acceptFriend(int id, String password,int idRel){
-//		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
-//
-//		Message esbMessage = MessageFactory.getInstance().getMessage();
-//		System.out.println("acceptFriend ON MAIN WS ###"+id+" "+password+" "+idRel+"###");
-//
-//		HashMap requestMap = new HashMap();
-//		requestMap.put("id",id);
-//		requestMap.put("password",password);
-//		requestMap.put("idRel",idRel);
-//		esbMessage.getBody().add(requestMap);
-//		
-//		Message retMessage = null;
-//
-//		ServiceInvoker si;
-//		try {
-//			si = new ServiceInvoker("Relation", "acceptFriend");
-//			retMessage = si.deliverSync(esbMessage, 10000L);
-//			System.out.println("MAIN WS - Pedido de getSearch enviado\n");
-//			
-//			System.out.println("\n acceptFriend response is: "+retMessage.getBody().get(Body.DEFAULT_LOCATION));
-//							 
-//			
-//			
-//		} catch (MessageDeliverException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (FaultMessageException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (RegistryException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//	}
+	@WebMethod
+	public void declineFriend(int id, String password,int idRel){
+		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
+
+		Message esbMessage = MessageFactory.getInstance().getMessage();
+		System.out.println("declineFriend ON MAIN WS ###"+id+" "+password+" "+idRel+"###");
+
+		HashMap requestMap = new HashMap();
+		requestMap.put("id",id);
+		requestMap.put("password",password);
+		requestMap.put("idRel",idRel);
+		esbMessage.getBody().add(requestMap);
+
+		ServiceInvoker si;
+		try {
+			si = new ServiceInvoker("Relation", "declineFriend");
+			si.deliverSync(esbMessage, 10000L);
+			System.out.println("MAIN WS - Pedido de declineFriend enviado\n");
+			
+		} catch (MessageDeliverException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FaultMessageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RegistryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 }

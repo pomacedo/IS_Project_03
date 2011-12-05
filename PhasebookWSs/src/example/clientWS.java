@@ -58,16 +58,11 @@ public class clientWS {
 	}
 	
 	@WebMethod	
-	public List<Client> getFriendsInfo(@WebParam(name = "ids") ArrayList<String> ids)
+	public List<Client> getFriendsInfo(@WebParam(name = "ids") List<Integer> ids)
 	{
 		System.out.println("WEB SERV: "+ids.size());
-		List<Integer> toGo=new ArrayList<Integer>();
-		for(String i: ids)
-		{
-			System.out.println(i);
-			toGo.add(Integer.parseInt(i));
-		}
-		return user.getVariousClientInfo(toGo);		
+	    System.out.println("---"+ids.get(0));
+		return user.getVariousClientInfo(ids);		
 	}
 	
 }

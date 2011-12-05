@@ -3,7 +3,6 @@ package client.artefact;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -49,7 +48,6 @@ public class EditProfile {
     protected String arg2;
     protected String arg3;
     protected String arg4;
-    @XmlSchemaType(name = "unsignedShort")
     protected int arg5;
     protected float arg6;
 

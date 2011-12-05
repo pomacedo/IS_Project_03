@@ -37,6 +37,12 @@
    <jms-bus busid="getPendingRelationsRequest">
     <jms-message-filter dest-name="queue/getPendingRelations_request" dest-type="QUEUE"/>
    </jms-bus>
+   <jms-bus busid="acceptFriendRequest">
+    <jms-message-filter dest-name="queue/acceptFriend_request" dest-type="QUEUE"/>
+   </jms-bus>
+   <jms-bus busid="declineFriendRequest">
+    <jms-message-filter dest-name="queue/declineFriend_request" dest-type="QUEUE"/>
+   </jms-bus>
   </jms-provider>
  </providers>
  <services>
@@ -128,8 +134,8 @@
      name="responsehandlergetsearch" process="getSearch"/>
    </actions>
   </service>
-  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Client Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Message Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Client Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Message Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <service category="Message" description="get posts" name="getPosts">
    <listeners>
     <jms-listener busidref="getPostsRequest" name="ESB-Listener"/>
@@ -157,8 +163,8 @@
     </action>
    </actions>
   </service>
-  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Message Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Photo Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Message Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Photo Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <service category="Photo" description="add new photo" name="addPhoto">
    <listeners>
     <jms-listener busidref="sendMessageRequest" name="ESB-Listener"/>
@@ -173,8 +179,8 @@
     <action class="action.responseHandler" name="handleAddPhotoRsp" process="addPhoto"/>
    </actions>
   </service>
-  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Photo Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Relation Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Photo Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Relation Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <service category="Relation"
    description="get information of an client" name="getRelations">
    <listeners>
@@ -200,7 +206,7 @@
     <action class="action.myInitializer" name="init_getPendingRels" process="getPendingRelations"/>
     <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="soapui-client-action">
      <property name="wsdl" value="http://localhost:8080/PhasebookWSs/relationWS?wsdl"/>
-     <property name="SOAPAction" value="teste"/>
+     <property name="SOAPAction" value="getNewFriendRequest"/>
      <property name="responseAsOgnlMap" value="true"/>
     </action>
     <action class="action.responseHandler"
@@ -220,6 +226,36 @@
     </action>
     <action class="action.responseHandler"
      name="handlergetpendingrelations" process="addFriend"/> 
+   </actions>
+  </service>
+  <service category="Relation" description="accept a friend request" name="acceptFriend">
+   <listeners>
+    <jms-listener busidref="acceptFriendRequest" name="ESB-Listener"/>
+   </listeners>
+   <actions>
+    <action class="action.myInitializer" name="init_acceptFriend" process="acceptFriend"/>
+    <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="soapui-client-action">
+     <property name="wsdl" value="http://localhost:8080/PhasebookWSs/relationWS?wsdl"/>
+     <property name="SOAPAction" value="acceptFriend"/>
+     <property name="responseAsOgnlMap" value="true"/>
+    </action>
+    <action class="action.responseHandler"
+     name="handlergetpendingrelations" process="acceptFriend"/> 
+   </actions>
+  </service>
+  <service category="Relation" description="decline a friend request" name="declineFriend">
+   <listeners>
+    <jms-listener busidref="declineFriendRequest" name="ESB-Listener"/>
+   </listeners>
+   <actions>
+    <action class="action.myInitializer" name="init_declineFriend" process="declineFriend"/>
+    <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="soapui-client-action">
+     <property name="wsdl" value="http://localhost:8080/PhasebookWSs/relationWS?wsdl"/>
+     <property name="SOAPAction" value="declineFriend"/>
+     <property name="responseAsOgnlMap" value="true"/>
+    </action>
+    <action class="action.responseHandler"
+     name="handlergetpendingrelations" process="declineFriend"/> 
    </actions>
   </service>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Relation Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->

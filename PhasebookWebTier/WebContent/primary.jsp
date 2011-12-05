@@ -27,6 +27,7 @@ if(request.getParameter("id")!=null){
 	if(request.getParameter("rel")!=null)
 	{
 		newRelId=Integer.parseInt(request.getParameter("rel"));
+		
 	}
 	else
 		allreadyFriends = rb.checkMyFriends(user.getId(),user.getPassword());
@@ -41,7 +42,6 @@ else
 <title><%=c==null?user.getName():c.getName() %></title>
 </head>
 <body>
-	<%=user.getId() %>
 	<div class="top">
 		<a href="primary.jsp"><img alt="Phasebook Logo"   src="phasebook_logo.png" height="72px" style="position: absolute;left: 150px;top: 15px;"></a>
 		<div class="login">

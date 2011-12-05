@@ -4,7 +4,6 @@ package client.artefact;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -46,7 +45,6 @@ import javax.xml.bind.annotation.XmlType;
 public class Client {
 
     protected String email;
-    @XmlSchemaType(name = "unsignedShort")
     protected int gender;
     protected int id;
     @XmlElement(name = "id_photo")

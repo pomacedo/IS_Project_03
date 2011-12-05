@@ -16,6 +16,7 @@
 	<jsp:forward page="/index.jsp"></jsp:forward>
 <%
 }
+
 PhasebookMainWSService mainWS = new PhasebookMainWSService();
 PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
 int idTo=-1;
@@ -25,11 +26,11 @@ if(request.getParameter("idRel")!=null)
 	idTo=Integer.parseInt(request.getParameter("idTo"));
 	InitialContext ctx= new InitialContext();
 	//RelationBeanRemote rb=(RelationBeanRemote)ctx.lookup("RelationBean/remote");	
-	//ws.acceptFriend(personal.getId(),personal.getPassword(),idRel);
+	ws.acceptFriend(personal.getId(),personal.getPassword(),idRel);
 	//rb.acceptFriend(personal.getId(),personal.getPassword(),idRel);
 }
 
-String str="/PhasebookWebClient/primary.jsp";
+String str="/PhasebookWebTier/primary.jsp";
 if(idTo!=-1)
 	str=str+"?id="+idTo;
 response.sendRedirect(str);%>

@@ -27,15 +27,21 @@ public class relationWS {
 		return relBeanRem.getNewRequests(id,password);		
 	}
 	
-	@WebMethod Integer teste(@WebParam(name="id")int id, @WebParam(name="password")String pass)
-	{
-		System.out.println("cuucu WHOOOOOOOOOOOOOOAAAAAAAAAAAAAAAHHHHHHHHHH!!!"+id+" "+pass);
-		return 1000;
-	}
 	@WebMethod
 	public boolean addFriend(@WebParam(name = "id") int id,@WebParam(name = "password") String password,@WebParam(name = "idTo") int idTo){
 		return relBeanRem.addFriend( id, password, idTo);
 	}
+	@WebMethod
+	public void declineFriend(@WebParam(name = "id") int id,@WebParam(name = "password") String password,@WebParam(name = "idRel") int idRel){
+		relBeanRem.declineFriend(id, password, idRel);
+	}
+	@WebMethod	
+	public void acceptFriend(@WebParam(name = "id") int id,@WebParam(name = "password")  String password, @WebParam(name = "idRel") int idRel){
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<< akiiiiiiiiiiiiiiiiii");
+		System.out.println("#"+id+"#"+password+"#"+idRel);
+		relBeanRem.acceptFriend( id, password, idRel);
+	}
+	
 //	@WebMethod	
 //	public List<Relation> checkMyFriends(String id, String password){
 //		return relBeanRem.checkMyFriends( Integer.parseInt(id),  password);
@@ -56,10 +62,7 @@ public class relationWS {
 //	public List<Relation> getNewRequests(String id,String password){
 //		return relBeanRem.getNewRequests( Integer.parseInt(id), password);
 //		}
-//	@WebMethod	
-//	public void acceptFriend(String id, String password, String idRel){
-//		relBeanRem.acceptFriend( Integer.parseInt(id),  password,  Integer.parseInt(idRel));
-//		}
+
 //	@WebMethod	
 //	public void declineFriend(String id, String password, String idRel){
 //		relBeanRem.declineFriend( Integer.parseInt(id),  password, Integer.parseInt(idRel));

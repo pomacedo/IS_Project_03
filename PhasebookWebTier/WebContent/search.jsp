@@ -27,6 +27,7 @@
 		//ClientSessionBeanRemote cb=(ClientSessionBeanRemote)ctx.lookup("ClientSessionBean/remote");
 		//ManageBeanRemote personal=(ManageBeanRemote)session.getAttribute("user");
 		//int userid=personal.getId();
+		
 		String searchFor= request.getParameter("searchfor");
 		
 		List<client.artefact.Client> clients=ws.getSearch(searchFor); 

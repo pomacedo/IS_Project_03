@@ -40,7 +40,7 @@
 		}
 		else{
 			name=" Your ";
-			//clients=ws.getFriends(personal.getId());
+			clients=ws.getFriends(personal.getId());
 			newRequests=ws.getNewRequests(personal.getId(),personal.getPassword());
 			
 		}

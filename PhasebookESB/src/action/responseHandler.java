@@ -61,18 +61,17 @@ public class responseHandler extends AbstractActionLifecycle
 		 int id=0,idPhoto=-1;
 		 while(i.hasNext())
 		 {
-			 System.out.println("-->"+i.next());
-//			 email =(String) responseMsg.get(i.next());		 
-//			 char gender = (char) Integer.parseInt((String) responseMsg.get(i.next()));
-//			 id = Integer.parseInt((String) responseMsg.get(i.next()));
-//			 idPhoto = Integer.parseInt((String) responseMsg.get(i.next()));
-//			 double money = Double.parseDouble((String) responseMsg.get(i.next()));
-//			 name = (String) responseMsg.get(i.next());
-//			 password = (String) responseMsg.get(i.next());
-//			 Client c = new Client(name, password, email, money, gender);
-//			 c.setId(id);
-//			 c.setId_photo(idPhoto);
-//			 res.add(c);
+			 email =(String) responseMsg.get(i.next());		 
+			 char gender = (char) Integer.parseInt((String) responseMsg.get(i.next()));
+			 id = Integer.parseInt((String) responseMsg.get(i.next()));
+			 idPhoto = Integer.parseInt((String) responseMsg.get(i.next()));
+			 double money = Double.parseDouble((String) responseMsg.get(i.next()));
+			 name = (String) responseMsg.get(i.next());
+			 password = (String) responseMsg.get(i.next());
+			 Client c = new Client(name, password, email, money, gender);
+			 c.setId(id);
+			 c.setId_photo(idPhoto);
+			 res.add(c);
 		 }
 		 message.getBody().add(res);
 		 System.out.println("RESPONSE HANDLER - GET FIRENDS INFO ENDED");
@@ -255,8 +254,9 @@ public class responseHandler extends AbstractActionLifecycle
 			 int idFrom = Integer.parseInt((String) responseMsg.get(i.next()));
 			 int idTo = Integer.parseInt((String) responseMsg.get(i.next()));
 			 char status = (char) Integer.parseInt((String) responseMsg.get(i.next()));
+			 			 
 			 Relation r = new Relation(idFrom, idTo);
-			 r.setId(idTo);
+			 r.setId(id);
 			 r.setStatus(status);
 			 res.add(r);
 		 }
@@ -264,5 +264,26 @@ public class responseHandler extends AbstractActionLifecycle
 		 message.getBody().add(res);
 		return message; 
 	 }
+	 public Message acceptFriend(Message message) throws MessageDeliverException
+	 {
+		 System.out.println("ESB - RESPONSEHANDLER accept friend");
+		 Map responseMsg = null;
+		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
+		 System.out.println(responseMsg.toString());
+		 System.out.println("ESB - RESPONSEHANDLER accept friend ENDED");
+		 message.getBody().add("friend accepted");		 
+		 return message;
+	 }
+	 public Message declineFriend(Message message) throws MessageDeliverException
+	 {
+		 System.out.println("ESB - RESPONSEHANDLER decline friend");
+		 Map responseMsg = null;
+		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
+		 System.out.println(responseMsg.toString());
+		 System.out.println("ESB - RESPONSEHANDLER decline friend ENDED");
+		 message.getBody().add("friend declined");		 
+		 return message;
+	 }
+	 
 	 
 }

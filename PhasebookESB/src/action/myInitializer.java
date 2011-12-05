@@ -292,7 +292,7 @@ public class myInitializer extends AbstractActionLifecycle
 	
 	public Message addPhoto(Message message) throws MessageDeliverException
 	{
-//		 System.out.println("INIT ADD PHOTO");
+		 System.out.println("INIT ADD PHOTO");
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
 		 
 	     String path = (String)requestMsg.get("path");	     
@@ -301,7 +301,7 @@ public class myInitializer extends AbstractActionLifecycle
 	     send.put("addPhoto.photoPath", path);
 	     
 	     message.getBody().add(send);
-//	     System.out.println("INIT ADD PHOTO ENDED");
+	     System.out.println("INIT ADD PHOTO ENDED");
 		return message;
 	}
 	

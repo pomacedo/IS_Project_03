@@ -16,27 +16,23 @@
 	<jsp:forward page="/index.jsp"></jsp:forward>
 <%
 }
-
-
-PhasebookMainWSService mainWS = new PhasebookMainWSService();
-PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
 int idTo=-1;
-if(request.getParameter("idRel")!=null)
+if(request.getParameter("idTo")!=null)
 {	
-	int idRel=Integer.parseInt(request.getParameter("idRel"));
+	
+	PhasebookMainWSService mainWS = new PhasebookMainWSService();
+	PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
 	idTo=Integer.parseInt(request.getParameter("idTo"));
-	InitialContext ctx= new InitialContext();
-	//RelationBeanRemote rb=(RelationBeanRemote)ctx.lookup("RelationBean/remote");	
-	ws.acceptFriend(personal.getId(),personal.getPassword(),idRel);
-	//rb.acceptFriend(personal.getId(),personal.getPassword(),idRel);
+	//InitialContext ctx= new InitialContext();
+	//RelationBeanRemote rb=(RelationBeanRemote)ctx.lookup("RelationBean/remote");
+	ws.removeFriend(personal.getId(),personal.getPassword(),idTo);
 }
 
 String str="/PhasebookWebTier/primary.jsp";
 if(idTo!=-1)
 	str=str+"?id="+idTo;
-response.sendRedirect(str);%>
-
-
+response.sendRedirect(str);
+%>	
 
 </body>
 </html>

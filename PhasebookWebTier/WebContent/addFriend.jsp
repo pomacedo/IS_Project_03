@@ -23,6 +23,7 @@ PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
 int idTo=-1;
 if(request.getParameter("idTo")!=null)
 {	
+	
 	idTo=Integer.parseInt(request.getParameter("idTo"));
 	InitialContext ctx= new InitialContext();
 	RelationBeanRemote rb=(RelationBeanRemote)ctx.lookup("RelationBean/remote");

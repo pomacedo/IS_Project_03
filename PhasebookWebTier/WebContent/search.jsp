@@ -20,6 +20,7 @@
 </head>
 <body>
 		<%
+		
 		PhasebookMainWSService mainWS = new PhasebookMainWSService();
 		PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
  		InitialContext ctx= new InitialContext();

@@ -190,6 +190,7 @@ public class RelationBean implements RelationBeanRemote {
 
 	}
 	
+	
 	@Override
 	public Relation getRelation(List<Relation> relList, int idFriend) 
 	{
@@ -269,7 +270,7 @@ public class RelationBean implements RelationBeanRemote {
 		EntityTransaction tx=em.getTransaction();
 		try{
 			tx.begin();
-			em.remove(r1);
+			em.remove(r1.get(0));
 			tx.commit();
 		}catch(RollbackException ex){
 			return ;

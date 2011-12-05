@@ -44,46 +44,5 @@ public class relationWS {
 		relBeanRem.acceptFriend( id, password, idRel);
 	}
 	
-//	@WebMethod	
-//	public List<Relation> checkMyFriends(String id, String password){
-//		return relBeanRem.checkMyFriends( Integer.parseInt(id),  password);
-//	}
-//	@WebMethod	
-//	public boolean checkIfIsFriend(String id, String password,List<Relation> relList, String idFriend){
-//		return relBeanRem.checkIfIsFriend( Integer.parseInt(id),  password,relList,  Integer.parseInt(idFriend));
-//		}
-//	@WebMethod	
-//	public boolean checkIfIsApprovedFriend(String id, String password,List<Relation> relList, String idFriend){
-//		return relBeanRem.checkIfIsApprovedFriend( Integer.parseInt(id),  password,relList,  Integer.parseInt(idFriend));
-//		}
-//	@WebMethod	
-//	public int numberOfFriends(String id){
-//		return relBeanRem.numberOfFriends( Integer.parseInt(id));
-//		}
-//	@WebMethod	
-//	public List<Relation> getNewRequests(String id,String password){
-//		return relBeanRem.getNewRequests( Integer.parseInt(id), password);
-//		}
-
-//	@WebMethod	
-//	public void declineFriend(String id, String password, String idRel){
-//		relBeanRem.declineFriend( Integer.parseInt(id),  password, Integer.parseInt(idRel));
-//		}
-//	@WebMethod	
-//	public void removeFriend(String id, String password, String idFriend){
-//		relBeanRem.removeFriend( Integer.parseInt(id),  password,  Integer.parseInt(idFriend));
-//		}
-//	@WebMethod	
-//	public Relation getRelation(List<Relation> relList, String idFriend){
-//		return relBeanRem.getRelation(relList,  Integer.parseInt(idFriend));
-//		}
-//	@WebMethod	
-//	public void sendNewFriendRequestMail(Client c1, Client c2){
-//		relBeanRem.sendNewFriendRequestMail(c1,c2);
-//		}
-//	@WebMethod
-//	public List<Client> getFriends(String id){
-//		return relBeanRem.getFriends(Integer.parseInt(id));
-//		}
 
 }

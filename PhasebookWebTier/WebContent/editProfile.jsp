@@ -11,6 +11,7 @@
 </head>
 <body>
 	<%
+	
 		ManageBeanRemote personal=(ManageBeanRemote)session.getAttribute("user");		
 		PhasebookMainWSService mainWS = new PhasebookMainWSService();
 		PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();

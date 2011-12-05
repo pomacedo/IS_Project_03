@@ -164,13 +164,13 @@ public interface PhasebookMainWS {
      * 
      * @param arg0
      * @return
-     *     returns java.util.List<client.artefact.Client>
+     *     returns java.util.List<java.lang.Integer>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "getFriends", targetNamespace = "http://connector/", className = "client.artefact.GetFriends")
     @ResponseWrapper(localName = "getFriendsResponse", targetNamespace = "http://connector/", className = "client.artefact.GetFriendsResponse")
-    public List<Client> getFriends(
+    public List<Integer> getFriends(
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0);
 

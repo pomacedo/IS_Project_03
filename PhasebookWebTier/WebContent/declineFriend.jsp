@@ -20,6 +20,7 @@ int idTo=-1;
 
 if(request.getParameter("idRel")!=null)
 {	
+	
 	PhasebookMainWSService mainWS = new PhasebookMainWSService();
 	PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
 	int idRel=Integer.parseInt(request.getParameter("idRel"));

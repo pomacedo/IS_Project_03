@@ -324,7 +324,7 @@ public class PhasebookMainWS {
 		
 	}
 	@WebMethod
-	public List<Client> getFriends(int id){
+	public List<Integer> getFriends(int id){
 		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
 
 		Message esbMessage = MessageFactory.getInstance().getMessage();
@@ -344,25 +344,27 @@ public class PhasebookMainWS {
 			
 			System.out.println("MAIN WS - Pedido de GETRELATIONS enviado\n");
 			List<Integer> response = (List<Integer>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
-			if(response.size()==0 || response==null)
-				return null;
-			
-			HashMap requestMap2 = new HashMap();
-			requestMap2.put("ids",response);
-			Message esbMessage2 = MessageFactory.getInstance().getMessage();
-			esbMessage2.getBody().add(requestMap2);
-		
-			si = new ServiceInvoker("Client", "getFriendsInfo");
-			retMessage = si.deliverSync(esbMessage2, 10000L);		
-			
-			
-			System.out.println("MAIN WS - Pedido de GETFRIENDS enviado\n");
-			List<Client> response2 = (List<Client>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
-			
-			System.out.println("\n ----------------------GETFRIENDSINFO response is: "+response2);
-			 
-			
-			return response2;
+			System.out.println("CCCCCCCCCCCCCCCCC "+response.get(0));
+			return response;
+//			if(response.size()==0 || response==null)
+//				return null;
+//			
+//			HashMap requestMap2 = new HashMap();
+//			requestMap2.put("ids",response);
+//			Message esbMessage2 = MessageFactory.getInstance().getMessage();
+//			esbMessage2.getBody().add(requestMap2);
+//		
+//			si = new ServiceInvoker("Client", "getFriendsInfo");
+//			retMessage = si.deliverSync(esbMessage2, 10000L);		
+//			
+//			
+//			System.out.println("MAIN WS - Pedido de GETFRIENDS enviado\n");
+//			List<Client> response2 = (List<Client>) retMessage.getBody().get(Body.DEFAULT_LOCATION);
+//			
+//			System.out.println("\n ----------------------GETFRIENDSINFO response is: "+response2);
+//			 
+//			
+//			return response2;
 		} catch (MessageDeliverException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

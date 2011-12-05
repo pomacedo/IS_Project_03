@@ -14,6 +14,7 @@
 	PhotoBeanRemote pb = (PhotoBeanRemote)ctx.lookup("PhotoBean/remote");
 	ManageBeanRemote personal=(ManageBeanRemote)session.getAttribute("user");
 	
+	
 if(session.getAttribute("error")!=null){ %>
 	<label class="labelerror"><%=session.getAttribute("error") %></label>
 	<%session.removeAttribute("error");
@@ -53,7 +54,7 @@ if(session.getAttribute("error")!=null){ %>
 		%>
 			<div class="message">
 				<div class="avatarMessage" onmouseover="this.style.cursor='pointer';" onmouseout="this.style.cursor='default';" onclick="doForward(<%=m.getIdClientFrom()%>)"> 
-					<img alt="" src="<%=pb.getPhotoById(m.getIdClientFrom())%>" width="50px">
+					<img alt="" src="<%=pb.getPhotoById(msgClientFrom.getIdPhoto())%>" width="50px">
 				</div>
 				&nbsp;&nbsp;&nbsp;<div style="float: left;" onmouseover="this.style.cursor='pointer';" onmouseout="this.style.cursor='default';" onclick="doForward(<%=m.getIdClientFrom()%>)">&nbsp;&nbsp;<label class="label3" onmouseover="this.style.cursor='pointer';" onmouseout="this.style.cursor='default';" onclick="doForward(<%=m.getIdClientFrom()%>)"><%=msgClientFrom.getName() %></label></div><label class="label3" style="font-weight: normal;">&nbsp;says:</label>
 				<%if(idTo==-1 || idTo==personal.getId()){ %>

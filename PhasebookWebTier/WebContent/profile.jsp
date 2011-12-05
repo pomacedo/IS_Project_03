@@ -14,7 +14,6 @@
 		ManageBeanRemote personal=(ManageBeanRemote)session.getAttribute("user");		
 		
 		client.artefact.Client client;
-		
 		PhasebookMainWSService mainWS = new PhasebookMainWSService();
 		PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
 		

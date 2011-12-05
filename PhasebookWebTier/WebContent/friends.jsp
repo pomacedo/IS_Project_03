@@ -17,16 +17,19 @@
 		PhasebookMainWSService mainWS = new PhasebookMainWSService();
 		PhasebookMainWS ws = mainWS.getPhasebookMainWSPort();
  		InitialContext ctx= new InitialContext();
-		//ClientSessionBeanRemote cb=(ClientSessionBeanRemote)ctx.lookup("ClientSessionBean/remote");
+		ClientSessionBeanRemote cb=(ClientSessionBeanRemote)ctx.lookup("ClientSessionBean/remote");
 		//RelationBeanRemote rb = (RelationBeanRemote)ctx.lookup("RelationBean/remote");
 		PhotoBeanRemote pb = (PhotoBeanRemote)ctx.lookup("PhotoBean/remote");
 		ManageBeanRemote personal=(ManageBeanRemote)session.getAttribute("user");
 		String name;
-		List<client.artefact.Client> clients=null;
-		List<client.artefact.Relation> newRequests=null;
+		
+		List<data.Client> clients=null;
+		List<client.artefact.Relation> newRequests=null; 
+		List<Integer> ids = null;
 		if(request.getParameter("id")!=null){
 			try{
-				clients=ws.getFriends(Integer.parseInt(request.getParameter("id")));
+				ids=(List<Integer>)ws.getFriends(Integer.parseInt(request.getParameter("id")));
+				clients = cb.getVariousClientInfo(ids);
 			}catch(Exception e){
 				out.println("Please try again Later");
 				clients=null;
@@ -40,7 +43,8 @@
 		}
 		else{
 			name=" Your ";
-			clients=ws.getFriends(personal.getId());
+			ids=(List<Integer>)ws.getFriends(personal.getId());
+			clients = cb.getVariousClientInfo(ids);
 			newRequests=ws.getNewRequests(personal.getId(),personal.getPassword());
 			
 		}
@@ -74,7 +78,7 @@
 			{%>
 				&nbsp;&nbsp;&nbsp;<label class="labelresult"> <%=name%>  Friends:</label><br><br>
 				<%
-				for(client.artefact.Client client:clients)
+				for(data.Client client:clients)
 				{%>
 					<div class="searchresult<%=i%2%>" onmouseover="this.style.backgroundColor='#D8DFEA';this.style.cursor='pointer';" onmouseout="this.style.backgroundColor='<%= i%2==0?"#F2F2F2":"white"%>';this.style.cursor='default';" onclick="doForward(<%=client.getId()%>)">
 
@@ -82,7 +86,7 @@
 							<tr>
 							<td  class="searchphoto">
 										<div class="avatarMessage" onmouseover="this.style.cursor='pointer';" onmouseout="this.style.cursor='default';" > 
-												<img alt="" src="<%=pb.getPhotoById(client.getId())%>" width="50px" height="50px">
+												<img alt="" src="<%=pb.getPhotoById(client.getId_photo())%>" width="50px" height="50px">
 										</div>
 										</td>
 							<td  class="searchname">&nbsp;&nbsp;&nbsp;<%=client.getName() %></td>

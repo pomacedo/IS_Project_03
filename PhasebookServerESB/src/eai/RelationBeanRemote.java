@@ -9,6 +9,7 @@ import data.Relation;
 @Remote
 public interface RelationBeanRemote {
 	
+	
 	public boolean addFriend(int idFrom,String password, int idTo);
 	public List<Relation> checkMyFriends(int id, String password);
 	public boolean checkIfIsFriend(int id, String password,List<Relation> relList, int idFriend);

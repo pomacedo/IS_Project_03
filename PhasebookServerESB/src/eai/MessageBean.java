@@ -101,7 +101,7 @@ public class MessageBean implements MessageBeanRemote {
 			return null;
 		}
 		
-		List<Message> list=(List<Message>)em.createQuery("SELECT m FROM Message m WHERE m.id_client_to LIKE ?1").setParameter(1, c1.getId()).getResultList();
+		List<Message> list=(List<Message>)em.createQuery("SELECT m FROM Message m WHERE m.id_client_to LIKE ?1 order by m.msg_date desc").setParameter(1, c1.getId()).getResultList();
 //		List<Message> list=(List<Message>) c1.getMessagesTo();
 		List<Message> toGo = new ArrayList<Message>();
 		for(Message m:list)

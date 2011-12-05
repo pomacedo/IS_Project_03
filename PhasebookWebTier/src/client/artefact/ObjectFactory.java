@@ -25,29 +25,31 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _EditProfileResponse_QNAME = new QName("http://connector/", "editProfileResponse");
-    private final static QName _GetClientInfoResponse_QNAME = new QName("http://connector/", "getClientInfoResponse");
-    private final static QName _GetPost_QNAME = new QName("http://connector/", "getPost");
-    private final static QName _AddFriend_QNAME = new QName("http://connector/", "addFriend");
     private final static QName _AddClientResponse_QNAME = new QName("http://connector/", "addClientResponse");
-    private final static QName _GetFriends_QNAME = new QName("http://connector/", "getFriends");
-    private final static QName _CheckLogInResponse_QNAME = new QName("http://connector/", "checkLogInResponse");
     private final static QName _AcceptFriendResponse_QNAME = new QName("http://connector/", "acceptFriendResponse");
-    private final static QName _DeclineFriendResponse_QNAME = new QName("http://connector/", "declineFriendResponse");
-    private final static QName _GetNewRequests_QNAME = new QName("http://connector/", "getNewRequests");
-    private final static QName _GetNewRequestsResponse_QNAME = new QName("http://connector/", "getNewRequestsResponse");
+    private final static QName _RemoveFriend_QNAME = new QName("http://connector/", "removeFriend");
     private final static QName _GetSearchResponse_QNAME = new QName("http://connector/", "getSearchResponse");
+    private final static QName _GetNewRequestsResponse_QNAME = new QName("http://connector/", "getNewRequestsResponse");
     private final static QName _AddFriendResponse_QNAME = new QName("http://connector/", "addFriendResponse");
     private final static QName _CheckLogIn_QNAME = new QName("http://connector/", "checkLogIn");
     private final static QName _SendMessage_QNAME = new QName("http://connector/", "sendMessage");
-    private final static QName _GetFriendsResponse_QNAME = new QName("http://connector/", "getFriendsResponse");
-    private final static QName _SendMessageResponse_QNAME = new QName("http://connector/", "sendMessageResponse");
     private final static QName _AddClient_QNAME = new QName("http://connector/", "addClient");
-    private final static QName _GetClientInfo_QNAME = new QName("http://connector/", "getClientInfo");
     private final static QName _DeclineFriend_QNAME = new QName("http://connector/", "declineFriend");
     private final static QName _AcceptFriend_QNAME = new QName("http://connector/", "acceptFriend");
     private final static QName _GetPostResponse_QNAME = new QName("http://connector/", "getPostResponse");
-    private final static QName _GetSearch_QNAME = new QName("http://connector/", "getSearch");
     private final static QName _EditProfile_QNAME = new QName("http://connector/", "editProfile");
+    private final static QName _GetClientInfoResponse_QNAME = new QName("http://connector/", "getClientInfoResponse");
+    private final static QName _AddFriend_QNAME = new QName("http://connector/", "addFriend");
+    private final static QName _GetPost_QNAME = new QName("http://connector/", "getPost");
+    private final static QName _GetFriends_QNAME = new QName("http://connector/", "getFriends");
+    private final static QName _CheckLogInResponse_QNAME = new QName("http://connector/", "checkLogInResponse");
+    private final static QName _DeclineFriendResponse_QNAME = new QName("http://connector/", "declineFriendResponse");
+    private final static QName _GetNewRequests_QNAME = new QName("http://connector/", "getNewRequests");
+    private final static QName _RemoveFriendResponse_QNAME = new QName("http://connector/", "removeFriendResponse");
+    private final static QName _GetFriendsResponse_QNAME = new QName("http://connector/", "getFriendsResponse");
+    private final static QName _SendMessageResponse_QNAME = new QName("http://connector/", "sendMessageResponse");
+    private final static QName _GetClientInfo_QNAME = new QName("http://connector/", "getClientInfo");
+    private final static QName _GetSearch_QNAME = new QName("http://connector/", "getSearch");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: client.artefact
@@ -57,11 +59,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetNewRequestsResponse }
+     * Create an instance of {@link RemoveFriendResponse }
      * 
      */
-    public GetNewRequestsResponse createGetNewRequestsResponse() {
-        return new GetNewRequestsResponse();
+    public RemoveFriendResponse createRemoveFriendResponse() {
+        return new RemoveFriendResponse();
+    }
+
+    /**
+     * Create an instance of {@link DeclineFriend }
+     * 
+     */
+    public DeclineFriend createDeclineFriend() {
+        return new DeclineFriend();
     }
 
     /**
@@ -73,19 +83,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Client }
+     * Create an instance of {@link SendMessageResponse }
      * 
      */
-    public Client createClient() {
-        return new Client();
-    }
-
-    /**
-     * Create an instance of {@link EditProfileResponse }
-     * 
-     */
-    public EditProfileResponse createEditProfileResponse() {
-        return new EditProfileResponse();
+    public SendMessageResponse createSendMessageResponse() {
+        return new SendMessageResponse();
     }
 
     /**
@@ -97,27 +99,59 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AddClient }
+     * Create an instance of {@link GetClientInfoResponse }
      * 
      */
-    public AddClient createAddClient() {
-        return new AddClient();
+    public GetClientInfoResponse createGetClientInfoResponse() {
+        return new GetClientInfoResponse();
     }
 
     /**
-     * Create an instance of {@link CheckLogIn }
+     * Create an instance of {@link AddClientResponse }
      * 
      */
-    public CheckLogIn createCheckLogIn() {
-        return new CheckLogIn();
+    public AddClientResponse createAddClientResponse() {
+        return new AddClientResponse();
     }
 
     /**
-     * Create an instance of {@link GetClientInfo }
+     * Create an instance of {@link Client }
      * 
      */
-    public GetClientInfo createGetClientInfo() {
-        return new GetClientInfo();
+    public Client createClient() {
+        return new Client();
+    }
+
+    /**
+     * Create an instance of {@link EditProfile }
+     * 
+     */
+    public EditProfile createEditProfile() {
+        return new EditProfile();
+    }
+
+    /**
+     * Create an instance of {@link GetFriendsResponse }
+     * 
+     */
+    public GetFriendsResponse createGetFriendsResponse() {
+        return new GetFriendsResponse();
+    }
+
+    /**
+     * Create an instance of {@link EditProfileResponse }
+     * 
+     */
+    public EditProfileResponse createEditProfileResponse() {
+        return new EditProfileResponse();
+    }
+
+    /**
+     * Create an instance of {@link RemoveFriend }
+     * 
+     */
+    public RemoveFriend createRemoveFriend() {
+        return new RemoveFriend();
     }
 
     /**
@@ -129,35 +163,67 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AddClient }
+     * 
+     */
+    public AddClient createAddClient() {
+        return new AddClient();
+    }
+
+    /**
+     * Create an instance of {@link Relation }
+     * 
+     */
+    public Relation createRelation() {
+        return new Relation();
+    }
+
+    /**
+     * Create an instance of {@link GetNewRequests }
+     * 
+     */
+    public GetNewRequests createGetNewRequests() {
+        return new GetNewRequests();
+    }
+
+    /**
+     * Create an instance of {@link GetSearchResponse }
+     * 
+     */
+    public GetSearchResponse createGetSearchResponse() {
+        return new GetSearchResponse();
+    }
+
+    /**
+     * Create an instance of {@link CheckLogIn }
+     * 
+     */
+    public CheckLogIn createCheckLogIn() {
+        return new CheckLogIn();
+    }
+
+    /**
+     * Create an instance of {@link ClientInfo }
+     * 
+     */
+    public ClientInfo createClientInfo() {
+        return new ClientInfo();
+    }
+
+    /**
+     * Create an instance of {@link AcceptFriendResponse }
+     * 
+     */
+    public AcceptFriendResponse createAcceptFriendResponse() {
+        return new AcceptFriendResponse();
+    }
+
+    /**
      * Create an instance of {@link GetPostResponse }
      * 
      */
     public GetPostResponse createGetPostResponse() {
         return new GetPostResponse();
-    }
-
-    /**
-     * Create an instance of {@link DeclineFriendResponse }
-     * 
-     */
-    public DeclineFriendResponse createDeclineFriendResponse() {
-        return new DeclineFriendResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetClientInfoResponse }
-     * 
-     */
-    public GetClientInfoResponse createGetClientInfoResponse() {
-        return new GetClientInfoResponse();
-    }
-
-    /**
-     * Create an instance of {@link DeclineFriend }
-     * 
-     */
-    public DeclineFriend createDeclineFriend() {
-        return new DeclineFriend();
     }
 
     /**
@@ -177,35 +243,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AddClientResponse }
+     * Create an instance of {@link GetClientInfo }
      * 
      */
-    public AddClientResponse createAddClientResponse() {
-        return new AddClientResponse();
-    }
-
-    /**
-     * Create an instance of {@link SendMessageResponse }
-     * 
-     */
-    public SendMessageResponse createSendMessageResponse() {
-        return new SendMessageResponse();
-    }
-
-    /**
-     * Create an instance of {@link AcceptFriendResponse }
-     * 
-     */
-    public AcceptFriendResponse createAcceptFriendResponse() {
-        return new AcceptFriendResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetNewRequests }
-     * 
-     */
-    public GetNewRequests createGetNewRequests() {
-        return new GetNewRequests();
+    public GetClientInfo createGetClientInfo() {
+        return new GetClientInfo();
     }
 
     /**
@@ -225,35 +267,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Relation }
+     * Create an instance of {@link DeclineFriendResponse }
      * 
      */
-    public Relation createRelation() {
-        return new Relation();
-    }
-
-    /**
-     * Create an instance of {@link GetFriendsResponse }
-     * 
-     */
-    public GetFriendsResponse createGetFriendsResponse() {
-        return new GetFriendsResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetSearch }
-     * 
-     */
-    public GetSearch createGetSearch() {
-        return new GetSearch();
-    }
-
-    /**
-     * Create an instance of {@link ClientInfo }
-     * 
-     */
-    public ClientInfo createClientInfo() {
-        return new ClientInfo();
+    public DeclineFriendResponse createDeclineFriendResponse() {
+        return new DeclineFriendResponse();
     }
 
     /**
@@ -265,19 +283,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link EditProfile }
+     * Create an instance of {@link GetSearch }
      * 
      */
-    public EditProfile createEditProfile() {
-        return new EditProfile();
+    public GetSearch createGetSearch() {
+        return new GetSearch();
     }
 
     /**
-     * Create an instance of {@link GetSearchResponse }
+     * Create an instance of {@link GetNewRequestsResponse }
      * 
      */
-    public GetSearchResponse createGetSearchResponse() {
-        return new GetSearchResponse();
+    public GetNewRequestsResponse createGetNewRequestsResponse() {
+        return new GetNewRequestsResponse();
     }
 
     /**
@@ -290,57 +308,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetClientInfoResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://connector/", name = "getClientInfoResponse")
-    public JAXBElement<GetClientInfoResponse> createGetClientInfoResponse(GetClientInfoResponse value) {
-        return new JAXBElement<GetClientInfoResponse>(_GetClientInfoResponse_QNAME, GetClientInfoResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetPost }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://connector/", name = "getPost")
-    public JAXBElement<GetPost> createGetPost(GetPost value) {
-        return new JAXBElement<GetPost>(_GetPost_QNAME, GetPost.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddFriend }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://connector/", name = "addFriend")
-    public JAXBElement<AddFriend> createAddFriend(AddFriend value) {
-        return new JAXBElement<AddFriend>(_AddFriend_QNAME, AddFriend.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AddClientResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://connector/", name = "addClientResponse")
     public JAXBElement<AddClientResponse> createAddClientResponse(AddClientResponse value) {
         return new JAXBElement<AddClientResponse>(_AddClientResponse_QNAME, AddClientResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetFriends }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://connector/", name = "getFriends")
-    public JAXBElement<GetFriends> createGetFriends(GetFriends value) {
-        return new JAXBElement<GetFriends>(_GetFriends_QNAME, GetFriends.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CheckLogInResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://connector/", name = "checkLogInResponse")
-    public JAXBElement<CheckLogInResponse> createCheckLogInResponse(CheckLogInResponse value) {
-        return new JAXBElement<CheckLogInResponse>(_CheckLogInResponse_QNAME, CheckLogInResponse.class, null, value);
     }
 
     /**
@@ -353,30 +326,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DeclineFriendResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link RemoveFriend }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://connector/", name = "declineFriendResponse")
-    public JAXBElement<DeclineFriendResponse> createDeclineFriendResponse(DeclineFriendResponse value) {
-        return new JAXBElement<DeclineFriendResponse>(_DeclineFriendResponse_QNAME, DeclineFriendResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetNewRequests }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://connector/", name = "getNewRequests")
-    public JAXBElement<GetNewRequests> createGetNewRequests(GetNewRequests value) {
-        return new JAXBElement<GetNewRequests>(_GetNewRequests_QNAME, GetNewRequests.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetNewRequestsResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://connector/", name = "getNewRequestsResponse")
-    public JAXBElement<GetNewRequestsResponse> createGetNewRequestsResponse(GetNewRequestsResponse value) {
-        return new JAXBElement<GetNewRequestsResponse>(_GetNewRequestsResponse_QNAME, GetNewRequestsResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://connector/", name = "removeFriend")
+    public JAXBElement<RemoveFriend> createRemoveFriend(RemoveFriend value) {
+        return new JAXBElement<RemoveFriend>(_RemoveFriend_QNAME, RemoveFriend.class, null, value);
     }
 
     /**
@@ -386,6 +341,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://connector/", name = "getSearchResponse")
     public JAXBElement<GetSearchResponse> createGetSearchResponse(GetSearchResponse value) {
         return new JAXBElement<GetSearchResponse>(_GetSearchResponse_QNAME, GetSearchResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetNewRequestsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "getNewRequestsResponse")
+    public JAXBElement<GetNewRequestsResponse> createGetNewRequestsResponse(GetNewRequestsResponse value) {
+        return new JAXBElement<GetNewRequestsResponse>(_GetNewRequestsResponse_QNAME, GetNewRequestsResponse.class, null, value);
     }
 
     /**
@@ -416,39 +380,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetFriendsResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://connector/", name = "getFriendsResponse")
-    public JAXBElement<GetFriendsResponse> createGetFriendsResponse(GetFriendsResponse value) {
-        return new JAXBElement<GetFriendsResponse>(_GetFriendsResponse_QNAME, GetFriendsResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SendMessageResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://connector/", name = "sendMessageResponse")
-    public JAXBElement<SendMessageResponse> createSendMessageResponse(SendMessageResponse value) {
-        return new JAXBElement<SendMessageResponse>(_SendMessageResponse_QNAME, SendMessageResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AddClient }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://connector/", name = "addClient")
     public JAXBElement<AddClient> createAddClient(AddClient value) {
         return new JAXBElement<AddClient>(_AddClient_QNAME, AddClient.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetClientInfo }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://connector/", name = "getClientInfo")
-    public JAXBElement<GetClientInfo> createGetClientInfo(GetClientInfo value) {
-        return new JAXBElement<GetClientInfo>(_GetClientInfo_QNAME, GetClientInfo.class, null, value);
     }
 
     /**
@@ -479,21 +416,120 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetSearch }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://connector/", name = "getSearch")
-    public JAXBElement<GetSearch> createGetSearch(GetSearch value) {
-        return new JAXBElement<GetSearch>(_GetSearch_QNAME, GetSearch.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link EditProfile }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://connector/", name = "editProfile")
     public JAXBElement<EditProfile> createEditProfile(EditProfile value) {
         return new JAXBElement<EditProfile>(_EditProfile_QNAME, EditProfile.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetClientInfoResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "getClientInfoResponse")
+    public JAXBElement<GetClientInfoResponse> createGetClientInfoResponse(GetClientInfoResponse value) {
+        return new JAXBElement<GetClientInfoResponse>(_GetClientInfoResponse_QNAME, GetClientInfoResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddFriend }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "addFriend")
+    public JAXBElement<AddFriend> createAddFriend(AddFriend value) {
+        return new JAXBElement<AddFriend>(_AddFriend_QNAME, AddFriend.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetPost }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "getPost")
+    public JAXBElement<GetPost> createGetPost(GetPost value) {
+        return new JAXBElement<GetPost>(_GetPost_QNAME, GetPost.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetFriends }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "getFriends")
+    public JAXBElement<GetFriends> createGetFriends(GetFriends value) {
+        return new JAXBElement<GetFriends>(_GetFriends_QNAME, GetFriends.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CheckLogInResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "checkLogInResponse")
+    public JAXBElement<CheckLogInResponse> createCheckLogInResponse(CheckLogInResponse value) {
+        return new JAXBElement<CheckLogInResponse>(_CheckLogInResponse_QNAME, CheckLogInResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeclineFriendResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "declineFriendResponse")
+    public JAXBElement<DeclineFriendResponse> createDeclineFriendResponse(DeclineFriendResponse value) {
+        return new JAXBElement<DeclineFriendResponse>(_DeclineFriendResponse_QNAME, DeclineFriendResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetNewRequests }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "getNewRequests")
+    public JAXBElement<GetNewRequests> createGetNewRequests(GetNewRequests value) {
+        return new JAXBElement<GetNewRequests>(_GetNewRequests_QNAME, GetNewRequests.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RemoveFriendResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "removeFriendResponse")
+    public JAXBElement<RemoveFriendResponse> createRemoveFriendResponse(RemoveFriendResponse value) {
+        return new JAXBElement<RemoveFriendResponse>(_RemoveFriendResponse_QNAME, RemoveFriendResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetFriendsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "getFriendsResponse")
+    public JAXBElement<GetFriendsResponse> createGetFriendsResponse(GetFriendsResponse value) {
+        return new JAXBElement<GetFriendsResponse>(_GetFriendsResponse_QNAME, GetFriendsResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendMessageResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "sendMessageResponse")
+    public JAXBElement<SendMessageResponse> createSendMessageResponse(SendMessageResponse value) {
+        return new JAXBElement<SendMessageResponse>(_SendMessageResponse_QNAME, SendMessageResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetClientInfo }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "getClientInfo")
+    public JAXBElement<GetClientInfo> createGetClientInfo(GetClientInfo value) {
+        return new JAXBElement<GetClientInfo>(_GetClientInfo_QNAME, GetClientInfo.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetSearch }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://connector/", name = "getSearch")
+    public JAXBElement<GetSearch> createGetSearch(GetSearch value) {
+        return new JAXBElement<GetSearch>(_GetSearch_QNAME, GetSearch.class, null, value);
     }
 
 }

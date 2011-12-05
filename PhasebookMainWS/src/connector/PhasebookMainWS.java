@@ -561,6 +561,37 @@ public class PhasebookMainWS {
 		}
 		
 	}
-	
+		
+	@WebMethod
+	public void removeFriend(int id, String password,int idRel){
+		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
+
+		Message esbMessage = MessageFactory.getInstance().getMessage();
+		System.out.println("removeFriend ON MAIN WS ###"+id+" "+password+" "+idRel+"###");
+
+		HashMap requestMap = new HashMap();
+		requestMap.put("id",id);
+		requestMap.put("password",password);
+		requestMap.put("idRel",idRel);
+		esbMessage.getBody().add(requestMap);
+
+		ServiceInvoker si;
+		try {
+			si = new ServiceInvoker("Relation", "removeFriend");
+			si.deliverSync(esbMessage, 10000L);
+			System.out.println("MAIN WS - Pedido de removeFriend enviado\n");
+			
+		} catch (MessageDeliverException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FaultMessageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RegistryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 }

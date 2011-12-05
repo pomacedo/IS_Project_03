@@ -27,5 +27,7 @@
  <jmsQueue>acceptFriend_request</jmsQueue>
  <jmsQueue>acceptFriend_request_reply</jmsQueue>
  <jmsQueue>declineFriend_request</jmsQueue>
- <jmsQueue>declineFriend_request</jmsQueue>
+ <jmsQueue>declineFriend_request_reply</jmsQueue>
+ <jmsQueue>removeFriend_request</jmsQueue>
+ <jmsQueue>removeFriend_request_reply</jmsQueue>
 </jbossesb-deployment>

@@ -284,6 +284,15 @@ public class responseHandler extends AbstractActionLifecycle
 		 message.getBody().add("friend declined");		 
 		 return message;
 	 }
-	 
+	 public Message removeFriend(Message message) throws MessageDeliverException
+	 {
+		 System.out.println("ESB - RESPONSEHANDLER remove friend");
+		 Map responseMsg = null;
+		 responseMsg = (Map) message.getBody().get(Body.DEFAULT_LOCATION);
+		 System.out.println(responseMsg.toString());
+		 System.out.println("ESB - RESPONSEHANDLER remove friend ENDED");
+		 message.getBody().add("friend removed");		 
+		 return message;
+	 }
 	 
 }

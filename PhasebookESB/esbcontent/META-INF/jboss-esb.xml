@@ -43,6 +43,9 @@
    <jms-bus busid="declineFriendRequest">
     <jms-message-filter dest-name="queue/declineFriend_request" dest-type="QUEUE"/>
    </jms-bus>
+   <jms-bus busid="removeFriendRequest">
+     <jms-message-filter dest-name="queue/removeFriend_request" dest-type="QUEUE"/>
+   </jms-bus>
   </jms-provider>
  </providers>
  <services>
@@ -256,6 +259,21 @@
     </action>
     <action class="action.responseHandler"
      name="handlergetpendingrelations" process="declineFriend"/> 
+   </actions>
+  </service>
+  <service category="Relation" description="remove a friend request" name="removeFriend">
+   <listeners>
+    <jms-listener busidref="removeFriendRequest" name="ESB-Listener"/>
+   </listeners>
+   <actions>
+    <action class="action.myInitializer" name="init_declineFriend" process="removeFriend"/>
+    <action class="org.jboss.soa.esb.actions.soap.SOAPClient" name="soapui-client-action">
+     <property name="wsdl" value="http://localhost:8080/PhasebookWSs/relationWS?wsdl"/>
+     <property name="SOAPAction" value="removeFriend"/>
+     <property name="responseAsOgnlMap" value="true"/>
+    </action>
+    <action class="action.responseHandler"
+     name="handlerremovefriend" process="removeFriend"/> 
    </actions>
   </service>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Relation Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->

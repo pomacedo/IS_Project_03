@@ -23,7 +23,7 @@ public class relationWS {
 	@WebMethod
 	public List<Relation> getNewFriendRequest(@WebParam(name = "id") int id,@WebParam(name = "password") String password)
 	{
-		System.out.println("STARTED GETPENDING RELATIONS "+id+"|"+password);		
+		
 		return relBeanRem.getNewRequests(id,password);		
 	}
 	
@@ -35,10 +35,12 @@ public class relationWS {
 	public void declineFriend(@WebParam(name = "id") int id,@WebParam(name = "password") String password,@WebParam(name = "idRel") int idRel){
 		relBeanRem.declineFriend(id, password, idRel);
 	}
+	@WebMethod
+	public void removeFriend(@WebParam(name = "id") int id,@WebParam(name = "password") String password,@WebParam(name = "idRel") int idRel){
+		relBeanRem.removeFriend(id, password, idRel);
+	}
 	@WebMethod	
 	public void acceptFriend(@WebParam(name = "id") int id,@WebParam(name = "password")  String password, @WebParam(name = "idRel") int idRel){
-		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<< akiiiiiiiiiiiiiiiiii");
-		System.out.println("#"+id+"#"+password+"#"+idRel);
 		relBeanRem.acceptFriend( id, password, idRel);
 	}
 	

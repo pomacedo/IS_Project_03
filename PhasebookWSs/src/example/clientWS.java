@@ -60,9 +60,16 @@ public class clientWS {
 	@WebMethod	
 	public List<Client> getFriendsInfo(@WebParam(name = "ids") List<Integer> ids)
 	{
-		System.out.println("WEB SERV: "+ids.size());
-	    System.out.println("---"+ids.get(0));
-		return user.getVariousClientInfo(ids);		
+		System.out.println("WEB SERVICE - GETTING INFO FRIENDS FROM");
+		System.out.println("---"+ids.get(0));
+		return user.getVariousClientInfo(ids);
 	}
+//	@WebMethod	
+//	public List<Client> getFriendsInfo(@WebParam(name = "ids") List<Integer> ids)
+//	{
+//		System.out.println("WEB SERV: "+ids.size());
+//	    System.out.println("---"+ids.get(0));
+//		return user.getVariousClientInfo(ids);		
+//	}
 	
 }

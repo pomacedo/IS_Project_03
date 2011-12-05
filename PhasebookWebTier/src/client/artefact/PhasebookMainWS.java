@@ -227,6 +227,23 @@ public interface PhasebookMainWS {
 
     /**
      * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "removeFriend", targetNamespace = "http://connector/", className = "client.artefact.RemoveFriend")
+    @ResponseWrapper(localName = "removeFriendResponse", targetNamespace = "http://connector/", className = "client.artefact.RemoveFriendResponse")
+    public void removeFriend(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        int arg2);
+
+    /**
+     * 
      * @param arg5
      * @param arg4
      * @param arg3

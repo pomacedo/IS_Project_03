@@ -22,7 +22,7 @@ if(session.getAttribute("error")!=null){ %>
 
 	<form method="post" action="PostServlet" enctype="multipart/form-data">
 		<input name="message" class="newmessage" id="newmessage" onchange="javascript:youtube()" maxlength="140" type="text" placeholder="Write your message here..." />
-		<input type="hidden" name="to"  value="1"/>
+		<input type="hidden" name="to"  value="<%=request.getParameter("id")==null?personal.getId():request.getParameter("id")%>"/>
 		<select name="private" class="inputtextregister" style="width: 100px;">
 			<option value="T">Private</option>
 			<option value="F">Public</option>

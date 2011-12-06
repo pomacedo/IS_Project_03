@@ -63,7 +63,7 @@ if(session.getAttribute("error")!=null){ %>
 				<div class="textMessage">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="messagetext"><%=m.getText() %></label>
 					<%if(m.getIdPhoto()!=-1){ %>
-						<div style="position:relative;top:20px;left: 70px;width: 300px;"><img alt="" src="<%=m.getIdPhoto()%>" width="300px"></div>
+						<div style="position:relative;top:20px;left: 70px;width: 300px;"><img alt="" src="<%=pb.getPhotoById(m.getIdPhoto())%>" width="300px"></div>
 					<%} %>
 				</div>
 				<div class="messagedate">

@@ -294,7 +294,8 @@ public class myInitializer extends AbstractActionLifecycle
 	{
 		 System.out.println("INIT ADD PHOTO");
 		 Map requestMsg = ((Map)message.getBody().get(Body.DEFAULT_LOCATION));
-		 
+		 System.out.println(message.getBody().get().toString());
+		 System.out.println(requestMsg.toString());
 	     String path = (String)requestMsg.get("path");	     
 	     
 	     Map send = new HashMap();

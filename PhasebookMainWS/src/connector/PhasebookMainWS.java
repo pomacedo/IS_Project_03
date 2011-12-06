@@ -189,12 +189,14 @@ public class PhasebookMainWS {
 	public boolean sendMessage(int idFrom,String password,int idTo,String message,boolean isPrivate,String path){
 		
 		int idPhoto;
+		System.out.println("lalalala la lalala "+path);
 		if(path.equals(""))
 		{
 			idPhoto=-1;
 		}
 		else{
 			idPhoto=addPhoto(path);
+			System.out.println("dance dance dance "+idPhoto);
 			if(idPhoto==-1)
 				return false;
 		}
@@ -247,11 +249,10 @@ public class PhasebookMainWS {
 		System.setProperty("javax.xml.registry.ConnectionFactoryClass","org.apache.ws.scout.registry.ConnectionFactoryImpl");
 		Message esbMessage = MessageFactory.getInstance().getMessage();
 		
-//		System.out.println("VOU INVOCAR"+name+" | "+email+" | "+gender+" | "+password);
+	System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmm "+path);
 		HashMap requestMap = new HashMap();
 		requestMap.put("path",path);		
-		esbMessage.getBody().add(requestMap);
-		
+		esbMessage.getBody().add(requestMap);		
 		Message retMessage = null;
 
 		ServiceInvoker si;

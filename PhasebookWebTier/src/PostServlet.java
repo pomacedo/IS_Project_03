@@ -74,7 +74,7 @@ public class PostServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("sssssssssssssssssssssssssssssssssssssssssssssssss SERVLET SEND MESSAGE");
+		
 		boolean fileSaved=false;
 		String filePath="";
 		ManageBeanRemote personal=(ManageBeanRemote)request.getSession().getAttribute("user");

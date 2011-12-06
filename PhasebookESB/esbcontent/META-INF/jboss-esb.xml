@@ -50,8 +50,7 @@
  </providers>
  <services>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Client Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-  <service category="Client"
-   description="Authentication Login Description" name="checkLogIn">
+  <service category="Client" description="Authentication Login Description" name="checkLogIn">
    <listeners>
     <jms-listener busidref="logingRequest" name="ESB-Listener"/>
    </listeners>
@@ -65,8 +64,7 @@
     <action class="action.responseHandler" name="handleresponse" process="checkLogInRsp"/>
    </actions>
   </service>
-  <service category="Client"
-   description="Create a new client on phasebook" name="createUser">
+  <service category="Client" description="Create a new client on phasebook" name="createUser">
    <listeners>
     <jms-listener busidref="createuserRequest" name="ESB-Listener"/>
    </listeners>
@@ -184,8 +182,7 @@
   </service>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Photo Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Relation Services ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-  <service category="Relation"
-   description="get information of an client" name="getRelations">
+  <service category="Relation" description="get information of an client" name="getRelations">
    <listeners>
     <jms-listener busidref="getRelationsRequest" name="ESB-Listener"/>
    </listeners>
@@ -200,8 +197,7 @@
    </actions>
   </service>
   
-  <service category="Relation"
-   description="get information of an client" name="getPendingRelations">
+  <service category="Relation" description="get information of an client" name="getPendingRelations">
    <listeners>
     <jms-listener busidref="getPendingRelationsRequest" name="ESB-Listener"/>
    </listeners>
